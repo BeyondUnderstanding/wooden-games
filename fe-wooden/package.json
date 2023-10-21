@@ -12,9 +12,6 @@
         "prettier:write": "npx prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
     },
     "dependencies": {
-        "next": "13.5.4",
-        "react": "^18",
-        "react-dom": "^18",
         "@frp-ts/core": "^1.0.0-beta.5",
         "@frp-ts/lens": "^1.0.0-beta.5",
         "@frp-ts/react": "^1.0.0-beta.5",
@@ -22,9 +19,14 @@
         "@most/core": "^1.6.1",
         "@most/scheduler": "^1.3.0",
         "@most/types": "^1.1.0",
+        "@storybook/types": "^7.5.1",
+        "classnames": "^2.3.2",
         "fp-ts": "^2.16.1",
         "frp-ts": "^0.0.1",
-        "most": "^1.9.0"
+        "most": "^1.9.0",
+        "next": "13.5.4",
+        "react": "^18",
+        "react-dom": "^18"
     },
     "devDependencies": {
         "@storybook/addon-essentials": "^7.4.6",

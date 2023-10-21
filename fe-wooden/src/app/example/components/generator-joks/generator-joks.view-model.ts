@@ -3,8 +3,11 @@ import { pipe } from 'fp-ts/lib/function';
 import { newLensedAtom } from '@frp-ts/lens';
 import { chain, tap } from '@most/core';
 import { Property } from '@frp-ts/core';
-import { fromProperty } from '@/utils/property.utils';
-import { ValueWithEffect, valueWithEffect } from '@/utils/run-view-model.utils';
+import { fromProperty } from '../../../../utils/property.utils';
+import {
+    ValueWithEffect,
+    valueWithEffect,
+} from '../../../../utils/run-view-model.utils';
 
 export interface GeneratorJoksViewModel {
     triger: () => void;
