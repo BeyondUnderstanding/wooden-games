@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, ButtonProps } from './button.component';
+import { constVoid } from 'fp-ts/lib/function';
 
 const meta: Meta<typeof Button> = {
     component: Button,
@@ -14,14 +15,12 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<ButtonProps>;
 
-const testOnClick = () => console.log('testClick');
-
 export const ButtonStory: Story = {
     name: 'Button',
     args: {
         disabled: false,
         label: 'Button',
-        onClick: testOnClick,
+        onClick: constVoid,
     },
     render: ({ ...args }) => <Button {...args} />,
 };

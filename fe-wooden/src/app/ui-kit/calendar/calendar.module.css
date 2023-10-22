@@ -18,3 +18,12 @@
     background: transparent;
     cursor: pointer;
 }
+
+.timeSelectWrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}

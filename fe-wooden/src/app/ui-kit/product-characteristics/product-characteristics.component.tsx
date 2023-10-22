@@ -1,8 +1,8 @@
 import css from './product-characteristics.module.css';
 
 export interface Characteristic {
-    label: string;
-    value: string;
+    readonly label: string;
+    readonly value: string;
 }
 
 export interface ProductCharacteristicsProps {

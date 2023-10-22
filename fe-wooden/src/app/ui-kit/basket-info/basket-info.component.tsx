@@ -2,8 +2,8 @@ import css from './basket-info.module.css';
 import cn from 'classnames';
 
 export interface BasketInfoProps {
-    subtotal: number;
-    delivery: number;
+    readonly subtotal: number;
+    readonly delivery: number;
 }
 
 export const BasketInfo = ({ subtotal, delivery }: BasketInfoProps) => {

@@ -6,25 +6,37 @@ import css from './calendar.module.css';
 import { Button } from '../button/button.component';
 import { constVoid } from 'fp-ts/lib/function';
 import { CloseIcon } from '../icons/close-icon.component';
+import { InputType, SelectInput } from '../select-input/select-input.component';
 
 export interface CalendarProps {
-    onClose: () => void;
-    onSelectDate: () => void;
-    occupiedDates: Array<Date>;
+    readonly onClose: () => void;
+    readonly onSelectDate: () => void;
+    readonly occupiedDates: Array<Date>;
 }
+
+const initTimeHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+
+const toInputType = (el: number): InputType => ({
+    value: el,
+    label: `${el}:00`,
+});
 
 export const Calendar = ({
     onClose,
     onSelectDate,
     occupiedDates,
 }: CalendarProps) => {
+    const [date, setDate] = useState(new Date());
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+
     const highlightDates = ({ date, view }: TileArgs) =>
         view === 'month' &&
         occupiedDates.map((d) => d.getDate()).includes(date.getDate()) &&
         occupiedDates.map((d) => d.getMonth()).includes(date.getMonth())
             ? 'highlighted-date'
             : null;
-    const [date, setDate] = useState(new Date());
+
     return (
         <div className={css.wrap}>
             <div className={css.header}>
@@ -52,6 +64,20 @@ export const Calendar = ({
                 locale="en-US"
                 tileClassName={highlightDates}
             />
+            <div className={css.timeSelectWrap}>
+                <SelectInput
+                    options={initTimeHours.map(toInputType)}
+                    initialLabel={'Start'}
+                    onChange={(d) => setStartTime(d.label)}
+                />
+                <span>—</span>
+                <SelectInput
+                    options={initTimeHours.map((el) => toInputType(el + 3))}
+                    initialLabel={'End'}
+                    onChange={(d) => setEndTime(d.label)}
+                />
+            </div>
+
             <Button
                 label={'Choose this date'}
                 onClick={onSelectDate}

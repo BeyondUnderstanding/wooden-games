@@ -1,0 +1,78 @@
+.custom-select {
+    position: relative;
+    user-select: none;
+    display: flex;
+    padding: 9px 12px;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid var(--Primary, #120f07);
+    background: var(--White, #fff);
+    color: var(--Primary, #120f07);
+    width: 100%;
+}
+
+.custom-select.open {
+    border-radius: 8px 8px 0 0;
+}
+
+.select-header {
+    cursor: pointer;
+    /* padding: 8px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid var(--Primary, #120f07);
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    background-color: #fff;
+    margin: -1px;
+    border-radius: 0 0 8px 8px;
+    height: 240px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 3px;
+        height: 71px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--Primary, #120f07);
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: inherit;
+    }
+}
+
+.options li {
+    cursor: pointer;
+    padding: 6px;
+    transition: background-color 0.2s;
+    margin: 3px 6px;
+}
+
+.options li:hover {
+    border-radius: 8px;
+    background: var(--Sand-Light, #f8f7f4);
+}
+
+/*  */
+.arrow {
+    transform: rotate(90deg);
+}
+
+.arrow.open {
+    transform: rotate(270deg);
+}

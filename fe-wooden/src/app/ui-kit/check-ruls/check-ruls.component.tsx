@@ -2,11 +2,9 @@ import { AlarmIcon } from '../icons/alarm-icon.component';
 import cn from 'classnames';
 import css from './check-ruls.module.css';
 
-export interface CheckRulsProps {
-    text: string;
-}
+export interface CheckRulsProps {}
 
-export const CheckRuls = ({ text }: CheckRulsProps) => {
+export const CheckRuls = ({}: CheckRulsProps) => {
     return (
         <div className={cn(css.wrap)}>
             <AlarmIcon />
