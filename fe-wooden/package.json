@@ -26,6 +26,7 @@
         "most": "^1.9.0",
         "next": "13.5.4",
         "react": "^18",
+        "react-calendar": "^4.6.1",
         "react-dom": "^18"
     },
     "devDependencies": {

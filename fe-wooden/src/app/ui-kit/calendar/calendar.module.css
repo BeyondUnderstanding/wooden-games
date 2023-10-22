@@ -1,0 +1,20 @@
+.wrap {
+    border-radius: 12px;
+    border: 1.5px solid var(--Primary, #120f07);
+    background: var(--White, #fff);
+    width: 354px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.closeBtn {
+    background: transparent;
+    cursor: pointer;
+}
