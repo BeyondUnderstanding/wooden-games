@@ -1,0 +1,57 @@
+.wrap {
+    display: flex;
+    width: 549px;
+    height: 618px;
+    margin: 20px 0px 0px 20px;
+    border-radius: 32px;
+    padding: 0px 0px 24px 0px;
+    gap: 24px;
+    font-family: 'Inter-Regular';
+    background-color: rgb(225, 222, 217);
+    flex-direction: column;
+
+    &:hover {
+        cursor: pointer;
+        background: var(--White, rgba(255, 255, 255, 1));
+    }
+}
+
+.loverBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+    width: 549px;
+    height: 52px;
+    padding: 0px 24px 0px 34px;
+}
+
+.loverText {
+    width: 262px;
+}
+
+.name {
+    font-family: 'Inter-Bold';
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: -1px;
+}
+
+.coast {
+    font-family: 'Inter-Bold';
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -1px;
+}
+
+.coastError {
+    color: var(--Red, rgba(216, 72, 64, 1));
+}
+.loverButton {
+    visibility: hidden;
+}
+
+.wrap:hover .loverButton {
+    visibility: visible;
+}
