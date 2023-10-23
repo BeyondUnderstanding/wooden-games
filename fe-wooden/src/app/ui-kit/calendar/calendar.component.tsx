@@ -1,42 +1,37 @@
-import { useState } from 'react';
 import { Calendar as CalendarLib, TileArgs } from 'react-calendar';
 import './calendar.module.css';
 import { ArrowIcon, ArrowIconLeft } from '../icons/arrow-icon.component';
 import css from './calendar.module.css';
 import { Button } from '../button/button.component';
-import { constVoid } from 'fp-ts/lib/function';
 import { CloseIcon } from '../icons/close-icon.component';
 import { InputType, SelectInput } from '../select-input/select-input.component';
+import { SelectInputContainer } from '../select-input/select-input.container';
 
 export interface CalendarProps {
     readonly onClose: () => void;
     readonly onSelectDate: () => void;
-    readonly occupiedDates: Array<Date>;
+    readonly date: Date;
+    readonly setDate: (d: Date) => void;
+    readonly startTime: InputType | undefined;
+    readonly endTime: InputType | undefined;
+    readonly optionsStart: Array<InputType>;
+    readonly optionsEnd: Array<InputType>;
+    readonly highlightDates: ({ date, view }: TileArgs) => string | null;
+    readonly setStartTime: (t: InputType) => void;
+    readonly setEndTime: (t: InputType) => void;
 }
-
-const initTimeHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
-
-const toInputType = (el: number): InputType => ({
-    value: el,
-    label: `${el}:00`,
-});
 
 export const Calendar = ({
     onClose,
     onSelectDate,
-    occupiedDates,
+    date,
+    setDate,
+    optionsStart,
+    optionsEnd,
+    highlightDates,
+    setStartTime,
+    setEndTime,
 }: CalendarProps) => {
-    const [date, setDate] = useState(new Date());
-    const [startTime, setStartTime] = useState('');
-    const [endTime, setEndTime] = useState('');
-
-    const highlightDates = ({ date, view }: TileArgs) =>
-        view === 'month' &&
-        occupiedDates.map((d) => d.getDate()).includes(date.getDate()) &&
-        occupiedDates.map((d) => d.getMonth()).includes(date.getMonth())
-            ? 'highlighted-date'
-            : null;
-
     return (
         <div className={css.wrap}>
             <div className={css.header}>
@@ -65,16 +60,16 @@ export const Calendar = ({
                 tileClassName={highlightDates}
             />
             <div className={css.timeSelectWrap}>
-                <SelectInput
-                    options={initTimeHours.map(toInputType)}
+                <SelectInputContainer
+                    options={optionsStart}
                     initialLabel={'Start'}
-                    onChange={(d) => setStartTime(d.label)}
+                    onChange={(d) => setStartTime(d)}
                 />
                 <span>—</span>
-                <SelectInput
-                    options={initTimeHours.map((el) => toInputType(el + 3))}
+                <SelectInputContainer
+                    options={optionsEnd}
                     initialLabel={'End'}
-                    onChange={(d) => setEndTime(d.label)}
+                    onChange={(d) => setEndTime(d)}
                 />
             </div>
 

@@ -1,13 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Calendar, CalendarProps } from './calendar.component';
 import { constVoid } from 'fp-ts/lib/function';
+import {
+    CalendarContainer,
+    CalendarContainerProps,
+} from './calendar.container';
 
-const meta: Meta<typeof Calendar> = {
-    component: Calendar,
+const meta: Meta<typeof CalendarContainer> = {
+    component: CalendarContainer,
 };
 
 export default meta;
-type Story = StoryObj<CalendarProps>;
+type Story = StoryObj<CalendarContainerProps>;
 
 export const CalendarStory: Story = {
     name: 'Calendar',
@@ -21,5 +24,5 @@ export const CalendarStory: Story = {
             new Date(23, 9, 30),
         ],
     },
-    render: ({ ...args }) => <Calendar {...args} />,
+    render: ({ ...args }) => <CalendarContainer {...args} />,
 };

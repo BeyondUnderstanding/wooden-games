@@ -38,7 +38,7 @@
     background-color: #fff;
     margin: -1px;
     border-radius: 0 0 8px 8px;
-    height: 240px;
+    max-height: 240px;
     overflow: auto;
 
     &::-webkit-scrollbar {
@@ -61,6 +61,12 @@
     padding: 6px;
     transition: background-color 0.2s;
     margin: 3px 6px;
+}
+
+.isDisableOption {
+    border-radius: 8px;
+    background: var(--Sand-Light, #f8f7f4);
+    opacity: 0.4;
 }
 
 .options li:hover {

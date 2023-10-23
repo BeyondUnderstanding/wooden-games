@@ -6,21 +6,26 @@ import { ArrowIcon } from '../icons/arrow-icon.component';
 export interface InputType {
     readonly value: number;
     readonly label: string;
+    readonly isDisable: boolean;
 }
 
 export interface SelectInputProps {
     readonly options: Array<InputType>;
-    readonly initialLabel: string;
-    readonly onChange: (data: InputType) => void;
+    readonly isOpen: boolean;
+    readonly selected: string;
+    readonly toggleSelect: () => void;
+    readonly setIsOpen: (x: boolean) => void;
+    readonly handleOptionClick: (option: InputType) => void;
 }
 
 export const SelectInput = ({
     options,
-    onChange,
-    initialLabel,
+    isOpen,
+    selected,
+    toggleSelect,
+    setIsOpen,
+    handleOptionClick,
 }: SelectInputProps) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = useState<string>(initialLabel);
     const selectRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -42,17 +47,7 @@ export const SelectInput = ({
         return () => {
             document.removeEventListener('click', closeSelect);
         };
-    }, [isOpen]);
-
-    const toggleSelect = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const handleOptionClick = (option: (typeof options)[0]) => {
-        onChange(option);
-        setSelected(option.label);
-        toggleSelect();
-    };
+    }, [isOpen, setIsOpen]);
 
     return (
         <div
@@ -73,7 +68,12 @@ export const SelectInput = ({
                     {options.map((option) => (
                         <li
                             key={option.value}
-                            onClick={() => handleOptionClick(option)}
+                            onClick={() =>
+                                !option.isDisable && handleOptionClick(option)
+                            }
+                            className={cn({
+                                [css.isDisableOption]: option.isDisable,
+                            })}
                         >
                             {option.label}
                         </li>
