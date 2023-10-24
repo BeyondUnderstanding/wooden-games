@@ -28,7 +28,7 @@
     padding: 0px 24px 0px 34px;
 }
 
-.loverText {
+.lowerText {
     width: 262px;
 }
 
@@ -48,7 +48,7 @@
 .coastError {
     color: var(--Red, rgba(216, 72, 64, 1));
 }
-.loverButton {
+.lowerButton {
     visibility: hidden;
 }
 

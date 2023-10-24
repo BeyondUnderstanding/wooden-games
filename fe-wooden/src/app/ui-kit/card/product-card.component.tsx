@@ -30,7 +30,7 @@ export const  ProductCard = ({
                 alt="Game picture"
             />
             <div className={css.lowerBar}>
-                <div className={css.loverText}>
+                <div className={css.lowerText}>
                     <p className={css.name}>{name}</p>
                     <p
                         className={cn(css.coast, {
@@ -40,7 +40,7 @@ export const  ProductCard = ({
                         {disabled ? `Unavailable on this date` : `${coast} ₾`}
                     </p>
                 </div>
-                <div className={css.loverButton}>
+                <div className={css.lowerButton}>
                     <Button
                         disabled={disabled}
                         label={'Add to Card'}
