@@ -10,6 +10,10 @@
     color: var(--Primary, #120f07);
     width: 100%;
 }
+.custom-select.error {
+    outline: 1px solid var(--Red);
+    box-shadow: 0 0 10px var(--Red-Light);
+}
 
 .custom-select.open {
     border-radius: 8px 8px 0 0;

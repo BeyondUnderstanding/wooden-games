@@ -126,6 +126,7 @@ abbr[title] {
     display: grid !important;
     grid-template-columns: repeat(7, 1fr);
     padding: 16px;
+    /* position: relative; */
 }
 .react-calendar__month-view__days__day--weekend {
     color: var(--Primary, #120f07);
@@ -148,6 +149,8 @@ abbr[title] {
     flex: 0 0 38px !important;
     margin: 3.58px 4.47px !important;
     border-radius: 50%;
+    position: relative;
+    overflow: unset !important;
 }
 .react-calendar__tile:disabled {
     background-color: #f0f0f0;
@@ -190,4 +193,28 @@ abbr[title] {
 .highlighted-date {
     background: var(--Red-Light, #ffcbc8);
     color: var(--Red, #d84840) !important;
+}
+
+.toltip-date {
+    display: none;
+}
+
+.highlighted-date:hover .toltip-date {
+    position: absolute;
+    top: 17px;
+    top: -55px;
+    left: -59px;
+    right: 0;
+    display: block;
+    width: 156px;
+    border-radius: 8px;
+    background: var(--Red, #d84840);
+    color: var(--White, #fff);
+    font-family: 'Inter-Regular';
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: -0.13px;
+    padding: 7px 12px;
 }

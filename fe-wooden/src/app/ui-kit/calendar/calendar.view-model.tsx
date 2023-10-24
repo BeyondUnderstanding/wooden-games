@@ -7,9 +7,9 @@ import { InputType } from '../select-input/select-input.component';
 import { newLensedAtom } from '@frp-ts/lens';
 import { TileArgs } from 'react-calendar';
 import { pipe } from 'fp-ts/lib/function';
-import { combineArray } from 'most';
 import { fromProperty } from '../../../utils/property.utils';
 import { tap } from '@most/core';
+import { SelectInputsLabels } from './calendar.container';
 
 interface CalendarViewModel {
     readonly date: Property<Date>;
@@ -21,10 +21,23 @@ interface CalendarViewModel {
     readonly optionsStart: Property<Array<InputType>>;
     readonly optionsEnd: Property<Array<InputType>>;
     readonly highlightDates: ({ date, view }: TileArgs) => string | null;
+    readonly highlightDatesToltip: ({
+        date,
+        view,
+    }: TileArgs) => JSX.Element | null;
+    readonly onSelectDate: () => void;
+    readonly notFillStartTimeError: Property<boolean>;
+    readonly notFillEndTimeError: Property<boolean>;
 }
 
 interface NewCalendarViewModelProperty {
+    readonly onSelectDate: (
+        x: string,
+        date: Date,
+        label: SelectInputsLabels
+    ) => void;
     readonly occupiedDates: Array<Date>;
+    readonly selectDate: Date;
 }
 
 type NewCalendarViewModel = (
@@ -33,6 +46,8 @@ type NewCalendarViewModel = (
 
 export const newCalendarViewModel: NewCalendarViewModel = ({
     occupiedDates,
+    onSelectDate,
+    selectDate,
 }) => {
     const initTimeHours = [
         9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
@@ -44,7 +59,7 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
         isDisable: false,
     });
 
-    const date = newLensedAtom(new Date());
+    const date = newLensedAtom(selectDate);
     const startTime = newLensedAtom<InputType | undefined>(undefined);
     const endTime = newLensedAtom<InputType | undefined>(undefined);
     const optionsStart = newLensedAtom(initTimeHours.map(toInputType));
@@ -54,12 +69,46 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
         )
     );
 
+    const notFillStartTimeError = newLensedAtom(false);
+    const notFillEndTimeError = newLensedAtom(false);
+
     const highlightDates = ({ date, view }: TileArgs) =>
         view === 'month' &&
         occupiedDates.map((d) => d.getDate()).includes(date.getDate()) &&
         occupiedDates.map((d) => d.getMonth()).includes(date.getMonth())
             ? 'highlighted-date'
             : null;
+
+    const highlightDatesToltip = ({ date, view }: TileArgs) =>
+        view === 'month' &&
+        occupiedDates.map((d) => d.getDate()).includes(date.getDate()) &&
+        occupiedDates.map((d) => d.getMonth()).includes(date.getMonth()) ? (
+            <span className="toltip-date">
+                Some items are not available on this date
+            </span>
+        ) : null;
+
+    const selectDateCb = () => {
+        const end = endTime.get();
+        const start = startTime.get();
+
+        if (end && start) {
+            onSelectDate(
+                `${date.get().getDate()} ${date.get().toLocaleString('en-us', {
+                    month: 'long',
+                    year: 'numeric',
+                })}, ${end.value - start.value} h`,
+                date.get(),
+                {
+                    start: start.label,
+                    end: end.label,
+                }
+            );
+        } else {
+            notFillStartTimeError.set(true);
+            notFillEndTimeError.set(true);
+        }
+    };
 
     const setDisableOptionsStartTimeEffect = pipe(
         startTime,
@@ -97,6 +146,18 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
         })
     );
 
+    const switchErrorStateStartTimeEffect = pipe(
+        startTime,
+        fromProperty,
+        tap((_) => notFillStartTimeError.set(false))
+    );
+
+    const switchErrorStateEndTimeEffect = pipe(
+        endTime,
+        fromProperty,
+        tap((_) => notFillEndTimeError.set(false))
+    );
+
     return valueWithEffect.new(
         {
             date,
@@ -106,10 +167,16 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
             optionsStart,
             optionsEnd,
             highlightDates,
+            highlightDatesToltip,
+            onSelectDate: selectDateCb,
             setStartTime: (x) => startTime.set(x),
-            setEndTime: (x) => startTime.set(x),
+            setEndTime: (x) => endTime.set(x),
+            notFillStartTimeError,
+            notFillEndTimeError,
         },
         setDisableOptionsStartTimeEffect,
-        setDisableOptionsEndTimeEffect
+        setDisableOptionsEndTimeEffect,
+        switchErrorStateStartTimeEffect,
+        switchErrorStateEndTimeEffect
     );
 };

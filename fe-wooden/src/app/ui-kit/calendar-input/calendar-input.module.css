@@ -1,0 +1,22 @@
+.wrapInput {
+    display: flex;
+    justify-content: space-between;
+    max-width: 354px;
+    width: 100%;
+    padding: 6px 6px 6px 16px;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 1px solid var(--Primary, #120f07);
+    background: var(--White, #fff);
+}
+
+.wrap {
+    position: relative;
+}
+
+.calendarWrap {
+    position: absolute;
+    top: 0;
+}

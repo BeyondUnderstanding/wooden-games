@@ -17,8 +17,16 @@ export interface CalendarProps {
     readonly optionsStart: Array<InputType>;
     readonly optionsEnd: Array<InputType>;
     readonly highlightDates: ({ date, view }: TileArgs) => string | null;
+    readonly highlightDatesToltip: ({
+        date,
+        view,
+    }: TileArgs) => JSX.Element | null;
     readonly setStartTime: (t: InputType) => void;
     readonly setEndTime: (t: InputType) => void;
+    readonly notFillStartTimeError: boolean;
+    readonly notFillEndTimeError: boolean;
+    readonly initialStartLabel: string;
+    readonly initialEndLabel: string;
 }
 
 export const Calendar = ({
@@ -29,8 +37,13 @@ export const Calendar = ({
     optionsStart,
     optionsEnd,
     highlightDates,
+    highlightDatesToltip,
     setStartTime,
     setEndTime,
+    notFillStartTimeError,
+    notFillEndTimeError,
+    initialStartLabel,
+    initialEndLabel,
 }: CalendarProps) => {
     return (
         <div className={css.wrap}>
@@ -58,18 +71,21 @@ export const Calendar = ({
                 prevLabel={<ArrowIconLeft />}
                 locale="en-US"
                 tileClassName={highlightDates}
+                tileContent={highlightDatesToltip}
             />
             <div className={css.timeSelectWrap}>
                 <SelectInputContainer
                     options={optionsStart}
-                    initialLabel={'Start'}
+                    initialLabel={initialStartLabel}
                     onChange={(d) => setStartTime(d)}
+                    notFillTimeError={notFillStartTimeError}
                 />
                 <span>—</span>
                 <SelectInputContainer
                     options={optionsEnd}
-                    initialLabel={'End'}
+                    initialLabel={initialEndLabel}
                     onChange={(d) => setEndTime(d)}
+                    notFillTimeError={notFillEndTimeError}
                 />
             </div>
 

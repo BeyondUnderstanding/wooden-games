@@ -16,6 +16,7 @@ export interface SelectInputProps {
     readonly toggleSelect: () => void;
     readonly setIsOpen: (x: boolean) => void;
     readonly handleOptionClick: (option: InputType) => void;
+    readonly notFillTimeError: boolean;
 }
 
 export const SelectInput = ({
@@ -25,6 +26,7 @@ export const SelectInput = ({
     toggleSelect,
     setIsOpen,
     handleOptionClick,
+    notFillTimeError,
 }: SelectInputProps) => {
     const selectRef = useRef<HTMLDivElement | null>(null);
 
@@ -51,7 +53,10 @@ export const SelectInput = ({
 
     return (
         <div
-            className={cn(css['custom-select'], { [css.open]: isOpen })}
+            className={cn(css['custom-select'], {
+                [css.open]: isOpen,
+                [css.error]: notFillTimeError,
+            })}
             ref={selectRef}
         >
             <div

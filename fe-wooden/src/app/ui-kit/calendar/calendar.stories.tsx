@@ -23,6 +23,7 @@ export const CalendarStory: Story = {
             new Date(23, 9, 23),
             new Date(23, 9, 30),
         ],
+        selectDate: new Date(),
     },
     render: ({ ...args }) => <CalendarContainer {...args} />,
 };

@@ -5,17 +5,19 @@ import { useProperty } from '@frp-ts/react';
 import { newSelectInputViewModel } from './select-input.view-model';
 import { useValueWithEffect } from '../../../utils/run-view-model.utils';
 import { InputType, SelectInput } from './select-input.component';
+import { Property } from '@frp-ts/core';
 
 export interface SelectInputContainerPropos {
     readonly options: Array<InputType>;
     readonly initialLabel: string;
     readonly onChange: (data: InputType) => void;
+    readonly notFillTimeError: boolean;
 }
 
 export const SelectInputContainer = ({
-    options,
     initialLabel,
     onChange,
+    ...props
 }: SelectInputContainerPropos) => {
     const vm = useValueWithEffect(newDefaultScheduler())(
         () => newSelectInputViewModel({ onChange, initialLabel }),
@@ -23,7 +25,7 @@ export const SelectInputContainer = ({
     );
 
     return React.createElement(SelectInput, {
-        options,
+        ...props,
         isOpen: useProperty(vm.isOpen),
         selected: useProperty(vm.selected),
         toggleSelect: vm.toggleSelect,
