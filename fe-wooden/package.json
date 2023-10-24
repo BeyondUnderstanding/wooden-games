@@ -26,6 +26,7 @@
         "most": "^1.9.0",
         "next": "13.5.4",
         "react": "^18",
+        "react-calendar": "^4.6.1",
         "react-dom": "^18"
     },
     "devDependencies": {
@@ -38,7 +39,7 @@
         "@storybook/react": "^7.4.6",
         "@storybook/testing-library": "^0.2.2",
         "@types/node": "^20",
-        "@types/react": "^18",
+        "@types/react": "^18.2.31",
         "@types/react-dom": "^18",
         "eslint": "^8",
         "eslint-config-next": "13.5.4",
