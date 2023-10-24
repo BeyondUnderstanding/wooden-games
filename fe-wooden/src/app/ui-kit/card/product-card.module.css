@@ -8,7 +8,7 @@
     padding: 0px 0px 24px 0px;
     gap: 24px;
     font-family: 'Inter-Regular';
-    background-color: var(--Gray-Light, rgb(225, 222, 217));
+    background-color: var(--Sand-Dark, rgba(229, 227, 219, 1));
     flex-direction: column;
 
     &:hover {

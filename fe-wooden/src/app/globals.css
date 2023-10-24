@@ -5,7 +5,8 @@
     --White: rgba(255, 255, 255, 1);
     --Red-Light: rgba(255, 203, 200, 1);
     --Red: rgba(216, 72, 64, 1);
-    --Gray-Light: rgb(225, 222, 217);
+    --Sand-Light: rgba(248, 247, 244, 1);
+    --Sand-Dark: rgba(229, 227, 219, 1);
 }
 
 @font-face {
