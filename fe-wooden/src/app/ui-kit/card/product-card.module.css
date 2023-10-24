@@ -1,13 +1,14 @@
 .wrap {
     display: flex;
-    width: 549px;
+    max-width: 549px;
+    width:100%;
     height: 618px;
     margin: 20px 0px 0px 20px;
     border-radius: 32px;
     padding: 0px 0px 24px 0px;
     gap: 24px;
     font-family: 'Inter-Regular';
-    background-color: rgb(225, 222, 217);
+    background-color: var(--Gray-Light, rgb(225, 222, 217));
     flex-direction: column;
 
     &:hover {
@@ -16,12 +17,13 @@
     }
 }
 
-.loverBar {
+.lowerBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 24px;
-    width: 549px;
+    max-width: 549px;
+    width:100%;
     height: 52px;
     padding: 0px 24px 0px 34px;
 }
@@ -33,7 +35,6 @@
 .name {
     font-family: 'Inter-Bold';
     font-size: 18px;
-    line-height: 22px;
     letter-spacing: -1px;
 }
 
@@ -41,8 +42,7 @@
     font-family: 'Inter-Bold';
     font-size: 14px;
     font-weight: 500;
-    line-height: 22px;
-    letter-spacing: -1px;
+    letter-spacing: -0.1px;
 }
 
 .coastError {

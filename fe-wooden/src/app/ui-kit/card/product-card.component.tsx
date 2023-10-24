@@ -1,9 +1,8 @@
 'use client';
 
-import css from './card.module.css';
+import css from './product-card.module.css';
 import cn from 'classnames';
 import Image from 'next/image';
-import gamePhoto from './images/zigzag.png';
 import { Button } from '../button/button.component';
 
 export interface CardProps {
@@ -14,12 +13,12 @@ export interface CardProps {
    readonly photo: string; 
 }
 
-export const Card = ({
+export const  ProductCard = ({
     disabled,
-    name = 'ZigZag',
-    coast = 56,
+    name,
+    coast,
     onClick,
-    photo = gamePhoto
+    photo
 }: CardProps) => {
     return (
         <div className={css.wrap}>
@@ -30,7 +29,7 @@ export const Card = ({
                 className={css.image}
                 alt="Game picture"
             />
-            <div className={css.loverBar}>
+            <div className={css.lowerBar}>
                 <div className={css.loverText}>
                     <p className={css.name}>{name}</p>
                     <p
