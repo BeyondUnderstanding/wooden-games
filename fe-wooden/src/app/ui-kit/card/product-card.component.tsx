@@ -6,19 +6,19 @@ import Image from 'next/image';
 import { Button } from '../button/button.component';
 
 export interface CardProps {
-   readonly disabled: boolean;
-   readonly name: string;
-   readonly coast: number;
-   readonly onClick: () => void,
-   readonly photo: string; 
+    readonly disabled: boolean;
+    readonly name: string;
+    readonly coast: number;
+    readonly onClick: () => void;
+    readonly photo: string;
 }
 
-export const  ProductCard = ({
+export const ProductCard = ({
     disabled,
     name,
     coast,
     onClick,
-    photo
+    photo,
 }: CardProps) => {
     return (
         <div className={css.wrap}>
