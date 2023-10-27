@@ -8,7 +8,7 @@ export interface ButtonProps {
     readonly onClick: () => void;
     readonly disabled: boolean;
     readonly size?: 'small' | 'medium';
-    readonly type: 'def' | 'prime' | 'error';
+    readonly type: 'def' | 'prime' | 'error' | 'link';
 }
 
 export const Button = ({
@@ -27,6 +27,7 @@ export const Button = ({
                 [css.medium]: size === 'medium',
                 [css.prime]: type === 'prime',
                 [css.error]: type === 'error',
+                [css.link]: type === 'link',
             })}
         >
             {label}

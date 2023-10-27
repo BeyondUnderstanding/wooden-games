@@ -6,6 +6,7 @@ import { Button } from '../button/button.component';
 import { CloseIcon } from '../icons/close-icon.component';
 import { InputType, SelectInput } from '../select-input/select-input.component';
 import { SelectInputContainer } from '../select-input/select-input.container';
+import { useRef, useEffect } from 'react';
 
 export interface CalendarProps {
     readonly onClose: () => void;

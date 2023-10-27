@@ -25,7 +25,6 @@ export interface CalendarContainerProps {
 }
 
 export const CalendarContainer = ({
-    onClose,
     onSelectDate,
     occupiedDates,
     selectDate,
@@ -46,6 +45,5 @@ export const CalendarContainer = ({
         optionsEnd: useProperty(vm.optionsEnd),
         notFillStartTimeError: useProperty(vm.notFillStartTimeError),
         notFillEndTimeError: useProperty(vm.notFillEndTimeError),
-        onClose,
     });
 };
