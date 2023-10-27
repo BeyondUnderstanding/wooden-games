@@ -24,6 +24,8 @@ export const CalendarStory: Story = {
             new Date(23, 9, 30),
         ],
         selectDate: new Date(),
+        initialStartLabel: 'Start',
+        initialEndLabel: 'End',
     },
     render: ({ ...args }) => <CalendarContainer {...args} />,
 };

@@ -1,34 +1,63 @@
-import { constVoid } from 'fp-ts/lib/function';
 import { Button } from '../button/button.component';
-
 import css from './calendar-input.module.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { CalendarContainer } from '../calendar/calendar.container';
-import { useMergeState } from '../../../utils/hooks';
+import { useMergeState, useOutsideClick } from '../../../utils/hooks';
+import cn from 'classnames';
 
-export interface CalendarInputProps {}
+export interface CalendarInputProps {
+    readonly isBasket?: boolean;
+}
 
-export const CalendarInput = ({}: CalendarInputProps) => {
-    const [chosenDate, setChosenDate] = useState('Any Date');
+export const CalendarInput = ({ isBasket = false }: CalendarInputProps) => {
+    const [chosenDate, setChosenDate] = useState(
+        isBasket ? 'Lease date not specified' : 'Any Date'
+    );
     const [calendarIsShown, setCalendarIsShown] = useState(false);
+    // const [selectdDate, setSelectdDate] = useState(new Date());
     const [selectdDate, setSelectdDate] = useState(new Date());
     const [selectLabels, setSelectLabels] = useMergeState({
         start: 'Start',
         end: 'End',
     });
 
+    const refCalendar = useRef<HTMLDivElement | null>(null);
+    useOutsideClick(refCalendar, calendarIsShown, () =>
+        setCalendarIsShown(false)
+    );
+
     return (
-        <div className={css.wrap}>
-            <div className={css.wrapInput}>
-                {chosenDate}
+        <div className={cn(css.wrap, { [css.basket]: isBasket })}>
+            <div className={cn(css.wrapInput, { [css.basket]: isBasket })}>
+                <h4
+                    className={cn({
+                        [css.date]: isBasket,
+                        [css.error]: !chosenDate.includes(
+                            new Date().getFullYear().toString()
+                        ),
+                    })}
+                >
+                    {chosenDate}
+                </h4>
                 <Button
-                    label={'Choose Dates'}
+                    label={isBasket ? 'Choose another date' : 'Choose Dates'}
                     onClick={() => setCalendarIsShown(true)}
                     disabled={false}
-                    type={chosenDate.length < 10 ? 'def' : 'prime'}
+                    type={
+                        isBasket
+                            ? 'link'
+                            : chosenDate.includes(
+                                  new Date().getFullYear().toString()
+                              )
+                            ? 'prime'
+                            : 'def'
+                    }
                 />
             </div>
-            <div className={css.calendarWrap}>
+            <div
+                className={cn(css.calendarWrap, { [css.basket]: isBasket })}
+                ref={refCalendar}
+            >
                 {calendarIsShown && (
                     <CalendarContainer
                         onClose={() => setCalendarIsShown(false)}

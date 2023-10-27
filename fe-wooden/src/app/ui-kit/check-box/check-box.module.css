@@ -1,0 +1,58 @@
+/* Скрываем стандартный чекбокс */
+.custom-checkbox input[type='checkbox'] {
+    display: none;
+}
+
+/* Стили для кастомного чекбокса */
+.custom-checkbox {
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 12px;
+}
+
+/* Стили для "фоновой" части чекбокса */
+.custom-checkbox .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: var(--White);
+    border: 1px solid var(--Primary);
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+/* Стили для галочки (когда чекбокс выбран) */
+.custom-checkbox input[type='checkbox']:checked + .checkmark {
+    background-color: var(--Primary);
+    border: 1px solid var(--Primary);
+}
+
+/* Стили для "галочки" */
+.custom-checkbox .checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+/* Отображаем галочку, когда чекбокс выбран */
+.custom-checkbox input[type='checkbox']:checked + .checkmark:after {
+    display: block;
+}
+
+/* Стили для галочки (иконки) */
+.custom-checkbox .checkmark:after {
+    left: 5px;
+    top: 3px;
+    width: 2px;
+    height: 4px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.label {
+    margin-left: 24px;
+}

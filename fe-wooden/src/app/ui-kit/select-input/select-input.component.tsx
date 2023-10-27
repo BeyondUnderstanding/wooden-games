@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import css from './select-input.module.css';
 import cn from 'classnames';
 import { ArrowIcon } from '../icons/arrow-icon.component';
+import { useOutsideClick } from '../../../utils/hooks';
 
 export interface InputType {
     readonly value: number;
@@ -30,26 +31,7 @@ export const SelectInput = ({
 }: SelectInputProps) => {
     const selectRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        /*
-            any - это плохо но мне лень чинить типы
-        */
-        const closeSelect = (event: any) => {
-            if (
-                isOpen &&
-                !!selectRef.current &&
-                !selectRef.current.contains(event.target)
-            ) {
-                setIsOpen(false);
-            }
-        };
-
-        document.addEventListener('click', closeSelect);
-
-        return () => {
-            document.removeEventListener('click', closeSelect);
-        };
-    }, [isOpen, setIsOpen]);
+    useOutsideClick(selectRef, isOpen, () => setIsOpen(false));
 
     return (
         <div
