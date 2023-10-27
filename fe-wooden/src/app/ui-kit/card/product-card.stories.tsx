@@ -8,7 +8,9 @@ const meta: Meta<typeof ProductCard> = {
         disabled: { control: 'boolean' },
         name: { control: 'text' },
         coast: { control: 'number' },
-        photo: {control: { type: 'file', accept: ['.png','.svg','jpg','jpeg']}},
+        photo: {
+            control: { type: 'file', accept: ['.png', '.svg', 'jpg', 'jpeg'] },
+        },
         onClick: { action: 'clicked' },
     },
 };
