@@ -70,11 +70,19 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
         chosenDate,
         fromProperty,
         tap((chosenDate) => {
-            isBasket
+            const btnType = isBasket
                 ? 'link'
                 : chosenDate.includes(new Date().getFullYear().toString())
                 ? 'prime'
                 : 'def';
+            buttonType.set(btnType);
+            const err =
+                (isBasket &&
+                    !chosenDate.includes(
+                        new Date().getFullYear().toString()
+                    )) ??
+                false;
+            isHeaderError.set(err);
         })
     );
 
@@ -87,10 +95,7 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
             onSelectDate,
             buttonType,
             isHeaderError,
-            setCalendarIsShown: (x) => {
-                console.log(x, 'x');
-                calendarIsShown.set(x);
-            },
+            setCalendarIsShown: (x) => calendarIsShown.set(x),
         },
         setButtonTypeEffect
     );

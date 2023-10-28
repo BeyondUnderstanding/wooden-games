@@ -50,10 +50,6 @@ export const CalendarInput = ({
                     className={cn({
                         [css.date]: isBasket,
                         [css.error]: isHeaderError,
-                        // [css.error]:
-                        //     !chosenDate.includes(
-                        //         new Date().getFullYear().toString()
-                        //     ) && isBasket,
                     })}
                 >
                     {chosenDate}
@@ -63,15 +59,6 @@ export const CalendarInput = ({
                     onClick={() => setCalendarIsShown(true)}
                     disabled={false}
                     type={buttonType}
-                    // type={
-                    //     isBasket
-                    //         ? 'link'
-                    //         : chosenDate.includes(
-                    //               new Date().getFullYear().toString()
-                    //           )
-                    //         ? 'prime'
-                    //         : 'def'
-                    // }
                 />
             </div>
             <div
