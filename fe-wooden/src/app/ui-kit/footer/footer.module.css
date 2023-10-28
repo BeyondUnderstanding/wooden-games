@@ -11,8 +11,7 @@ footer {
 }
 
 .content {
-    width: 100%;
-    border-color: 1px solid;
+    border-top: 1px solid;
     padding-top: 40px;
     display: flex;
     flex-wrap: wrap;
