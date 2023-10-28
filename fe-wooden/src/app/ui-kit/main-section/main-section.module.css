@@ -11,34 +11,34 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-}
 
-.infoTitle {
-    font-family: 'ClashDisplay-Semibold';
-    font-size: 88px;
-    line-height: 80px;
-}
+    & .infoTitle {
+        font-family: 'ClashDisplay-Semibold';
+        font-size: 88px;
+        line-height: 80px;
+    }
 
-.infoText {
-    max-width: 594px;
-    width: 100%;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: -0.24px;
+    & .infoText {
+        max-width: 594px;
+        width: 100%;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -0.24px;
+    }
 }
-
 .linksBar {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-}
 
-.linksElement {
-    padding: 8px 20px;
-    align-items: center;
-    border-radius: 50px;
-    border: 1.5px solid var(--Primary, #120f07);
-    font-size: 16px;
+
+    & .linksElement {
+        padding: 8px 20px;
+        align-items: center;
+        border-radius: 50px;
+        border: 1.5px solid var(--Primary, #120f07);
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 500px) {
