@@ -1,14 +1,17 @@
 'use client';
 
+import { type } from 'os';
 import css from './button.module.css';
 import cn from 'classnames';
+
+export type ButtonType = 'def' | 'prime' | 'error' | 'link';
 
 export interface ButtonProps {
     readonly label: string;
     readonly onClick: () => void;
     readonly disabled: boolean;
     readonly size?: 'small' | 'medium';
-    readonly type: 'def' | 'prime' | 'error' | 'link';
+    readonly type: ButtonType;
 }
 
 export const Button = ({
@@ -20,7 +23,7 @@ export const Button = ({
 }: ButtonProps) => {
     return (
         <button
-            onClick={onClick}
+            onClick={() => !disabled && onClick()}
             className={cn(css.wrap, {
                 [css.disabled]: disabled,
                 [css.small]: size === 'small',

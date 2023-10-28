@@ -8,6 +8,7 @@
     border-radius: 12px;
     border: 1px solid var(--Primary, #120f07);
     background: var(--White, #fff);
+    font-family: 'Inter-Medium';
 
     &.basket {
         border: none;
@@ -22,6 +23,7 @@
     position: relative;
     max-width: 354px;
     width: 100%;
+
     &.basket {
         max-width: unset;
     }
@@ -40,12 +42,11 @@
 .date {
     color: var(--Primary, #120f07);
 
-    /* Header/H4 */
     font-family: 'ClashDisplay-Medium';
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
-    line-height: 28px; /* 155.556% */
+    line-height: 28px;
 
     &.error {
         color: var(--Red, #d84840);

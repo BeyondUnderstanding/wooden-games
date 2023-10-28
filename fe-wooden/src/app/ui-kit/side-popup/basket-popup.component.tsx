@@ -11,8 +11,10 @@ import {
 } from '../busket-product-card/busket-product-card.component';
 import { constVoid } from 'fp-ts/lib/function';
 import { CalendarInput } from '../calendar-input/calendar-input.component';
+import { useState } from 'react';
+import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 
-interface ProductBasket extends Omit<BasketProductCardProps, 'onClick'> {
+export interface ProductBasket extends Omit<BasketProductCardProps, 'onClick'> {
     id: string;
 }
 
@@ -24,6 +26,7 @@ export interface BasketPopupProps
     readonly products: Array<ProductBasket>;
     readonly goToCheckRulse: () => void;
     readonly onClick: () => void;
+    readonly onProductDelete: (id: string) => void;
 }
 
 export const BasketPopup = ({
@@ -32,7 +35,9 @@ export const BasketPopup = ({
     goToCheckRulse,
     onClick,
     products,
+    onProductDelete,
 }: BasketPopupProps) => {
+    const [date, setDate] = useState<Date | undefined>();
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
@@ -47,7 +52,7 @@ export const BasketPopup = ({
                     <div className={css.products}>
                         {products.map((el, i) => (
                             <BasketProductCard
-                                onClick={constVoid}
+                                onClick={() => onProductDelete(el.id)}
                                 {...el}
                                 // зер нот гуд
                                 key={el.name + '_' + i}
@@ -57,7 +62,10 @@ export const BasketPopup = ({
                     <div>
                         <span>Your Date:</span>
                         <div>
-                            <CalendarInput isBasket={true} />
+                            <CalendarInputContainer
+                                isBasket={true}
+                                finalDate={(date) => setDate(date)}
+                            />
                         </div>
                     </div>
                     <BasketInfo
@@ -71,7 +79,7 @@ export const BasketPopup = ({
                     label={'Go to Checkout'}
                     onClick={onClick}
                     type={'def'}
-                    disabled={!products.every((el) => !el.isError)}
+                    disabled={!products.every((el) => !el.isError) || !date}
                 />
                 <CheckRuls goToCheckRulse={goToCheckRulse} />
             </aside>

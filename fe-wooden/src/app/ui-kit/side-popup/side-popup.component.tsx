@@ -2,8 +2,8 @@ import { constVoid } from 'fp-ts/lib/function';
 import { TextSidePopup } from './text-side-popup.component';
 import { EmptyBasketPopup } from './empty-basket-popup.component';
 import { CheckOutPopup } from './check-out-popup.component';
-import { BasketPopup } from './basket-popup.component';
-import { productsBasket } from './popup.mock';
+import { BasketPopup, ProductBasket } from './basket-popup.component';
+import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 
 export interface SidePopupLayoutProps {
     readonly children: React.ReactNode;
@@ -16,18 +16,20 @@ export interface SidePopupLayoutProps {
 
 type url = 'empty' | 'basket' | 'checkout' | 'text';
 
+// не разу не типобизопасно
 export interface Page {
     readonly url: url;
-    readonly content?: JSX.Element | Array<JSX.Element>;
+    readonly content?: JSX.Element;
     readonly label?: string;
     readonly subUrl?: url;
+    readonly products?: Array<ProductBasket>;
 }
 
 export interface SidePopupProps {
     readonly isOpen: boolean;
     readonly page: Page;
     readonly onClose: () => void;
-    readonly setNewPage: (args: Page) => void;
+    readonly setNewPage: (args: Partial<Page>) => void;
 }
 
 export const SidePopup = ({
@@ -41,20 +43,7 @@ export const SidePopup = ({
             url: 'text',
             label: 'Rental rules',
             subUrl: 'basket',
-            content: [
-                <p key={''}>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
-                    repellendus fugit expedita at! Modi quo, id ratione expedita
-                    a, ullam, quos quibusdam ea sint et cupiditate aliquid
-                    maxime odit eligendi.
-                </p>,
-                <p key={''}>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut
-                    repellendus fugit expedita at! Modi quo, id ratione expedita
-                    a, ullam, quos quibusdam ea sint et cupiditate aliquid
-                    maxime odit eligendi.
-                </p>,
-            ],
+            content: <RentalRulsBody />,
         });
     };
 
@@ -72,6 +61,10 @@ export const SidePopup = ({
             subUrl: undefined,
         });
 
+    const remoweFromBacket = (id: string) => {
+        console.log(id);
+        setNewPage({ products: page.products?.filter((p) => p.id !== id) });
+    };
     switch (page.url) {
         case 'empty':
             return (
@@ -101,7 +94,8 @@ export const SidePopup = ({
                     onClose={onClose}
                     goToCheckRulse={goToCheckRulse}
                     onClick={goToCheckOut}
-                    products={productsBasket}
+                    products={page.products ?? []}
+                    onProductDelete={remoweFromBacket}
                 />
             );
         case 'text':

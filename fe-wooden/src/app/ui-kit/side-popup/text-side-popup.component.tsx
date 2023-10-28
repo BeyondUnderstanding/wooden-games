@@ -6,7 +6,7 @@ import cn from 'classnames';
 
 export interface TextSidePopupProps
     extends Omit<SidePopupLayoutProps, 'children'> {
-    readonly content?: JSX.Element | Array<JSX.Element>;
+    readonly content?: JSX.Element;
     readonly onClickBack: () => void;
 }
 
