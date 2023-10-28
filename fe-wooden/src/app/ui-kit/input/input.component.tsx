@@ -4,7 +4,7 @@ import cn from 'classnames';
 interface InputProps {
     readonly value: string;
     readonly placeholder: string;
-    readonly onChenge: (x: string) => void;
+    readonly onChenge: (x: string, x: any) => void;
 }
 
 export const Input = ({ value, onChenge, placeholder }: InputProps) => {
