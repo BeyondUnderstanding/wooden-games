@@ -7,18 +7,18 @@
     border-radius: 32px;
     background: #ffe089;
 }
-.infoBar {
+.info {
     display: flex;
     flex-direction: column;
     gap: 24px;
 
-    & .infoTitle {
+    & .title {
         font-family: 'ClashDisplay-Semibold';
         font-size: 88px;
         line-height: 80px;
     }
 
-    & .infoText {
+    & .text {
         max-width: 594px;
         width: 100%;
         font-size: 24px;
@@ -26,13 +26,13 @@
         letter-spacing: -0.24px;
     }
 }
-.linksBar {
+.links {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
 
 
-    & .linksElement {
+    & .element {
         padding: 8px 20px;
         align-items: center;
         border-radius: 50px;
@@ -42,7 +42,7 @@
 }
 
 @media screen and (max-width: 500px) {
-    .infoTitle {
+    .title {
         font-size: 50px;
         line-height: 40px;
     }
