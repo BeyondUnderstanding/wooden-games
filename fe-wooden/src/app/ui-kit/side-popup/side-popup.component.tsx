@@ -4,6 +4,7 @@ import { EmptyBasketPopup } from './empty-basket-popup.component';
 import { CheckOutPopup } from './check-out-popup.component';
 import { BasketPopup, ProductBasket } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
+import { Property } from '@frp-ts/core';
 
 export interface SidePopupLayoutProps {
     readonly children: React.ReactNode;
@@ -30,6 +31,8 @@ export interface SidePopupProps {
     readonly page: Page;
     readonly onClose: () => void;
     readonly setNewPage: (args: Partial<Page>) => void;
+    readonly chosenDate: Property<string>;
+    readonly setChosenDate: (x: string) => void;
 }
 
 export const SidePopup = ({
@@ -37,6 +40,8 @@ export const SidePopup = ({
     page,
     onClose,
     setNewPage,
+    chosenDate,
+    setChosenDate,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -96,6 +101,8 @@ export const SidePopup = ({
                     onClick={goToCheckOut}
                     products={page.products ?? []}
                     onProductDelete={remoweFromBacket}
+                    setChosenDate={setChosenDate}
+                    chosenDate={chosenDate}
                 />
             );
         case 'text':

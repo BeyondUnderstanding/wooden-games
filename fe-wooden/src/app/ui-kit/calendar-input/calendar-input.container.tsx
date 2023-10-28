@@ -4,10 +4,13 @@ import { newCalendarInputViewModel } from './calendar-input.view-model';
 import { CalendarInput } from './calendar-input.component';
 import React from 'react';
 import { useProperty } from '@frp-ts/react';
+import { Property } from '@frp-ts/core';
 
 export interface CalendarInputContainerProps {
     readonly isBasket?: boolean;
     readonly finalDate?: (x: Date) => void;
+    readonly chosenDate: Property<string>;
+    readonly setChosenDate: (x: string) => void;
 }
 
 export const CalendarInputContainer = ({

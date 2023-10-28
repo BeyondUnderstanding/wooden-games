@@ -10,6 +10,7 @@ import {
 } from '../busket-product-card/busket-product-card.component';
 import { useState } from 'react';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
+import { Property } from '@frp-ts/core';
 
 export interface ProductBasket extends Omit<BasketProductCardProps, 'onClick'> {
     id: string;
@@ -24,6 +25,8 @@ export interface BasketPopupProps
     readonly goToCheckRulse: () => void;
     readonly onClick: () => void;
     readonly onProductDelete: (id: string) => void;
+    readonly chosenDate: Property<string>;
+    readonly setChosenDate: (x: string) => void;
 }
 
 export const BasketPopup = ({
@@ -33,6 +36,8 @@ export const BasketPopup = ({
     onClick,
     products,
     onProductDelete,
+    chosenDate,
+    setChosenDate,
 }: BasketPopupProps) => {
     const [date, setDate] = useState<Date | undefined>();
     return (
@@ -62,6 +67,8 @@ export const BasketPopup = ({
                             <CalendarInputContainer
                                 isBasket={true}
                                 finalDate={(date) => setDate(date)}
+                                chosenDate={chosenDate}
+                                setChosenDate={setChosenDate}
                             />
                         </div>
                     </div>
@@ -76,7 +83,9 @@ export const BasketPopup = ({
                     label={'Go to Checkout'}
                     onClick={onClick}
                     type={'def'}
-                    disabled={!products.every((el) => !el.isError) || !date}
+                    disabled={
+                        !products.every((el) => !el.isError) || !chosenDate
+                    }
                 />
                 <CheckRuls goToCheckRulse={goToCheckRulse} />
             </aside>

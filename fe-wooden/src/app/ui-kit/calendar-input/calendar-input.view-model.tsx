@@ -31,6 +31,8 @@ interface CalendarInputViewModel {
 interface NewCalendarViewModelProperty {
     readonly isBasket?: boolean;
     readonly finalDate?: (x: Date) => void;
+    readonly chosenDate: Property<string>;
+    readonly setChosenDate: (x: string) => void;
 }
 
 type NewCalendarInputViewModel = (
@@ -40,10 +42,12 @@ type NewCalendarInputViewModel = (
 export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
     isBasket,
     finalDate,
+    chosenDate,
+    setChosenDate,
 }) => {
-    const chosenDate = newLensedAtom(
-        isBasket ? 'Lease date not specified' : 'Any Date'
-    );
+    // const chosenDate = newLensedAtom(
+    //     isBasket ? 'Lease date not specified' : 'Any Date'
+    // );
     const selectdDate = newLensedAtom(new Date());
     const selectLabels = newLensedAtom({
         start: 'Start',
@@ -59,7 +63,9 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
         date: Date,
         labels: SelectInputsLabels
     ) => {
-        chosenDate.set(x);
+        // chosenDate.;
+        // chosenDate.set(x);
+        setChosenDate(x);
         calendarIsShown.set(false);
         selectdDate.set(date);
         selectLabels.set(labels);
