@@ -42,8 +42,10 @@
 }
 
 @media screen and (max-width: 500px) {
-    .title {
-        font-size: 50px;
-        line-height: 40px;
+    .info {
+        .title {
+            font-size: 50px;
+            line-height: 40px;
+        }
     }
 }
