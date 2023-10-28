@@ -1,77 +1,81 @@
-.wrap {
+footer {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     padding: 0px 24px 24px 24px;
     gap: 40px;
-}
-
-.line {
-    height: 1px;
-    background: var(
-        --Primary,
-        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
-        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
-        linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
-        #120f07
-    );
+    background: var(--Sand-Light, #f8f7f4);
 }
 
 .content {
+    width: 100%;
+    border-color: 1px solid;
+    padding-top: 40px;
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
+    max-height: 188px;
+    height: 100%;
 }
 
-.leftBar {
+.left {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     max-width: 565px;
     width: 100%;
     gap: 8px;
+
+    & .title {
+        font-family: 'ClashDisplay-Bold';
+        font-size: 24px;
+    }
+
+    & .text {
+        max-width: 273px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: -0.14px;
+    }
 }
 
-.leftTitle {
-    font-family: 'ClashDisplay-Bold';
-    font-size: 24px;
-}
-
-.leftText {
-    max-width: 273px;
-    width: 100%;
-    font-size: 14px;
-    line-height: 22px;
-    letter-spacing: -0.14px;
-}
-
-.linksBar {
+.links {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
     flex: 1 0 0;
+
+    & .item {
+        display: flex;
+        min-width: 200px;
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1 0 0;
+    }
+
+    & .title {
+        font-family: 'ClashDisplay-Bold';
+        font-size: 18px;
+    }
+
+    & .text {
+        font-size: 14px;
+        letter-spacing: -0.14px;
+    }
 }
 
-.linksItem {
-    display: flex;
-    min-width: 200px;
-    width: 100%;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1 0 0;
-}
-
-.linksTitle {
-    font-family: 'ClashDisplay-Bold';
-    font-size: 18px;
-}
-
-.linksText {
-    font-size: 14px;
-    letter-spacing: -0.14px;
-}
-
-.copyrightText {
+.copyright {
     font-size: 13px;
     letter-spacing: -0.13px;
+}
+
+@media screen and (max-width: 1400px) {
+    .left {
+        max-width: 400px;
+    }
+    .content {
+        max-height: none;
+    }
 }
