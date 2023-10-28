@@ -19,9 +19,7 @@ export const MainSection = () => {
             <div className={css.lower}>
                 <div className={css.element}>Games for Team Building</div>
                 <div className={css.element}>Play Area for the Party </div>
-                <div className={css.element}>
-                    Welcome Area for the Wedding
-                </div>
+                <div className={css.element}>Welcome Area for the Wedding</div>
             </div>
         </div>
     );

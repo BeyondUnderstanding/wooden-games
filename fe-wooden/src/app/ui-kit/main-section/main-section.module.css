@@ -31,7 +31,6 @@
     flex-wrap: wrap;
     gap: 12px;
 
-
     & .element {
         padding: 8px 20px;
         align-items: center;
@@ -50,11 +49,11 @@
     }
 }
 @media screen and (max-width: 812px) {
-    .lower{
-        .element{
+    .lower {
+        .element {
             min-width: 217px;
             text-align: center;
-            font-size:12px;
+            font-size: 12px;
         }
     }
 }
