@@ -8,7 +8,7 @@ const meta: Meta<typeof ProductCard> = {
         disabled: { control: 'boolean' },
         name: { control: 'text' },
         coast: { control: 'number' },
-        photo: {
+        src: {
             control: { type: 'file', accept: ['.png', '.svg', 'jpg', 'jpeg'] },
         },
         onClick: { action: 'clicked' },
@@ -26,7 +26,7 @@ export const CardStory: Story = {
         disabled: false,
         name: 'ZigZag',
         coast: 56,
-        photo: productPhoto,
+        src: productPhoto,
         onClick: testOnClick,
     },
 

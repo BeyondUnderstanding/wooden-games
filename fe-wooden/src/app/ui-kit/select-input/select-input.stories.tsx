@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SelectInput, SelectInputProps } from './select-input.component';
 import { constVoid } from 'fp-ts/lib/function';
 import {
     SelectInputContainer,

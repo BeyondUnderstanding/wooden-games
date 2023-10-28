@@ -129,7 +129,7 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
     );
 
     const setDisableOptionsEndTimeEffect = pipe(
-        startTime,
+        endTime,
         fromProperty,
         tap((end) => {
             if (end) {
