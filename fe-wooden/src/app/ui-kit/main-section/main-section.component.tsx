@@ -1,7 +1,6 @@
 'use client';
 
 import css from './main-section.module.css';
-import Link from 'next/link';
 
 export const MainSection = () => {
     return (
@@ -18,24 +17,11 @@ export const MainSection = () => {
             </div>
 
             <div className={css.linksBar}>
-                <Link href="/">
-                    <div className={css.linksElement}>
-                        Games for Team Building
-                    </div>
-                </Link>
-
-                <Link href="/">
-                    {' '}
-                    <div className={css.linksElement}>
-                        Play Area for the Party{' '}
-                    </div>
-                </Link>
-
-                <Link href="/">
-                    <div className={css.linksElement}>
-                        Welcome Area for the Wedding{' '}
-                    </div>
-                </Link>
+                <div className={css.linksElement}>Games for Team Building</div>
+                <div className={css.linksElement}>Play Area for the Party </div>
+                <div className={css.linksElement}>
+                    Welcome Area for the Wedding
+                </div>
             </div>
         </div>
     );
