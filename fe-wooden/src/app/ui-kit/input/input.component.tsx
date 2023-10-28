@@ -10,7 +10,6 @@ interface InputProps {
 export const Input = ({ value, onChenge, placeholder }: InputProps) => {
     return (
         <input
-            value={value}
             onChange={(e) => onChenge(e.target.value)}
             className={css.input}
             placeholder={placeholder}
