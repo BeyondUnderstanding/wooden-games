@@ -5,7 +5,7 @@ import {
 } from '../../../utils/run-view-model.utils';
 import { newLensedAtom } from '@frp-ts/lens';
 import { SelectInputsLabels } from '../calendar/calendar.container';
-import { ButtonProps, ButtonType } from '../button/button.component';
+import { ButtonType } from '../button/button.component';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
 import { tap } from '@most/core';

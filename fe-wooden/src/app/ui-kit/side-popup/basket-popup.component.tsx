@@ -4,13 +4,10 @@ import css from './side-popup.module.css';
 import cn from 'classnames';
 import { BasketInfo } from '../basket-info/basket-info.component';
 import { CheckRuls } from '../check-ruls/check-ruls.component';
-import { productsBasket } from './popup.mock';
 import {
     BasketProductCard,
     BasketProductCardProps,
 } from '../busket-product-card/busket-product-card.component';
-import { constVoid } from 'fp-ts/lib/function';
-import { CalendarInput } from '../calendar-input/calendar-input.component';
 import { useState } from 'react';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 

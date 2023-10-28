@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import css from './select-input.module.css';
 import cn from 'classnames';
 import { ArrowIcon } from '../icons/arrow-icon.component';

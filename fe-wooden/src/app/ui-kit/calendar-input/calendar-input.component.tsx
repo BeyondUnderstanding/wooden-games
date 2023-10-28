@@ -5,7 +5,7 @@ import {
     CalendarContainer,
     SelectInputsLabels,
 } from '../calendar/calendar.container';
-import { useMergeState, useOutsideClick } from '../../../utils/hooks';
+import { useOutsideClick } from '../../../utils/hooks';
 import cn from 'classnames';
 
 export interface CalendarInputProps {

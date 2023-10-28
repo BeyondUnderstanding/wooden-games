@@ -1,5 +1,4 @@
 import css from './header.module.css';
-import { CalendarInput } from '../calendar-input/calendar-input.component';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 
 interface BasketCrumbsProps {

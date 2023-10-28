@@ -16,8 +16,6 @@ export const Layout = () => {
         });
     };
 
-    const remoweFromBacket = (id: string) =>
-        setPage({ products: page.products?.filter((p) => p.id === id) });
     return (
         <>
             <SidePopup

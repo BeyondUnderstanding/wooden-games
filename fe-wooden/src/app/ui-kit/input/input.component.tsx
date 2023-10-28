@@ -1,4 +1,5 @@
 import css from './input.module.css';
+import cn from 'classnames';
 
 interface InputProps {
     readonly value: string;
