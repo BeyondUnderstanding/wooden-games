@@ -8,11 +8,29 @@ footer {
     padding: 0px 24px 24px 24px;
     gap: 40px;
     background: var(--Sand-Light, #f8f7f4);
-    color: var(--Primary, #120F07);
 }
 
 .content {
-    border-top: 1px solid;
+    border-top: 1px solid
+        var(
+            --Primary,
+            linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.2) 100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.2) 100%
+            ),
+            linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.2) 100%
+            ),
+            #120f07
+        );
     padding-top: 40px;
     display: flex;
     flex-wrap: wrap;
