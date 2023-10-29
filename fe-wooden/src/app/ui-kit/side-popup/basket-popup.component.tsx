@@ -10,6 +10,7 @@ import {
 } from '../busket-product-card/busket-product-card.component';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 import { Property } from '@frp-ts/core';
+import { useProperty } from '@frp-ts/react';
 
 export interface ProductBasket extends Omit<BasketProductCardProps, 'onClick'> {
     id: string;
@@ -38,10 +39,10 @@ export const BasketPopup = ({
     chosenDate,
     setChosenDate,
 }: BasketPopupProps) => {
-    console.log('chosenDate', chosenDate.get());
-    const btnDateState = chosenDate
-        .get()
-        .includes(new Date().getFullYear().toString());
+    const btnDateState = useProperty(chosenDate).includes(
+        new Date().getFullYear().toString()
+    );
+
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
@@ -84,8 +85,12 @@ export const BasketPopup = ({
                     label={'Go to Checkout'}
                     onClick={onClick}
                     type={'def'}
+                    //  я хз че тут происходит иначе оно не хочет работать
                     disabled={
-                        !products.every((el) => !el.isError) && !btnDateState
+                        !(
+                            products.every((el) => !el.isError) &&
+                            btnDateState == true
+                        )
                     }
                 />
                 <CheckRuls goToCheckRulse={goToCheckRulse} />
