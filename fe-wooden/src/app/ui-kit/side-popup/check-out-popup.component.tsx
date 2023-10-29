@@ -10,6 +10,7 @@ import cn from 'classnames';
 export interface CheckOutPopupProps
     extends Omit<SidePopupLayoutProps, 'children'> {
     readonly onClickBack: () => void;
+    readonly goToRulse: () => void;
 }
 
 export const CheckOutPopup = ({
@@ -19,6 +20,7 @@ export const CheckOutPopup = ({
     onClose,
     isOpen,
     onClickBack,
+    goToRulse,
 }: CheckOutPopupProps) => {
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
@@ -67,7 +69,7 @@ export const CheckOutPopup = ({
                                 I have read the{' '}
                                 <span
                                     className={css.underline}
-                                    onClick={() => {}}
+                                    onClick={goToRulse}
                                 >
                                     terms of the lease
                                 </span>{' '}

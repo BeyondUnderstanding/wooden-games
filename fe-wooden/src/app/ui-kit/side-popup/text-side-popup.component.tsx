@@ -40,10 +40,7 @@ export const TextSidePopup = ({
                         </span>
                     </div>
                     <h1 className={css.headerLabel}>{label}</h1>
-                    <div className={css.textPage}>
-                        {/* MOCK */}
-                        {content}
-                    </div>
+                    <div className={css.textPage}>{content}</div>
                 </div>
                 <Button
                     label={labelButton}

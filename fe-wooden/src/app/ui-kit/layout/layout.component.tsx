@@ -18,7 +18,7 @@ export const Layout = () => {
     };
 
     const chosenDate = newLensedAtom(
-        page.url !== 'basket' ? 'Lease date not specified' : 'Any Date'
+        isOpen ? 'Lease date not specified' : 'Any Date'
     );
 
     return (

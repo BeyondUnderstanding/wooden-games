@@ -8,7 +8,6 @@ import { Property } from '@frp-ts/core';
 
 export interface CalendarInputContainerProps {
     readonly isBasket?: boolean;
-    readonly finalDate?: (x: Date) => void;
     readonly chosenDate: Property<string>;
     readonly setChosenDate: (x: string) => void;
 }

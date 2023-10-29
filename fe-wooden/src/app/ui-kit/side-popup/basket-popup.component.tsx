@@ -8,7 +8,6 @@ import {
     BasketProductCard,
     BasketProductCardProps,
 } from '../busket-product-card/busket-product-card.component';
-import { useState } from 'react';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 import { Property } from '@frp-ts/core';
 
@@ -39,7 +38,6 @@ export const BasketPopup = ({
     chosenDate,
     setChosenDate,
 }: BasketPopupProps) => {
-    const [date, setDate] = useState<Date | undefined>();
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
@@ -66,7 +64,6 @@ export const BasketPopup = ({
                         <div>
                             <CalendarInputContainer
                                 isBasket={true}
-                                finalDate={(date) => setDate(date)}
                                 chosenDate={chosenDate}
                                 setChosenDate={setChosenDate}
                             />
@@ -83,9 +80,7 @@ export const BasketPopup = ({
                     label={'Go to Checkout'}
                     onClick={onClick}
                     type={'def'}
-                    disabled={
-                        !products.every((el) => !el.isError) || !chosenDate
-                    }
+                    disabled={!products.every((el) => !el.isError)}
                 />
                 <CheckRuls goToCheckRulse={goToCheckRulse} />
             </aside>

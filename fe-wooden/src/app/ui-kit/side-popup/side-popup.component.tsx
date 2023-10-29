@@ -52,6 +52,15 @@ export const SidePopup = ({
         });
     };
 
+    const goFromCheckRulseToCheckout = () => {
+        setNewPage({
+            url: 'text',
+            label: 'Rental rules',
+            subUrl: 'checkout',
+            content: <RentalRulsBody />,
+        });
+    };
+
     const goToCheckOut = () => {
         setNewPage({
             url: 'checkout',
@@ -61,13 +70,12 @@ export const SidePopup = ({
 
     const onClickBack = () =>
         setNewPage({
-            ...page,
+            // ...page,
             url: page.subUrl ?? 'basket',
             subUrl: undefined,
         });
 
     const remoweFromBacket = (id: string) => {
-        console.log(id);
         setNewPage({ products: page.products?.filter((p) => p.id !== id) });
     };
     switch (page.url) {
@@ -90,6 +98,7 @@ export const SidePopup = ({
                     labelButton={'It makes sense to me'}
                     onClickButton={constVoid}
                     onClickBack={onClickBack}
+                    goToRulse={goFromCheckRulseToCheckout}
                 />
             );
         case 'basket':
