@@ -21,7 +21,6 @@ export const SelectInputStory: Story = {
             { value: 14, label: '14:00', isDisable: false },
             { value: 15, label: '15:00', isDisable: false },
         ],
-        // value: { value: 12, label: '12:00' },
         onChange: constVoid,
         initialLabel: 'Start',
     },

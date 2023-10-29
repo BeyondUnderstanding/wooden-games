@@ -38,6 +38,10 @@ export const BasketPopup = ({
     chosenDate,
     setChosenDate,
 }: BasketPopupProps) => {
+    console.log('chosenDate', chosenDate.get());
+    const btnDateState = chosenDate
+        .get()
+        .includes(new Date().getFullYear().toString());
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
@@ -80,7 +84,9 @@ export const BasketPopup = ({
                     label={'Go to Checkout'}
                     onClick={onClick}
                     type={'def'}
-                    disabled={!products.every((el) => !el.isError)}
+                    disabled={
+                        !products.every((el) => !el.isError) && !btnDateState
+                    }
                 />
                 <CheckRuls goToCheckRulse={goToCheckRulse} />
             </aside>

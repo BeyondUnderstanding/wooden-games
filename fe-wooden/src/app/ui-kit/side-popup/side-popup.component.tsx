@@ -24,6 +24,8 @@ export interface Page {
     readonly label?: string;
     readonly subUrl?: url;
     readonly products?: Array<ProductBasket>;
+    readonly chosenDate: Property<string>;
+    readonly setChosenDate: (x: string) => void;
 }
 
 export interface SidePopupProps {
@@ -31,8 +33,6 @@ export interface SidePopupProps {
     readonly page: Page;
     readonly onClose: () => void;
     readonly setNewPage: (args: Partial<Page>) => void;
-    readonly chosenDate: Property<string>;
-    readonly setChosenDate: (x: string) => void;
 }
 
 export const SidePopup = ({
@@ -40,8 +40,6 @@ export const SidePopup = ({
     page,
     onClose,
     setNewPage,
-    chosenDate,
-    setChosenDate,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -70,7 +68,6 @@ export const SidePopup = ({
 
     const onClickBack = () =>
         setNewPage({
-            // ...page,
             url: page.subUrl ?? 'basket',
             subUrl: undefined,
         });
@@ -110,8 +107,8 @@ export const SidePopup = ({
                     onClick={goToCheckOut}
                     products={page.products ?? []}
                     onProductDelete={remoweFromBacket}
-                    setChosenDate={setChosenDate}
-                    chosenDate={chosenDate}
+                    setChosenDate={page.setChosenDate}
+                    chosenDate={page.chosenDate}
                 />
             );
         case 'text':

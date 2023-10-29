@@ -6,8 +6,15 @@ import { productsBasket } from '../side-popup/popup.mock';
 import { newLensedAtom } from '@frp-ts/lens';
 
 export const Layout = () => {
-    const [page, setPage] = useMergeState<Page>({ url: 'basket' });
     const [isOpen, setIsOpen] = useState(false);
+    const chosenDate = newLensedAtom(
+        isOpen ? 'Lease date not specified' : 'Any Date'
+    );
+    const [page, setPage] = useMergeState<Page>({
+        url: 'basket',
+        chosenDate: chosenDate,
+        setChosenDate: (x) => chosenDate.set(x),
+    });
 
     const openBasket = () => {
         setIsOpen(true);
@@ -17,10 +24,6 @@ export const Layout = () => {
         });
     };
 
-    const chosenDate = newLensedAtom(
-        isOpen ? 'Lease date not specified' : 'Any Date'
-    );
-
     return (
         <>
             <SidePopup
@@ -28,14 +31,14 @@ export const Layout = () => {
                 setNewPage={(page) => setPage(page)}
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
-                chosenDate={chosenDate}
-                setChosenDate={(x) => chosenDate.set(x)}
             />
             <Header
                 openBasket={openBasket}
-                basketAmount={1}
+                basketAmount={productsBasket.length}
                 chosenDate={chosenDate}
-                setChosenDate={(x) => chosenDate.set(x)}
+                setChosenDate={(x) => {
+                    chosenDate.set(x);
+                }}
             />
         </>
     );
