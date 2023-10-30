@@ -15,7 +15,7 @@ export const SidePopupStory: Story = {
     name: 'SidePopup',
     args: {
         isOpen: true,
-        page: { url: 'empty' },
+        // page: { url: 'empty' },
     },
     render: ({ ...args }) => {
         const [page, setPage] = useMergeState<Page>(args.page);

@@ -1,3 +1,5 @@
+'use client';
+
 import { Header } from '../header/header.component';
 import { Page, SidePopup } from '../side-popup/side-popup.component';
 import { useState } from 'react';

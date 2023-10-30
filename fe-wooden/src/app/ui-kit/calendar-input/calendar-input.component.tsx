@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, ButtonType } from '../button/button.component';
 import css from './calendar-input.module.css';
 import { useRef } from 'react';

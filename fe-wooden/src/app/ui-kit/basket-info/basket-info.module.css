@@ -14,10 +14,10 @@
         border-bottom: 1px solid rgba(18, 15, 7, 0.1);
         font-size: 16px;
         line-height: 26px;
+    }
 
-        &:last-child {
-            border-bottom: none;
-        }
+    .line:last-child {
+        border-bottom: none;
     }
 
     .bold {

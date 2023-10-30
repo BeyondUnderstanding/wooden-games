@@ -1,3 +1,5 @@
+'use client';
+
 import { Calendar as CalendarLib, TileArgs } from 'react-calendar';
 import './calendar.module.css';
 import { ArrowIcon, ArrowIconLeft } from '../icons/arrow-icon.component';

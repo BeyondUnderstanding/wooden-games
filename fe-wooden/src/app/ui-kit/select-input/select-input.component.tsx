@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef } from 'react';
 import css from './select-input.module.css';
 import cn from 'classnames';

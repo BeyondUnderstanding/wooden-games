@@ -1,3 +1,5 @@
+'use client';
+
 import { constVoid } from 'fp-ts/lib/function';
 import { ProductCard } from '../product-card/product-card.component';
 import { Product } from '../side-popup/basket-popup.component';

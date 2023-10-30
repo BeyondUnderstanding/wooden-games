@@ -1,3 +1,4 @@
+'use client';
 import { newDefaultScheduler } from '@most/scheduler';
 import { useValueWithEffect } from '../../../utils/run-view-model.utils';
 import { newCalendarInputViewModel } from './calendar-input.view-model';

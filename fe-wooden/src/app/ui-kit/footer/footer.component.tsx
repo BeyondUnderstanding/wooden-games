@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const Footer = () => {
     return (
-        <footer>
+        <footer className={css.footer}>
             <div className={css.content}>
                 <div className={css.left}>
                     <Link href="/" className={css.title}>

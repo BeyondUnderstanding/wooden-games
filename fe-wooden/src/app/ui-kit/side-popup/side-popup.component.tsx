@@ -1,3 +1,5 @@
+'use client';
+
 import { constVoid } from 'fp-ts/lib/function';
 import { TextSidePopup } from './text-side-popup.component';
 import { EmptyBasketPopup } from './empty-basket-popup.component';

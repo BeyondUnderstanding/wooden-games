@@ -1,3 +1,5 @@
+'use client';
+
 import css from './header.module.css';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 import { Property } from '@frp-ts/core';

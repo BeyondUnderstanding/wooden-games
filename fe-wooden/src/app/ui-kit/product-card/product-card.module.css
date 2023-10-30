@@ -10,11 +10,11 @@
     font-family: 'Inter-Regular';
     background-color: var(--Sand-Dark, rgba(229, 227, 219, 1));
     flex-direction: column;
+}
 
-    &:hover {
-        cursor: pointer;
-        background: var(--White, rgba(255, 255, 255, 1));
-    }
+.wrap:hover {
+    cursor: pointer;
+    background: var(--White, rgba(255, 255, 255, 1));
 }
 
 .lowerBar {

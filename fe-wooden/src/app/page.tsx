@@ -1,17 +1,18 @@
-'use client';
+// 'use client';
 
-import { constVoid } from 'fp-ts/lib/function';
-import { Button } from './ui-kit/button/button.component';
+import { Layout } from './ui-kit/layout/layout.component';
+import { Products } from './ui-kit/products/products.component';
+// MOCK
+import { productsBasket } from './ui-kit/side-popup/popup.mock';
+import src from '../app/ui-kit/busket-product-card/images/zigzag.png';
 
 export default function Home() {
+    const argsForProducts = {
+        products: productsBasket.map((el) => ({ ...el, src })),
+    };
     return (
-        <main>
-            <Button
-                enabled={true}
-                label={'123'}
-                onClick={constVoid}
-                size="small"
-            />
-        </main>
+        <Layout>
+            <Products {...argsForProducts} />
+        </Layout>
     );
 }

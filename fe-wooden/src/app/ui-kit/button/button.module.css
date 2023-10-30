@@ -18,11 +18,11 @@
         linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
         #120f07
     );
+}
 
-    &:hover {
-        background: #323232;
-        cursor: pointer;
-    }
+.wrap:hover {
+    background: #323232;
+    cursor: pointer;
 }
 
 .disabled {
@@ -38,9 +38,9 @@
 .prime {
     background: var(--Red-Light, #ffcbc8);
     color: var(--Red, #d84840);
-    &:hover {
-        background: #fbaba6;
-    }
+}
+.prime:hover {
+    background: #fbaba6;
 }
 
 .error {
@@ -52,7 +52,8 @@
     text-decoration: underline;
     color: var(--Primary);
     padding: 0;
-    &:hover {
-        background: transparent;
-    }
+}
+
+.link:hover {
+    background: transparent;
 }
