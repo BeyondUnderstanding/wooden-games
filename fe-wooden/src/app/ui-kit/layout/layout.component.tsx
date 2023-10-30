@@ -5,7 +5,19 @@ import { useMergeState } from '../../../utils/hooks';
 import { productsBasket } from '../side-popup/popup.mock';
 import { newLensedAtom } from '@frp-ts/lens';
 
-export const Layout = () => {
+export interface PropsChildComponent {}
+
+export type LayoutProps = {
+    readonly children?: React.ReactNode;
+    readonly childrenComponent?: (p: PropsChildComponent) => JSX.Element;
+} & (
+    | { children: React.ReactNode }
+    | {
+          childrenComponent: (p: PropsChildComponent) => JSX.Element;
+      }
+);
+
+export const Layout = ({ children, childrenComponent }: LayoutProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const chosenDate = newLensedAtom(
         isOpen ? 'Lease date not specified' : 'Any Date'
@@ -24,6 +36,8 @@ export const Layout = () => {
         });
     };
 
+    const ChildrenComponent = childrenComponent && childrenComponent({});
+
     return (
         <>
             <SidePopup
@@ -40,6 +54,10 @@ export const Layout = () => {
                     chosenDate.set(x);
                 }}
             />
+            <main>
+                {children}
+                {ChildrenComponent && ChildrenComponent}
+            </main>
         </>
     );
 };

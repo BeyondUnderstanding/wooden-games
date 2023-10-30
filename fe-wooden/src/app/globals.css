@@ -48,6 +48,15 @@ a {
 button {
     border: none;
 }
+body {
+    background: #f8f7f4;
+}
+main {
+    max-width: 1728px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px;
+}
 
 /* react calendar */
 

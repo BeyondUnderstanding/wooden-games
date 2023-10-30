@@ -11,6 +11,6 @@ type Story = StoryObj<{}>;
 export const LayoutStory: Story = {
     name: 'Layout',
     render: ({ ...args }) => {
-        return <Layout />;
+        return <Layout> </Layout>;
     },
 };
