@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useMergeState } from '../../../utils/hooks';
 import { productsBasket } from '../side-popup/popup.mock';
 import { newLensedAtom } from '@frp-ts/lens';
+import { Footer } from '../footer/footer.component';
 
 export interface PropsChildComponent {}
 
@@ -58,6 +59,7 @@ export const Layout = ({ children, childrenComponent }: LayoutProps) => {
                 {children}
                 {ChildrenComponent && ChildrenComponent}
             </main>
+            <Footer />
         </>
     );
 };

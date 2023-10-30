@@ -4,9 +4,9 @@ import { Button } from '../button/button.component';
 
 export interface BasketProductCardProps {
     readonly src: string | StaticImageData;
-    readonly price: number;
+    readonly coast: number;
     readonly name: string;
-    readonly isError: boolean;
+    readonly disabled: boolean;
     readonly onClick: () => void;
 }
 
@@ -14,9 +14,9 @@ const IMG_SIZE = 120;
 
 export const BasketProductCard = ({
     src,
-    price,
+    coast,
     name,
-    isError = false,
+    disabled = false,
     onClick,
 }: BasketProductCardProps) => {
     return (
@@ -31,16 +31,16 @@ export const BasketProductCard = ({
             <div className={css.infoWrap}>
                 <div className={css.info}>
                     <span>{name}</span>
-                    <span>{`${price}.00`} ₾ / h</span>
+                    <span>{`${coast}.00`} ₾ / h</span>
                 </div>
                 <div className={css.controll}>
                     <Button
                         label={'Delete'}
                         onClick={onClick}
                         disabled={false}
-                        type={isError ? 'error' : 'link'}
+                        type={disabled ? 'error' : 'link'}
                     />
-                    {isError && (
+                    {disabled && (
                         <span className={css.unavailable}>
                             Unavailable on this date
                         </span>

@@ -22,9 +22,9 @@ export const BasketProductCardStory: Story = {
     name: 'BasketProductCard',
     args: {
         src: productPhoto,
-        price: 49,
+        coast: 49,
         name: 'TikTak',
-        isError: false,
+        disabled: false,
     },
     render: ({ ...args }) => <BasketProductCard {...args} />,
 };
