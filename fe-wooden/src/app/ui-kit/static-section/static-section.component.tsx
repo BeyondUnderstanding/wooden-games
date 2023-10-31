@@ -9,17 +9,17 @@ import jenga from '../../../../public/img/jengaAndKids.jpg';
 import ticTacToe from '../../../../public/img/ticTacToe.jpg';
 
 export const StaticSection = () => {
-    const showImage = (src: string | StaticImageData) =>{
-        return(
+    const showImage = (src: string | StaticImageData) => {
+        return (
             <Image
                 src={src}
                 width={840}
                 height={640}
                 className={css.photo}
                 alt={'game picture'}
-             />
-        )
-    }
+            />
+        );
+    };
     return (
         <div className={css.wrap}>
             <div className={css.note}>
@@ -48,11 +48,15 @@ export const StaticSection = () => {
                 </div>
             </div>
             <div className={css.note}>
-                <h1 className={css.title}>Forget about gadgets and make the most of reality!</h1>
+                <h1 className={css.title}>
+                    Forget about gadgets and make the most of reality!
+                </h1>
                 <p className={css.text}>
-                    We will bring and install our precious wood games at your event! Depending on the format of the event and the venue,
-                     we will select a set of games that will be a great addition to your celebration! 
-                    Our manager will help, advise, teach and keep you company in the game!
+                    We will bring and install our precious wood games at your
+                    event! Depending on the format of the event and the venue,
+                    we will select a set of games that will be a great addition
+                    to your celebration! Our manager will help, advise, teach
+                    and keep you company in the game!
                 </p>
             </div>
         </div>

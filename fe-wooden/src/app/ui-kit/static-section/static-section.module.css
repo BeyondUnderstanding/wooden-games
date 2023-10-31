@@ -41,13 +41,12 @@
     gap: 16px;
     align-self: stretch;
 
-    .wraper{
+    .wraper {
         display: flex;
         gap: 16px;
 
         .photo {
-                border-radius: 32px;
-            }
+            border-radius: 32px;
+        }
     }
-   
 }
