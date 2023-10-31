@@ -65,3 +65,4 @@ export const Layout = ({ children, childrenComponent }: LayoutProps) => {
         </>
     );
 };
+export default Layout;

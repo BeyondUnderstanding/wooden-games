@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 
 import { Layout } from './ui-kit/layout/layout.component';
 import { Products } from './ui-kit/products/products.component';

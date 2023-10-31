@@ -1,9 +1,12 @@
 'use client';
 import React from 'react';
-import { newDefaultScheduler } from '@most/scheduler';
+// import { newDefaultScheduler } from '@most/scheduler';
 import { useProperty } from '@frp-ts/react';
 import { newSelectInputViewModel } from './select-input.view-model';
-import { useValueWithEffect } from '../../../utils/run-view-model.utils';
+import {
+    // defaultScheduler,
+    useValueWithEffect,
+} from '../../../utils/run-view-model.utils';
 import { InputType, SelectInput } from './select-input.component';
 
 export interface SelectInputContainerPropos {
@@ -18,7 +21,7 @@ export const SelectInputContainer = ({
     onChange,
     ...props
 }: SelectInputContainerPropos) => {
-    const vm = useValueWithEffect(newDefaultScheduler())(
+    const vm = useValueWithEffect(
         () => newSelectInputViewModel({ onChange, initialLabel }),
         []
     );

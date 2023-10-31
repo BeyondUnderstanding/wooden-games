@@ -42,6 +42,7 @@ export const BasketPopup = ({
     const btnDateState = useProperty(chosenDate).includes(
         new Date().getFullYear().toString()
     );
+    console.log(chosenDate.get(), 'BasketPopup');
 
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>

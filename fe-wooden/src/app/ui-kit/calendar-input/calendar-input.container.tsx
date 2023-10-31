@@ -1,6 +1,9 @@
 'use client';
-import { newDefaultScheduler } from '@most/scheduler';
-import { useValueWithEffect } from '../../../utils/run-view-model.utils';
+// import { newDefaultScheduler } from '@most/scheduler';
+import {
+    // defaultScheduler,
+    useValueWithEffect,
+} from '../../../utils/run-view-model.utils';
 import { newCalendarInputViewModel } from './calendar-input.view-model';
 import { CalendarInput } from './calendar-input.component';
 import React from 'react';
@@ -16,10 +19,8 @@ export interface CalendarInputContainerProps {
 export const CalendarInputContainer = ({
     ...props
 }: CalendarInputContainerProps) => {
-    const vm = useValueWithEffect(newDefaultScheduler())(
-        () => newCalendarInputViewModel(props),
-        []
-    );
+    const vm = useValueWithEffect(() => newCalendarInputViewModel(props), []);
+    console.log(123, useProperty(vm.chosenDate));
 
     return React.createElement(CalendarInput, {
         ...props,

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 import { mergeArray, multicast } from '@most/core';
+import { newDefaultScheduler } from '@most/scheduler';
 import { Stream, Time, Disposable, Scheduler } from '@most/types';
 import { constVoid, pipe } from 'fp-ts/lib/function';
 import { useLayoutEffect, useMemo, useRef } from 'react';
@@ -33,7 +34,10 @@ export const voidSink = {
         throw error;
     },
 };
-export const useValueWithEffect =
+
+export const defaultScheduler = newDefaultScheduler();
+
+export const useValueWithEffect = (
     (scheduler: Scheduler): UseValueWithEffect =>
     (factory, dependencies) => {
         // do not include factory in dependencies
@@ -49,4 +53,5 @@ export const useValueWithEffect =
 
         useLayoutEffect(() => () => disposableRef.current?.dispose(), []);
         return fa.value;
-    };
+    }
+)(defaultScheduler);

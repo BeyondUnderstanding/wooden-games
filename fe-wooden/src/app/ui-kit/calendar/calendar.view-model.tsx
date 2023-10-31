@@ -8,7 +8,7 @@ import { newLensedAtom } from '@frp-ts/lens';
 import { TileArgs } from 'react-calendar';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
-import { tap } from '@most/core';
+import { multicast, tap } from '@most/core';
 import { SelectInputsLabels } from './calendar.container';
 
 interface CalendarViewModel {
@@ -125,7 +125,8 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
                     })
                 );
             }
-        })
+        }),
+        multicast
     );
 
     const setDisableOptionsEndTimeEffect = pipe(
@@ -143,19 +144,22 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
                     })
                 );
             }
-        })
+        }),
+        multicast
     );
 
     const switchErrorStateStartTimeEffect = pipe(
         startTime,
         fromProperty,
-        tap((_) => notFillStartTimeError.set(false))
+        tap((_) => notFillStartTimeError.set(false)),
+        multicast
     );
 
     const switchErrorStateEndTimeEffect = pipe(
         endTime,
         fromProperty,
-        tap((_) => notFillEndTimeError.set(false))
+        tap((_) => notFillEndTimeError.set(false)),
+        multicast
     );
 
     return valueWithEffect.new(

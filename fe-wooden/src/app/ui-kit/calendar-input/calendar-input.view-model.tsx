@@ -8,7 +8,7 @@ import { SelectInputsLabels } from '../calendar/calendar.container';
 import { ButtonType } from '../button/button.component';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
-import { tap } from '@most/core';
+import { multicast, tap } from '@most/core';
 
 interface CalendarInputViewModel {
     readonly chosenDate: Property<string>;
@@ -68,6 +68,7 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
         chosenDate,
         fromProperty,
         tap((chosenDate) => {
+            console.log(chosenDate);
             const btnType = isBasket
                 ? 'link'
                 : chosenDate.includes(new Date().getFullYear().toString())
@@ -81,7 +82,8 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
                     )) ??
                 false;
             isHeaderError.set(err);
-        })
+        }),
+        multicast
     );
 
     return valueWithEffect.new(
