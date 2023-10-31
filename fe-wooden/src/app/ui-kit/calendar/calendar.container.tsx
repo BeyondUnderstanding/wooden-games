@@ -1,11 +1,7 @@
 'use client';
 import React from 'react';
-// import { newDefaultScheduler } from '@most/scheduler';
 import { useProperty } from '@frp-ts/react';
-import {
-    // defaultScheduler,
-    useValueWithEffect,
-} from '../../../utils/run-view-model.utils';
+import { useValueWithEffect } from '../../../utils/run-view-model.utils';
 import { newCalendarViewModel } from './calendar.view-model';
 import { Calendar } from './calendar.component';
 

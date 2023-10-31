@@ -3,12 +3,8 @@ import React from 'react';
 import { newGeneratorJoksViewModel } from './generator-joks.view-model';
 import { JoksComponent } from './generator-joks.component';
 import { restService } from '../../service/rest-service';
-// import { newDefaultScheduler } from '@most/scheduler';
 import { useProperty } from '@frp-ts/react';
-import {
-    // defaultScheduler,
-    useValueWithEffect,
-} from '../../../../utils/run-view-model.utils';
+import { useValueWithEffect } from '../../../../utils/run-view-model.utils';
 
 export const JoksContainer = () => {
     const service = restService();
