@@ -1,20 +1,20 @@
 'use client';
 
 import React from 'react';
-import css from './static-section.module.css';
+import css from './short-information-section.module.css';
 import Image, { StaticImageData } from 'next/image';
 import abacus from '../../../../public/img/abakus.jpg';
 import balls from '../../../../public/img/chainBalls.jpg';
 import jenga from '../../../../public/img/jengaAndKids.jpg';
 import ticTacToe from '../../../../public/img/ticTacToe.jpg';
 
-export const StaticSection = () => {
+export const ShortInformation = () => {
     const showImage = (src: string | StaticImageData) => {
         return (
             <Image
                 src={src}
-                width={840}
-                height={640}
+                width={740}
+                height={540}
                 className={css.photo}
                 alt={'game picture'}
             />
@@ -37,15 +37,15 @@ export const StaticSection = () => {
                     to everyone!
                 </p>
             </div>
-            <div className={css.content}>
-                <div className={css.wraper}>
+            <div className={css.images}>
+                
                     {showImage(jenga)}
                     {showImage(balls)}
-                </div>
-                <div className={css.wraper}>
+               
+                
                     {showImage(ticTacToe)}
                     {showImage(abacus)}
-                </div>
+                
             </div>
             <div className={css.note}>
                 <h1 className={css.title}>

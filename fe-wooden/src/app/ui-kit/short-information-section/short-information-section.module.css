@@ -5,7 +5,6 @@
     width: 100%;
     padding: 80px 24px 24px 24px;
     flex-direction: column;
-    align-items: flex-start;
     gap: 80px;
     box-sizing: content-box;
 }
@@ -14,10 +13,7 @@
     display: flex;
     margin: 0 auto;
     max-width: 600px;
-    width: 100%;
-    max-height: 292px;
     text-align: center;
-    height: 100%;
     flex-direction: column;
     gap: 16px;
 
@@ -34,19 +30,15 @@
     }
 }
 
-.content {
+.images {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 16px;
-    align-self: stretch;
 
-    .wraper {
-        display: flex;
-        gap: 16px;
-
-        .photo {
-            border-radius: 32px;
-        }
+    .photo {
+        border-radius: 32px;
     }
+
 }
