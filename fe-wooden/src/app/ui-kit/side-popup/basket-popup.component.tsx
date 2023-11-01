@@ -12,7 +12,7 @@ import { CalendarInputContainer } from '../calendar-input/calendar-input.contain
 import { Property } from '@frp-ts/core';
 import { useProperty } from '@frp-ts/react';
 
-export interface ProductBasket extends Omit<BasketProductCardProps, 'onClick'> {
+export interface Product extends Omit<BasketProductCardProps, 'onClick'> {
     id: string;
 }
 
@@ -21,7 +21,7 @@ export interface BasketPopupProps
         SidePopupLayoutProps,
         'labelButton' | 'label' | 'onClickButton' | 'children'
     > {
-    readonly products: Array<ProductBasket>;
+    readonly products: Array<Product>;
     readonly goToCheckRulse: () => void;
     readonly onClick: () => void;
     readonly onProductDelete: (id: string) => void;
@@ -76,7 +76,7 @@ export const BasketPopup = ({
                     </div>
                     <BasketInfo
                         subtotal={products
-                            .map((el) => el.price)
+                            .map((el) => el.coast)
                             .reduce((a, b) => a + b, 0)}
                         delivery={10}
                     />
@@ -88,7 +88,7 @@ export const BasketPopup = ({
                     //  я хз че тут происходит иначе оно не хочет работать
                     disabled={
                         !(
-                            products.every((el) => !el.isError) &&
+                            products.every((el) => !el.disabled) &&
                             btnDateState == true
                         )
                     }

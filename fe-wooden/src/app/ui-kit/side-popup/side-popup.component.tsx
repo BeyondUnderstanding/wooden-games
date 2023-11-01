@@ -2,7 +2,7 @@ import { constVoid } from 'fp-ts/lib/function';
 import { TextSidePopup } from './text-side-popup.component';
 import { EmptyBasketPopup } from './empty-basket-popup.component';
 import { CheckOutPopup } from './check-out-popup.component';
-import { BasketPopup, ProductBasket } from './basket-popup.component';
+import { BasketPopup, Product } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { Property } from '@frp-ts/core';
 
@@ -23,7 +23,7 @@ export interface Page {
     readonly content?: JSX.Element;
     readonly label?: string;
     readonly subUrl?: url;
-    readonly products?: Array<ProductBasket>;
+    readonly products?: Array<Product>;
     readonly chosenDate: Property<string>;
     readonly setChosenDate: (x: string) => void;
 }
