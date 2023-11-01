@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
+    reactStrictMode: false,
     eslint: {
         ignoreDuringBuilds: true,
     },
@@ -11,7 +11,6 @@ const nextConfig = {
         outputStandalone: true,
     },
     reactProductionProfiling: true,
-    
 };
 
 module.exports = nextConfig;
