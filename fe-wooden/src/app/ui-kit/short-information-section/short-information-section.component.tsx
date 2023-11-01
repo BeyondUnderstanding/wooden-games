@@ -2,24 +2,9 @@
 
 import React from 'react';
 import css from './short-information-section.module.css';
-import Image, { StaticImageData } from 'next/image';
-import abacus from '../../../../public/img/abakus.jpg';
-import balls from '../../../../public/img/chainBalls.jpg';
-import jenga from '../../../../public/img/jengaAndKids.jpg';
-import ticTacToe from '../../../../public/img/ticTacToe.jpg';
+import { Images } from './Images';
 
 export const ShortInformation = () => {
-    const showImage = (src: string | StaticImageData) => {
-        return (
-            <Image
-                src={src}
-                width={740}
-                height={540}
-                className={css.photo}
-                alt={'game picture'}
-            />
-        );
-    };
     return (
         <div className={css.wrap}>
             <div className={css.note}>
@@ -37,16 +22,9 @@ export const ShortInformation = () => {
                     to everyone!
                 </p>
             </div>
-            <div className={css.images}>
-                
-                    {showImage(jenga)}
-                    {showImage(balls)}
-               
-                
-                    {showImage(ticTacToe)}
-                    {showImage(abacus)}
-                
-            </div>
+
+            <Images/>
+
             <div className={css.note}>
                 <h1 className={css.title}>
                     Forget about gadgets and make the most of reality!
