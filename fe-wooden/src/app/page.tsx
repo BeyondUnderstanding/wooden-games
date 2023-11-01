@@ -5,6 +5,7 @@ import { Products } from './ui-kit/products/products.component';
 // MOCK
 import { productsBasket } from './ui-kit/side-popup/popup.mock';
 import src from '../app/ui-kit/busket-product-card/images/zigzag.png';
+import { MainSection } from './ui-kit/main-section/main-section.component';
 
 export default function Home() {
     const argsForProducts = {
@@ -12,6 +13,7 @@ export default function Home() {
     };
     return (
         <Layout>
+            <MainSection />
             <Products {...argsForProducts} />
         </Layout>
     );
