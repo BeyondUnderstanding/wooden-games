@@ -2,7 +2,7 @@
 
 import React from 'react';
 import css from './short-information-section.module.css';
-import { Images } from './Images';
+import { ImageBox } from './image-box';
 
 export const ShortInformation = () => {
     return (
@@ -23,7 +23,7 @@ export const ShortInformation = () => {
                 </p>
             </div>
 
-            <Images/>
+            <ImageBox />
 
             <div className={css.note}>
                 <h1 className={css.title}>
