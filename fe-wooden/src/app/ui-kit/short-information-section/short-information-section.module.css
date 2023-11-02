@@ -1,0 +1,43 @@
+.wrap {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1680px;
+    width: 100%;
+    padding: 80px 24px 24px 24px;
+    flex-direction: column;
+    gap: 80px;
+    box-sizing: content-box;
+}
+
+.note {
+    display: flex;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+    flex-direction: column;
+    gap: 16px;
+
+    .title {
+        font-family: 'ClashDisplay-Bold';
+        font-size: 48px;
+        line-height: 48px;
+    }
+    .text {
+        font-family: 'Inter-Regular';
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: -0.18px;
+    }
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    .photo {
+        border-radius: 32px;
+    }
+}
