@@ -11,9 +11,9 @@
         justify-content: space-between;
         align-self: stretch;
         border-bottom: 1px solid var(--Primary, #120f07);
+    }
 
-        &:last-child {
-            border-bottom: none;
-        }
+    .line:last-child {
+        border-bottom: none;
     }
 }
