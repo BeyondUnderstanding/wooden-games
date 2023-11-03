@@ -5,7 +5,7 @@
     flex-direction: column;
     gap: 100px;
     border-radius: 32px;
-    background: var(--Orange-Light, #FFE089);
+    background: var(--Orange-Light, #ffe089);
 }
 .info {
     display: flex;
