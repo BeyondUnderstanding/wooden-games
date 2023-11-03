@@ -11,7 +11,6 @@ const nextConfig = {
         outputStandalone: true,
     },
     reactProductionProfiling: true,
-    
 };
 
 module.exports = nextConfig;
