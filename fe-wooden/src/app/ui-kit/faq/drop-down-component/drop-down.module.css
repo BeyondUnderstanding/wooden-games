@@ -1,0 +1,41 @@
+.wrap {
+    display: flex;
+    max-width: 1728px;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 24px;
+    flex-direction: row;
+    gap: 40px;
+    background: var(--Sand-Light, #f8f7f4);
+}
+
+.title {
+    max-width: 820px;
+    width: 100%;
+    color: var(--Primary, #120f07);
+    font-family: 'ClashDisplay-Medium';
+}
+
+.questions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .dropDown{
+        display: flex;
+        flex-direction: row;
+        max-width: 740px;
+        width:100%;
+        border-bottom: 1px solid #000;
+        gap: 40px;
+    }
+    .text {
+        display: flex;
+        flex-direction: column;
+        max-width: 740px;
+        width:100%;
+        gap: 24px;
+        padding-bottom: 24px;
+        
+    }
+}
