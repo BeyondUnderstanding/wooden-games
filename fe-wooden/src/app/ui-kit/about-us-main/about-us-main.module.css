@@ -1,0 +1,51 @@
+.wrap {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    max-width: 1720px;
+    width: 100%;
+    background: var(--Sand-Light, #f8f7f4);
+    padding: 40px 24px 24px 24px;
+}
+
+.title {
+    font-family: 'ClashDisplay-Bold';
+    font-size: 40px;
+}
+
+.content {
+    display: flex;
+    padding: 24px 0px 24px 0px;
+    gap: 40px;
+    flex-wrap: wrap;
+
+    .element {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+
+        .heading {
+            display: flex;
+            flex-direction: column;
+            max-width: 740px;
+            width: 100%;
+            gap: 16px;
+
+            .caption {
+                font-family: 'ClashDisplay-Medium';
+                font-size: 32px;
+                line-height: 40px;
+            }
+
+            .text {
+                font-family: 'Inter-Regular';
+                font-size: 18px;
+                line-height: 28px;
+                letter-spacing: -0.18px;
+            }
+        }
+        .photo {
+            border-radius: 32px;
+        }
+    }
+}
