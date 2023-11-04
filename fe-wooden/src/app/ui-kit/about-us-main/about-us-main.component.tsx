@@ -7,7 +7,7 @@ import balls from '../../../../public/img/short-information-section/chainBalls.j
 
 export const AboutUsMain = () => {
     return (
-        <div className={css.wrap}>
+        <section className={css.wrap}>
             <h1 className={css.title}>About Us</h1>
             <div className={css.content}>
                 <div className={css.element}>
@@ -55,6 +55,6 @@ export const AboutUsMain = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
