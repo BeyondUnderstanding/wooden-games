@@ -1,5 +1,6 @@
 .wrap {
     display: flex;
+    margin: 0 auto;
     flex-direction: column;
     max-width: 1720px;
     width: 100%;
@@ -16,6 +17,7 @@
     display: flex;
     padding: 24px 0px 24px 0px;
     gap: 40px;
+    flex-wrap: wrap;
 
     .element {
         display: flex;

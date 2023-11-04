@@ -25,8 +25,8 @@ export const AboutUsMain = () => {
                         </p>
                     </div>
                     <Image
-                        width={820}
-                        height={580}
+                        width={800}
+                        height={560}
                         src={ticTacToe}
                         className={css.photo}
                         alt="game photo"
@@ -34,8 +34,8 @@ export const AboutUsMain = () => {
                 </div>
                 <div className={css.element}>
                     <Image
-                        width={820}
-                        height={580}
+                        width={800}
+                        height={560}
                         src={balls}
                         className={css.photo}
                         alt="game photo"
