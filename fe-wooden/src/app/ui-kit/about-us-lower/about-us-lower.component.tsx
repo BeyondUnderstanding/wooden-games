@@ -9,7 +9,7 @@ import jenga from '../../../../public/img/short-information-section/jengaAndKids
 
 const AboutUsLower = () => {
     return (
-        <div className={css.wrap}>
+        <section className={css.wrap}>
             <div className={css.element}>
                 <Image
                     src={ticTacToe}
@@ -51,7 +51,7 @@ const AboutUsLower = () => {
                     and at home
                 </p>
             </div>
-        </div>
+        </section>
     );
 };
 
