@@ -60,8 +60,7 @@ export const BasketPopup = ({
                             <BasketProductCard
                                 onClick={() => onProductDelete(el.id)}
                                 {...el}
-                                // зер нот гуд
-                                key={el.name + '_' + i}
+                                key={el.name + '_' + el.src}
                             />
                         ))}
                     </div>
@@ -92,7 +91,8 @@ export const BasketPopup = ({
                     disabled={
                         !(
                             products.every((el) => !el.disabled) &&
-                            btnDateState == true
+                            btnDateState == true &&
+                            products.length > 2
                         )
                     }
                 />

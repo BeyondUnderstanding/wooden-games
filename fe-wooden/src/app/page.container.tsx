@@ -20,15 +20,20 @@ interface PageProps {
     readonly products: Array<Product>;
     readonly setProducts: (x: Array<Product>) => void;
     readonly add2Basket: (x: Product) => void;
+    readonly deleteFromBasket: (id: number) => void;
 }
 const Page = ({
     basketProducts,
     products,
     setProducts,
     add2Basket,
+    deleteFromBasket,
 }: PageProps) => {
     return (
-        <LayoutContainer products={basketProducts}>
+        <LayoutContainer
+            products={basketProducts}
+            deleteDromBasket={deleteFromBasket}
+        >
             <MainSection />
             <Products products={products} add2Basket={add2Basket} />
             <ShortInformation />

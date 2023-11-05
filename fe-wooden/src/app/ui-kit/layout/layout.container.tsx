@@ -9,6 +9,7 @@ import { Property } from '@frp-ts/core';
 
 export type LayoutContainerProps = {
     readonly products: Property<Array<Product>>;
+    readonly deleteDromBasket: (id: number) => void;
     readonly children?: React.ReactNode;
     readonly childrenComponent?: (p: PropsChildComponent) => JSX.Element;
 } & (

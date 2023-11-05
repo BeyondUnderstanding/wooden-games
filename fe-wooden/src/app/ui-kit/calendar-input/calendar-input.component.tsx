@@ -85,7 +85,7 @@ export const CalendarInput = ({
                         onClose={() => setCalendarIsShown(false)}
                         onSelectDate={onSelectDate}
                         occupiedDates={[]}
-                        selectDate={chosenDate.start}
+                        selectDate={chosenDate}
                         initialStartLabel={selectLabels.start}
                         initialEndLabel={selectLabels.end}
                     />

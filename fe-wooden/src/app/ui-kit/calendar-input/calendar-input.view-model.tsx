@@ -8,9 +8,10 @@ import { SelectInputsLabels } from '../calendar/calendar.container';
 import { ButtonType } from '../button/button.component';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
-import { multicast, tap } from '@most/core';
+import { chain, multicast, skip, tap } from '@most/core';
 import { ChosenDate } from '../layout/layout.component';
 import { InputType } from '../select-input/select-input.component';
+import { restService } from '../../service/global-action.service';
 
 interface CalendarInputViewModel {
     readonly chosenDate: Property<ChosenDate>;
@@ -99,6 +100,18 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
         multicast
     );
 
+    const updateDateEffect = pipe(
+        chosenDate,
+        fromProperty,
+        skip(1),
+        chain((date) =>
+            restService().updateDate({
+                start_date: date.start.toISOString(),
+                end_date: date.end.toISOString(),
+            })
+        )
+    );
+
     return valueWithEffect.new(
         {
             chosenDate,
@@ -109,6 +122,7 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
             isHeaderError,
             setCalendarIsShown: (x) => calendarIsShown.set(x),
         },
-        setButtonTypeEffect
+        setButtonTypeEffect,
+        updateDateEffect
     );
 };

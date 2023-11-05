@@ -10,6 +10,7 @@ import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
 import { multicast, tap } from '@most/core';
 import { SelectInputsLabels } from './calendar.container';
+import { ChosenDate } from '../layout/layout.component';
 
 interface CalendarViewModel {
     readonly date: Property<Date>;
@@ -37,7 +38,7 @@ interface NewCalendarViewModelProperty {
         label: SelectInputsLabels
     ) => void;
     readonly occupiedDates: Array<Date>;
-    readonly selectDate: Date;
+    readonly selectDate: ChosenDate;
 }
 
 type NewCalendarViewModel = (
@@ -59,7 +60,7 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
         isDisable: false,
     });
 
-    const date = newLensedAtom(selectDate);
+    const date = newLensedAtom(selectDate.start);
     const startTime = newLensedAtom<InputType | undefined>(undefined);
     const endTime = newLensedAtom<InputType | undefined>(undefined);
     const optionsStart = newLensedAtom(initTimeHours.map(toInputType));

@@ -34,7 +34,6 @@ export const newLayoutViewModel: NewLayoutViewModel = ({ products }) => {
     const isOpen = newLensedAtom(false);
     const setIsOpen = (x: boolean) => isOpen.set(x);
 
-    // const basketProducts = newLensedAtom<Array<Product>>(products);
     const basketAmount = newLensedAtom<number>(products.get().length);
 
     const chosenDate = newLensedAtom<ChosenDate>({
@@ -48,6 +47,7 @@ export const newLayoutViewModel: NewLayoutViewModel = ({ products }) => {
         url: 'basket',
         chosenDate: chosenDate,
         setChosenDate: (x) => chosenDate.set(x),
+        products: products.get(),
     });
     const setPage = (newPage: Partial<Page>) =>
         page.modify((page) => ({ ...page, ...newPage }));
@@ -72,6 +72,21 @@ export const newLayoutViewModel: NewLayoutViewModel = ({ products }) => {
         tap((products) => basketAmount.set(products.length))
     );
 
+    const basketProductsEffect = pipe(
+        products,
+        fromProperty,
+        tap((products) => {
+            if (products.length > 0) {
+                setPage({ products });
+            } else {
+                setPage({
+                    url: 'empty',
+                    products,
+                });
+            }
+        })
+    );
+
     return valueWithEffect.new(
         {
             isOpen,
@@ -83,6 +98,7 @@ export const newLayoutViewModel: NewLayoutViewModel = ({ products }) => {
             setChosenDate,
             basketAmount,
         },
-        basketProductsAmountEffect
+        basketProductsAmountEffect,
+        basketProductsEffect
     );
 };

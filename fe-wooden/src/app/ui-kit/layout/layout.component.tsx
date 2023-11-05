@@ -19,6 +19,7 @@ export type LayoutProps = {
     readonly setIsOpen: (x: boolean) => void;
     readonly setPage: (page: Partial<Page>) => void;
     readonly openBasket: () => void;
+    readonly deleteDromBasket: (id: number) => void;
 } & (
     | { children: React.ReactNode }
     | {
@@ -43,6 +44,7 @@ export const Layout = ({
     openBasket,
     setChosenDate,
     basketAmount,
+    deleteDromBasket,
 }: LayoutProps) => {
     useUUID();
     const ChildrenComponent = childrenComponent && childrenComponent({});
@@ -54,6 +56,7 @@ export const Layout = ({
                 setNewPage={(page) => setPage(page)}
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
+                deleteFromBasket={deleteDromBasket}
             />
             <Header
                 openBasket={openBasket}

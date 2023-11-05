@@ -8,9 +8,7 @@ const getProps = async () => {
 
     const service = restService();
     const productsResponce: Array<Product> = await service.getItems();
-    const basketResponce: Array<Product> = await service.getBasket2(
-        uuid?.value
-    );
+    const basketResponce: Array<Product> = await service.getBasket(uuid?.value);
 
     return {
         productsResponce,

@@ -31,9 +31,13 @@ export interface RestService {
     readonly addBasketItem: (
         raw: AddBasketItemI
     ) => Promise<AxiosResponse<AddBasketItemReurnT>>;
-    readonly getBasket: () => Stream<Array<Product>>;
-    readonly getBasket2: (uid: string | undefined) => Promise<Array<Product>>;
+    readonly getBasket: (uid: string | undefined) => Promise<Array<Product>>;
     readonly getItems: () => Promise<Array<Product>>;
+    readonly updateDate: (data: {
+        readonly start_date: string;
+        readonly end_date: string;
+    }) => Stream<number>;
+    readonly delFromBasket: (id: number) => Promise<number>;
 }
 
 export type NewRestService = () => RestService;
@@ -45,27 +49,20 @@ export const restService: NewRestService = () => ({
                 'x-uuid': getCookie('x-uuid'),
             },
         }),
-    getBasket: () => {
+    delFromBasket: (id) => {
         const prom = axios
-            .get<Array<ItemsResponce>>(API.basket, {
+            .delete<Array<ItemsResponce>>(API.basket + `?id=${id}`, {
                 headers: {
                     'x-uuid': getCookie('x-uuid'),
                 },
             })
             .then((resp) => {
-                const data: Array<Product> = resp.data.map((data) => ({
-                    src: data.images[0]?.link ?? '',
-                    coast: data.price,
-                    name: data.title,
-                    disabled: !data.is_available,
-                    id: data.id,
-                }));
-                return data;
+                return resp.status;
             })
-            .catch(() => []);
-        return fromPromise(prom);
+            .catch(() => 500);
+        return prom;
     },
-    getBasket2: (uid) => {
+    getBasket: (uid) => {
         const prom = axios
             .get<Array<ItemsResponce>>(API.basket, {
                 headers: {
@@ -97,5 +94,18 @@ export const restService: NewRestService = () => ({
             return data;
         });
         return prom;
+    },
+    updateDate: (data) => {
+        const prom = axios
+            .patch<Array<ItemsResponce>>(API.basket, data, {
+                headers: {
+                    'x-uuid': getCookie('x-uuid'),
+                },
+            })
+            .then((resp) => {
+                return resp.status;
+            })
+            .catch(() => 500);
+        return fromPromise(prom);
     },
 });

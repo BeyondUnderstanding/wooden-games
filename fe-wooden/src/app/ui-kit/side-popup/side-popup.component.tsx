@@ -35,6 +35,7 @@ export interface SidePopupProps {
     readonly isOpen: boolean;
     readonly page: Page;
     readonly onClose: () => void;
+    readonly deleteFromBasket: (id: number) => void;
     readonly setNewPage: (args: Partial<Page>) => void;
 }
 
@@ -43,6 +44,7 @@ export const SidePopup = ({
     page,
     onClose,
     setNewPage,
+    deleteFromBasket,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -75,9 +77,6 @@ export const SidePopup = ({
             subUrl: undefined,
         });
 
-    const remoweFromBacket = (id: number) => {
-        setNewPage({ products: page.products?.filter((p) => p.id !== id) });
-    };
     switch (page.url) {
         case 'empty':
             return (
@@ -109,7 +108,7 @@ export const SidePopup = ({
                     goToCheckRulse={goToCheckRulse}
                     onClick={goToCheckOut}
                     products={page.products ?? []}
-                    onProductDelete={remoweFromBacket}
+                    onProductDelete={deleteFromBasket}
                     setChosenDate={page.setChosenDate}
                     chosenDate={page.chosenDate}
                 />

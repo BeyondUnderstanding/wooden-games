@@ -15,6 +15,7 @@ interface HomePageStore {
     readonly products: Property<Array<Product>>;
     readonly setProducts: (x: Array<Product>) => void;
     readonly add2Basket: (x: Product) => void;
+    readonly deleteFromBasket: (id: number) => void;
 }
 
 interface NewCalendarStoreProperty {
@@ -47,12 +48,22 @@ export const newHomePageStore: NewHomePageStore = ({
         })
     );
 
+    const deleteFromBasket = async (product: number) => {
+        const resp = await service.delFromBasket(product);
+        if (resp === 200) {
+            basketProductsS.set(
+                basketProductsS.get().filter((x) => x.id !== product)
+            );
+        }
+    };
+
     return valueWithEffect.new(
         {
             basketProducts: basketProductsS,
             products: productsS,
             setProducts: (x: Array<Product>) => basketProductsS.set(x),
             add2Basket: setProduct,
+            deleteFromBasket,
         },
         add2BasketEffect
     );
