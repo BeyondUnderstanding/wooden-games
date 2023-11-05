@@ -11,7 +11,7 @@ import { ShortInformation } from './ui-kit/short-information-section/short-infor
 import { Property } from '@frp-ts/core';
 
 export type PageContainerProps = {
-    // readonly basketProducts: Array<Product>;
+    readonly basketProducts: Array<Product>;
     readonly products: Array<Product>;
 };
 

@@ -18,7 +18,7 @@ interface HomePageStore {
 }
 
 interface NewCalendarStoreProperty {
-    // readonly basketProducts: Array<Product>;
+    readonly basketProducts: Array<Product>;
     readonly products: Array<Product>;
 }
 
@@ -27,12 +27,12 @@ type NewHomePageStore = (
 ) => ValueWithEffect<HomePageStore>;
 
 export const newHomePageStore: NewHomePageStore = ({
-    // basketProducts,
+    basketProducts,
     products,
 }) => {
     const service = restService();
 
-    const basketProductsS = newLensedAtom<Array<Product>>([]);
+    const basketProductsS = newLensedAtom<Array<Product>>(basketProducts);
     const productsS = newLensedAtom(products);
 
     const [setProduct, productEffect] = createAdapter<Product>();
@@ -47,12 +47,6 @@ export const newHomePageStore: NewHomePageStore = ({
         })
     );
 
-    const getBasketEffect = pipe(
-        service.getBasket(),
-        tap(basketProductsS.set),
-        tap(console.log)
-    );
-
     return valueWithEffect.new(
         {
             basketProducts: basketProductsS,
@@ -60,7 +54,6 @@ export const newHomePageStore: NewHomePageStore = ({
             setProducts: (x: Array<Product>) => basketProductsS.set(x),
             add2Basket: setProduct,
         },
-        add2BasketEffect,
-        getBasketEffect
+        add2BasketEffect
     );
 };

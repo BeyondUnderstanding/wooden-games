@@ -32,6 +32,7 @@ export interface RestService {
         raw: AddBasketItemI
     ) => Promise<AxiosResponse<AddBasketItemReurnT>>;
     readonly getBasket: () => Stream<Array<Product>>;
+    readonly getBasket2: (uid: string | undefined) => Promise<Array<Product>>;
     readonly getItems: () => Promise<Array<Product>>;
 }
 
@@ -63,6 +64,26 @@ export const restService: NewRestService = () => ({
             })
             .catch(() => []);
         return fromPromise(prom);
+    },
+    getBasket2: (uid) => {
+        const prom = axios
+            .get<Array<ItemsResponce>>(API.basket, {
+                headers: {
+                    'x-uuid': uid,
+                },
+            })
+            .then((resp) => {
+                const data: Array<Product> = resp.data.map((data) => ({
+                    src: data.images[0]?.link ?? '',
+                    coast: data.price,
+                    name: data.title,
+                    disabled: !data.is_available,
+                    id: data.id,
+                }));
+                return data;
+            })
+            .catch(() => []);
+        return prom;
     },
     getItems: () => {
         const prom = axios.get<Array<ItemsResponce>>(API.games).then((resp) => {
