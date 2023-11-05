@@ -2,17 +2,23 @@
 
 import { Header } from '../header/header.component';
 import { Page, SidePopup } from '../side-popup/side-popup.component';
-import { useState } from 'react';
-import { useMergeState } from '../../../utils/hooks';
-import { productsBasket } from '../side-popup/popup.mock';
-import { newLensedAtom } from '@frp-ts/lens';
 import { Footer } from '../footer/footer.component';
+import { Property } from '@frp-ts/core';
+import { useUUID } from '../../../utils/cookie.utils';
 
 export interface PropsChildComponent {}
 
 export type LayoutProps = {
     readonly children?: React.ReactNode;
     readonly childrenComponent?: (p: PropsChildComponent) => JSX.Element;
+    readonly isOpen: boolean;
+    readonly chosenDate: Property<ChosenDate>;
+    readonly page: Page;
+    readonly basketAmount: number;
+    readonly setChosenDate: (x: ChosenDate) => void;
+    readonly setIsOpen: (x: boolean) => void;
+    readonly setPage: (page: Partial<Page>) => void;
+    readonly openBasket: () => void;
 } & (
     | { children: React.ReactNode }
     | {
@@ -20,25 +26,25 @@ export type LayoutProps = {
       }
 );
 
-export const Layout = ({ children, childrenComponent }: LayoutProps) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const chosenDate = newLensedAtom(
-        isOpen ? 'Lease date not specified' : 'Any Date'
-    );
-    const [page, setPage] = useMergeState<Page>({
-        url: 'basket',
-        chosenDate: chosenDate,
-        setChosenDate: (x) => chosenDate.set(x),
-    });
+export interface ChosenDate {
+    label: string | undefined;
+    start: Date;
+    end: Date;
+}
 
-    const openBasket = () => {
-        setIsOpen(true);
-        setPage({
-            url: 'basket',
-            products: productsBasket,
-        });
-    };
-
+export const Layout = ({
+    children,
+    childrenComponent,
+    isOpen,
+    chosenDate,
+    page,
+    setIsOpen,
+    setPage,
+    openBasket,
+    setChosenDate,
+    basketAmount,
+}: LayoutProps) => {
+    useUUID();
     const ChildrenComponent = childrenComponent && childrenComponent({});
 
     return (
@@ -51,11 +57,9 @@ export const Layout = ({ children, childrenComponent }: LayoutProps) => {
             />
             <Header
                 openBasket={openBasket}
-                basketAmount={productsBasket.length}
+                basketAmount={basketAmount}
                 chosenDate={chosenDate}
-                setChosenDate={(x) => {
-                    chosenDate.set(x);
-                }}
+                setChosenDate={setChosenDate}
             />
             <main>
                 {children}

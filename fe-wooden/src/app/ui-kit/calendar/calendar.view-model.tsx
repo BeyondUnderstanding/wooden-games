@@ -92,7 +92,7 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
         const end = endTime.get();
         const start = startTime.get();
 
-        if (end && start) {
+        if (end !== undefined && start !== undefined) {
             onSelectDate(
                 `${date.get().getDate()} ${date.get().toLocaleString('en-us', {
                     month: 'long',
@@ -100,8 +100,8 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
                 })}, ${end.value - start.value} h`,
                 date.get(),
                 {
-                    start: start.label,
-                    end: end.label,
+                    start,
+                    end,
                 }
             );
         } else {

@@ -11,9 +11,10 @@ import {
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 import { Property } from '@frp-ts/core';
 import { useProperty } from '@frp-ts/react';
+import { ChosenDate } from '../layout/layout.component';
 
 export interface Product extends Omit<BasketProductCardProps, 'onClick'> {
-    id: string;
+    id: number;
 }
 
 export interface BasketPopupProps
@@ -24,9 +25,9 @@ export interface BasketPopupProps
     readonly products: Array<Product>;
     readonly goToCheckRulse: () => void;
     readonly onClick: () => void;
-    readonly onProductDelete: (id: string) => void;
-    readonly chosenDate: Property<string>;
-    readonly setChosenDate: (x: string) => void;
+    readonly onProductDelete: (id: number) => void;
+    readonly chosenDate: Property<ChosenDate>;
+    readonly setChosenDate: (x: ChosenDate) => void;
 }
 
 export const BasketPopup = ({
@@ -39,10 +40,9 @@ export const BasketPopup = ({
     chosenDate,
     setChosenDate,
 }: BasketPopupProps) => {
-    const btnDateState = useProperty(chosenDate).includes(
+    const btnDateState = useProperty(chosenDate).label?.includes(
         new Date().getFullYear().toString()
     );
-    console.log(chosenDate.get(), 'BasketPopup');
 
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
@@ -72,6 +72,8 @@ export const BasketPopup = ({
                                 isBasket={true}
                                 chosenDate={chosenDate}
                                 setChosenDate={setChosenDate}
+                                label="Choose another date"
+                                unsetLabel="Lease date not specified"
                             />
                         </div>
                     </div>

@@ -5,12 +5,7 @@ import balls from '../../../../public/img/short-information-section/chainBalls.j
 import jenga from '../../../../public/img/short-information-section/jengaAndKids.jpg';
 import ticTacToe from '../../../../public/img/short-information-section/ticTacToe.jpg';
 
-const photos: Array<string | StaticImageData> = [
-    abacus,
-    balls,
-    jenga,
-    ticTacToe,
-];
+const photos: Array<StaticImageData> = [abacus, balls, jenga, ticTacToe];
 
 export const ImageBox = () => {
     return (
@@ -18,10 +13,11 @@ export const ImageBox = () => {
             {photos.map((src) => (
                 <Image
                     src={src}
-                    width={732}
-                    height={520}
+                    width={832}
+                    height={620}
                     className={css.photo}
                     alt="game picture"
+                    key={src.src}
                 />
             ))}
         </div>

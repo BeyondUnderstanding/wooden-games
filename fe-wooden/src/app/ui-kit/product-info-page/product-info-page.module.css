@@ -1,0 +1,65 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    margin: 60px 0 0 40px;
+    max-width: 560px;
+    width: 100%;
+
+    .headeLabel {
+        color: var(--Primary, #120f07);
+        font-family: 'ClashDisplay-Bold';
+        font-size: 48px;
+        font-style: normal;
+        line-height: 48px;
+        margin-bottom: 24px;
+    }
+
+    .labelsWrap {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 40px;
+    }
+
+    .textWrap {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        color: var(--Primary, #120f07);
+        font-family: 'Inter-Regular';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: -0.14px;
+        margin-bottom: 24px;
+    }
+}
+
+.wrap:last-child {
+    margin-top: 40px;
+}
+
+.smallLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--Primary, #120f07);
+    font-family: 'Inter-Regular';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.14px;
+
+    border-radius: 50px;
+    border: 1px solid var(--Primary, #120f07);
+    background: #fff;
+    padding: 6px 14px;
+}
+
+.productCharacteristicsTheme {
+    margin-top: 40px;
+}
+.checkRulsTheme {
+    margin-top: 24px;
+}

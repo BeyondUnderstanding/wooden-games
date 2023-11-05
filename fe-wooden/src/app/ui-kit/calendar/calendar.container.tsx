@@ -4,10 +4,11 @@ import { useProperty } from '@frp-ts/react';
 import { useValueWithEffect } from '../../../utils/run-view-model.utils';
 import { newCalendarViewModel } from './calendar.view-model';
 import { Calendar } from './calendar.component';
+import { InputType } from '../select-input/select-input.component';
 
 export interface SelectInputsLabels {
-    start: string;
-    end: string;
+    start: InputType;
+    end: InputType;
 }
 
 export interface CalendarContainerProps {

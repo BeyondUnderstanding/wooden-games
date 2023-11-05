@@ -49,4 +49,10 @@
     width: 26px;
     height: 26px;
     justify-content: center;
+
+    &.notEmpty {
+        border: 1px solid var(--Red, #d84840);
+        background: var(--Red, #d84840);
+        color: var(--White, #fff);
+    }
 }

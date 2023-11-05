@@ -55,7 +55,7 @@ main {
     max-width: 1728px;
     width: 100%;
     margin: 0 auto;
-    padding: 24px;
+    padding: 24px 24px 0 24px;
 }
 
 /* react calendar */

@@ -1,20 +1,23 @@
-'use client';
+import { restService } from './service/global-action.service';
+import { Product } from './ui-kit/side-popup/basket-popup.component';
+import { PageContainer } from './page.container';
 
-import { Layout } from './ui-kit/layout/layout.component';
-import { Products } from './ui-kit/products/products.component';
-// MOCK
-import { productsBasket } from './ui-kit/side-popup/popup.mock';
-import src from '../app/ui-kit/busket-product-card/images/zigzag.png';
-import { MainSection } from './ui-kit/main-section/main-section.component';
+const getProps = async () => {
+    const service = restService();
+    const productsResponce: Array<Product> = await service.getItems();
 
-export default function Home() {
-    const argsForProducts = {
-        products: productsBasket.map((el) => ({ ...el, src })),
+    return {
+        productsResponce,
     };
+};
+
+export default async function Home() {
+    const { productsResponce } = await getProps();
+
     return (
-        <Layout>
-            <MainSection />
-            <Products {...argsForProducts} />
-        </Layout>
+        <PageContainer
+            // basketProducts={basketResponce}
+            products={productsResponce}
+        />
     );
 }

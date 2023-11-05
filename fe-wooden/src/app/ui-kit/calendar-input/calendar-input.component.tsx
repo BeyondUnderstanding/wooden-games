@@ -9,11 +9,13 @@ import {
 } from '../calendar/calendar.container';
 import { useOutsideClick } from '../../../utils/hooks';
 import cn from 'classnames';
+import { ChosenDate } from '../layout/layout.component';
 
 export interface CalendarInputProps {
     readonly isBasket?: boolean;
-    readonly chosenDate: string;
-    readonly selectdDate: Date;
+    readonly label: string;
+    readonly unsetLabel: string;
+    readonly chosenDate: ChosenDate;
     readonly selectLabels: {
         start: string;
         end: string;
@@ -31,8 +33,9 @@ export interface CalendarInputProps {
 
 export const CalendarInput = ({
     isBasket = false,
+    label,
+    unsetLabel,
     chosenDate,
-    selectdDate,
     selectLabels,
     calendarIsShown,
     setCalendarIsShown,
@@ -54,10 +57,10 @@ export const CalendarInput = ({
                         [css.error]: isHeaderError,
                     })}
                 >
-                    {chosenDate}
+                    {chosenDate.label ?? unsetLabel}
                 </h4>
                 <Button
-                    label={isBasket ? 'Choose another date' : 'Choose Dates'}
+                    label={label}
                     onClick={() => setCalendarIsShown(true)}
                     disabled={false}
                     type={buttonType}
@@ -72,7 +75,7 @@ export const CalendarInput = ({
                         onClose={() => setCalendarIsShown(false)}
                         onSelectDate={onSelectDate}
                         occupiedDates={[]}
-                        selectDate={selectdDate}
+                        selectDate={chosenDate.start}
                         initialStartLabel={selectLabels.start}
                         initialEndLabel={selectLabels.end}
                     />

@@ -7,6 +7,7 @@ import { CheckOutPopup } from './check-out-popup.component';
 import { BasketPopup, Product } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { Property } from '@frp-ts/core';
+import { ChosenDate } from '../layout/layout.component';
 
 export interface SidePopupLayoutProps {
     readonly children: React.ReactNode;
@@ -26,8 +27,8 @@ export interface Page {
     readonly label?: string;
     readonly subUrl?: url;
     readonly products?: Array<Product>;
-    readonly chosenDate: Property<string>;
-    readonly setChosenDate: (x: string) => void;
+    readonly chosenDate: Property<ChosenDate>;
+    readonly setChosenDate: (x: ChosenDate) => void;
 }
 
 export interface SidePopupProps {
@@ -74,7 +75,7 @@ export const SidePopup = ({
             subUrl: undefined,
         });
 
-    const remoweFromBacket = (id: string) => {
+    const remoweFromBacket = (id: number) => {
         setNewPage({ products: page.products?.filter((p) => p.id !== id) });
     };
     switch (page.url) {
