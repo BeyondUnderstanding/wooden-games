@@ -11,6 +11,7 @@ export interface ButtonProps {
     readonly disabled: boolean;
     readonly size?: 'small' | 'medium';
     readonly type: ButtonType;
+    readonly theme?: Array<string>;
 }
 
 export const Button = ({
@@ -19,11 +20,12 @@ export const Button = ({
     onClick,
     size = 'small',
     type = 'def',
+    theme = [],
 }: ButtonProps) => {
     return (
         <button
             onClick={() => !disabled && onClick()}
-            className={cn(css.wrap, {
+            className={cn(css.wrap, ...theme, {
                 [css.disabled]: disabled,
                 [css.small]: size === 'small',
                 [css.medium]: size === 'medium',

@@ -10,6 +10,7 @@ import css from './product-info-page.module.css';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 import { ChosenDate } from '../layout/layout.component';
 import { Property } from '@frp-ts/core';
+import { Button } from '../button/button.component';
 
 interface SmallLabelProps {
     readonly children: JSX.Element;
@@ -65,14 +66,34 @@ export const ProductInfoPage = ({
                 </p>
             </div>
 
-            <div>
-                <CalendarInputContainer
-                    chosenDate={chosenDate}
-                    setChosenDate={setChosenDate}
-                    isBasket={true}
-                    label="Enter the date"
-                    unsetLabel="Lease date not specified"
-                />
+            <div className={css.controlsWrap}>
+                <div className={css.block}>
+                    <span>Your Date:</span>
+                    <CalendarInputContainer
+                        chosenDate={chosenDate}
+                        setChosenDate={setChosenDate}
+                        isBasket={true}
+                        label="Enter the date"
+                        unsetLabel="Lease date not specified"
+                        theme={{
+                            button: [css.calendarInputButtonTheme],
+                            wrap: [css.calendarInputwrapTeme],
+                        }}
+                    />
+                </div>
+                <div className={css.block}>
+                    <div className={css.priceWrap}>
+                        <span>Rental price:</span>
+                        <h3 className={css.price}>56.00 ₾</h3>
+                    </div>
+                    <Button
+                        label={'Add to Cart'}
+                        onClick={constVoid}
+                        disabled={false}
+                        type={'def'}
+                        size="medium"
+                    />
+                </div>
             </div>
             <CheckRuls
                 goToCheckRulse={constVoid}

@@ -33,6 +33,67 @@
         letter-spacing: -0.14px;
         margin-bottom: 24px;
     }
+
+    .controlsWrap {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        color: var(--Primary, #120f07);
+
+        .block {
+            font-family: 'Inter-Medium';
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            letter-spacing: -0.14px;
+            display: flex;
+            flex-direction: column;
+            max-width: 280px;
+            width: 100%;
+            padding: 16px;
+
+            .priceWrap {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 24px;
+            }
+
+            .price {
+                color: var(--Primary, #120f07);
+                font-family: 'ClashDisplay-Medium';
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 32px;
+            }
+
+            .calendarInputwrapTeme {
+                display: flex;
+                gap: 39px;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: start;
+            }
+
+            .calendarInputButtonTheme {
+                justify-content: start;
+            }
+        }
+
+        .block:first-child {
+            border-radius: 16px 0px 0px 16px;
+            border: 1px solid var(--Primary, #120f07);
+            background: var(--White, #fff);
+            border-right: none;
+        }
+
+        .block:last-child {
+            border-radius: 0px 16px 16px 0px;
+            border: 1px solid var(--Primary, #120f07);
+            background: var(--White, #fff);
+        }
+    }
 }
 
 .wrap:last-child {

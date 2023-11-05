@@ -13,6 +13,10 @@ export interface CalendarInputContainerProps {
     readonly setChosenDate: (x: ChosenDate) => void;
     readonly label: string;
     readonly unsetLabel: string;
+    readonly theme?: {
+        readonly button: Array<string>;
+        readonly wrap: Array<string>;
+    };
 }
 
 export const CalendarInputContainer = ({

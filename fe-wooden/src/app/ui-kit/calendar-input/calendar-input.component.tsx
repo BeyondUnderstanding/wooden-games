@@ -29,6 +29,10 @@ export interface CalendarInputProps {
     readonly setCalendarIsShown: (x: boolean) => void;
     readonly buttonType: ButtonType;
     readonly isHeaderError: boolean;
+    readonly theme?: {
+        readonly button: Array<string>;
+        readonly wrap: Array<string>;
+    };
 }
 
 export const CalendarInput = ({
@@ -42,6 +46,7 @@ export const CalendarInput = ({
     onSelectDate,
     buttonType,
     isHeaderError,
+    theme = { button: [], wrap: [] },
 }: CalendarInputProps) => {
     const refCalendar = useRef<HTMLDivElement | null>(null);
     useOutsideClick(refCalendar, calendarIsShown, () =>
@@ -50,7 +55,11 @@ export const CalendarInput = ({
 
     return (
         <div className={cn(css.wrap, { [css.basket]: isBasket })}>
-            <div className={cn(css.wrapInput, { [css.basket]: isBasket })}>
+            <div
+                className={cn(css.wrapInput, ...theme.wrap, {
+                    [css.basket]: isBasket,
+                })}
+            >
                 <h4
                     className={cn({
                         [css.date]: isBasket,
@@ -64,6 +73,7 @@ export const CalendarInput = ({
                     onClick={() => setCalendarIsShown(true)}
                     disabled={false}
                     type={buttonType}
+                    theme={theme.button}
                 />
             </div>
             <div

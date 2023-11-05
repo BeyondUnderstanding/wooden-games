@@ -19,7 +19,6 @@ export const Products = ({ products, add2Basket }: ProductsProps) => {
                         {...el}
                         onClick={() => {
                             add2Basket(el);
-                            console.log('QW');
                         }}
                         key={el.coast + '_' + el.name + '_' + el.src}
                     />
