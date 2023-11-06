@@ -20,7 +20,7 @@ interface ItemsResponce {
     images: Array<{ link: string; priority: number }>;
 }
 
-const domain = 'https://api.woodengames.ge/v1/client';
+const domain = 'http://master.wooden_backend.staginator.local/v1/client';
 const API = {
     domain,
     basket: `${domain}/basket`,
