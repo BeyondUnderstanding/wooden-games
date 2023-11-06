@@ -9,12 +9,12 @@
 }
 
 .titleWrap {
-        display: flex;
-        gap: 40px;
-        max-width: 840px;
-        width: 100%;
-        justify-content: space-between;
-        cursor: pointer;
+    display: flex;
+    gap: 40px;
+    max-width: 840px;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
 
     .title {
         max-width: 720px;
@@ -26,7 +26,7 @@
 
 .answerWrap {
     display: flex;
-    position:absolute;
+    position: absolute;
     flex-direction: column;
     gap: 24px;
     max-width: 740px;
@@ -35,18 +35,43 @@
     font-weight: 400;
     line-height: 28px;
     letter-spacing: -0.18px;
-    transform: translateY(-10px);
+
     opacity: 0;
     visibility: hidden;
-    transform: rotate(0.3s);
 
     &.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-            position: static;
-        }
-
+        opacity: 1;
+        visibility: visible;
+        position: static;
+    }
 }
 
+.iconWrap {
+    animation-name: iconClose;
+    animation-duration: 2s;
+    rotate: 0deg;
+}
 
+.iconWrapOpen {
+    animation-name: iconOpen;
+    animation-duration: 2s;
+    rotate: 45deg;
+}
+
+@keyframes iconOpen {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes iconClose {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}

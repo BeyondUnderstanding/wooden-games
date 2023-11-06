@@ -10,14 +10,15 @@ export interface DropDownProps {
 const DropDown = ({ qestion, answer }: DropDownProps) => {
     const [isOpen, setOpen] = useState(false);
 
-
     return (
         <div className={css.wrap} onClick={() => setOpen(!isOpen)}>
             <div className={css.titleWrap}>
                 <h1 className={css.title}>{qestion}</h1>
-                <DropDownIcon />
+                <div className={`${isOpen ? css.iconWrapOpen : css.iconWrap}`}>
+                    <DropDownIcon />
+                </div>
             </div>
-            <div className= {`${css.answerWrap} ${isOpen?css.active:""}`}>
+            <div className={`${css.answerWrap} ${isOpen ? css.active : ''}`}>
                 {answer}
             </div>
         </div>
