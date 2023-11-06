@@ -16,7 +16,7 @@ export const DropDownStory: Story = {
     name: 'DropDown',
     args: {
         qestion: 'When do you roast and ship?',
-        answer: (
+        children: (
             <>
                 <p>
                     An order placed through the Red Rooster website get roasted

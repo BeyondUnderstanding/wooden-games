@@ -26,7 +26,6 @@
 
 .answerWrap {
     display: flex;
-    position: absolute;
     flex-direction: column;
     gap: 24px;
     max-width: 740px;
@@ -35,30 +34,34 @@
     font-weight: 400;
     line-height: 28px;
     letter-spacing: -0.18px;
-
+    transition: 0.3s;
+    transform-origin: top center;
+    transform:scaleY(0);
     opacity: 0;
-    visibility: hidden;
 
-    &.active {
+    &.answerClose{
+        height: 0px;
+    }
+
+    &.answerActive {
         opacity: 1;
-        visibility: visible;
-        position: static;
+        max-height: 100%;
+        transform:scaleY(1);
+        
     }
 }
 
 .iconWrap {
-    animation-name: iconClose;
-    animation-duration: 2s;
+    transition: 0.3s;
     rotate: 0deg;
 }
 
 .iconWrapOpen {
-    animation-name: iconOpen;
-    animation-duration: 2s;
+    transition: 0.3s;
     rotate: 45deg;
 }
 
-@keyframes iconOpen {
+/* @keyframes iconOpen {
     from {
         transform: rotate(0deg);
     }
@@ -74,4 +77,4 @@
     to {
         transform: rotate(0deg);
     }
-}
+} */

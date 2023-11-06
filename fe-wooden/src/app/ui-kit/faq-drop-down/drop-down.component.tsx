@@ -5,21 +5,21 @@ import { DropDownIcon } from '../icons/drop-down-icon.component';
 
 export interface DropDownProps {
     readonly qestion: string;
-    readonly answer: JSX.Element;
+    readonly children: JSX.Element;
 }
-const DropDown = ({ qestion, answer }: DropDownProps) => {
+const DropDown = ({ qestion, children }: DropDownProps) => {
     const [isOpen, setOpen] = useState(false);
 
     return (
-        <div className={css.wrap} onClick={() => setOpen(!isOpen)}>
-            <div className={css.titleWrap}>
+        <div className={css.wrap}>
+            <div className={css.titleWrap} onClick={() => setOpen(isOpen => !isOpen)}>
                 <h1 className={css.title}>{qestion}</h1>
                 <div className={`${isOpen ? css.iconWrapOpen : css.iconWrap}`}>
                     <DropDownIcon />
                 </div>
             </div>
-            <div className={`${css.answerWrap} ${isOpen ? css.active : ''}`}>
-                {answer}
+            <div className={`${css.answerWrap} ${isOpen ? css.answerActive : css.answerClose}`}>
+                {children}
             </div>
         </div>
     );
