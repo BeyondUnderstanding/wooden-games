@@ -7,6 +7,7 @@ import { CheckOutPopup } from './check-out-popup.component';
 import { BasketPopup, Product } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { Property } from '@frp-ts/core';
+import { ChosenDate } from '../layout/layout.component';
 
 export interface SidePopupLayoutProps {
     readonly children: React.ReactNode;
@@ -26,14 +27,15 @@ export interface Page {
     readonly label?: string;
     readonly subUrl?: url;
     readonly products?: Array<Product>;
-    readonly chosenDate: Property<string>;
-    readonly setChosenDate: (x: string) => void;
+    readonly chosenDate: Property<ChosenDate>;
+    readonly setChosenDate: (x: ChosenDate) => void;
 }
 
 export interface SidePopupProps {
     readonly isOpen: boolean;
     readonly page: Page;
     readonly onClose: () => void;
+    readonly deleteFromBasket: (id: number) => void;
     readonly setNewPage: (args: Partial<Page>) => void;
 }
 
@@ -42,6 +44,7 @@ export const SidePopup = ({
     page,
     onClose,
     setNewPage,
+    deleteFromBasket,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -74,9 +77,6 @@ export const SidePopup = ({
             subUrl: undefined,
         });
 
-    const remoweFromBacket = (id: string) => {
-        setNewPage({ products: page.products?.filter((p) => p.id !== id) });
-    };
     switch (page.url) {
         case 'empty':
             return (
@@ -108,7 +108,7 @@ export const SidePopup = ({
                     goToCheckRulse={goToCheckRulse}
                     onClick={goToCheckOut}
                     products={page.products ?? []}
-                    onProductDelete={remoweFromBacket}
+                    onProductDelete={deleteFromBasket}
                     setChosenDate={page.setChosenDate}
                     chosenDate={page.chosenDate}
                 />

@@ -1,9 +1,9 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import css from './busket-product-card.module.css';
 import { Button } from '../button/button.component';
 
 export interface BasketProductCardProps {
-    readonly src: string | StaticImageData;
+    readonly src: string;
     readonly coast: number;
     readonly name: string;
     readonly disabled: boolean;

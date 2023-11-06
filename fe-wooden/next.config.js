@@ -11,6 +11,9 @@ const nextConfig = {
         outputStandalone: true,
     },
     reactProductionProfiling: true,
+    images: {
+        domains: ['storage.yandexcloud.net'],
+    },
 };
 
 module.exports = nextConfig;

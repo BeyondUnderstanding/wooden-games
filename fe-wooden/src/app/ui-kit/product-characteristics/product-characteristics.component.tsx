@@ -1,4 +1,5 @@
 import css from './product-characteristics.module.css';
+import cn from 'classnames';
 
 export interface Characteristic {
     readonly label: string;
@@ -7,13 +8,15 @@ export interface Characteristic {
 
 export interface ProductCharacteristicsProps {
     readonly characteristics: Array<Characteristic>;
+    readonly theme?: Array<string>;
 }
 
 export const ProductCharacteristics = ({
     characteristics,
+    theme = [],
 }: ProductCharacteristicsProps) => {
     return (
-        <div className={css.wrap}>
+        <div className={cn(css.wrap, ...theme)}>
             {characteristics.map((c, i) => (
                 <div key={c.label + i + c.value} className={css.line}>
                     <span>{c.label}</span>

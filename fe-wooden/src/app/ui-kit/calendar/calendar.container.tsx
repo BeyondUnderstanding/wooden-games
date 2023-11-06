@@ -4,10 +4,12 @@ import { useProperty } from '@frp-ts/react';
 import { useValueWithEffect } from '../../../utils/run-view-model.utils';
 import { newCalendarViewModel } from './calendar.view-model';
 import { Calendar } from './calendar.component';
+import { InputType } from '../select-input/select-input.component';
+import { ChosenDate } from '../layout/layout.component';
 
 export interface SelectInputsLabels {
-    start: string;
-    end: string;
+    start: InputType;
+    end: InputType;
 }
 
 export interface CalendarContainerProps {
@@ -18,7 +20,7 @@ export interface CalendarContainerProps {
         labels: SelectInputsLabels
     ) => void;
     readonly occupiedDates: Array<Date>;
-    readonly selectDate: Date;
+    readonly selectDate: ChosenDate;
     readonly initialStartLabel: string;
     readonly initialEndLabel: string;
 }

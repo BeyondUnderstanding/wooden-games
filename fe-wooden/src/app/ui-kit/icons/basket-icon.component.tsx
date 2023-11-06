@@ -7,7 +7,7 @@ export const BasketIcon = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <g clip-path="url(#clip0_235_3797)">
+            <g clipPath="url(#clip0_235_3797)">
                 <path
                     d="M28.333 23.9183V22.2516C28.333 19.1574 29.5622 16.19 31.7501 14.002C33.938 11.8141 36.9055 10.585 39.9997 10.585C43.0939 10.585 46.0613 11.8141 48.2493 14.002C50.4372 16.19 51.6663 19.1574 51.6663 22.2516V23.9183"
                     stroke="#120F07"
@@ -19,7 +19,7 @@ export const BasketIcon = () => {
                     d="M28.333 23.9183V22.2516C28.333 19.1574 29.5622 16.19 31.7501 14.002C33.938 11.8141 36.9055 10.585 39.9997 10.585C43.0939 10.585 46.0613 11.8141 48.2493 14.002C50.4372 16.19 51.6663 19.1574 51.6663 22.2516V23.9183"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -27,7 +27,7 @@ export const BasketIcon = () => {
                     d="M28.333 23.9183V22.2516C28.333 19.1574 29.5622 16.19 31.7501 14.002C33.938 11.8141 36.9055 10.585 39.9997 10.585C43.0939 10.585 46.0613 11.8141 48.2493 14.002C50.4372 16.19 51.6663 19.1574 51.6663 22.2516V23.9183"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -35,22 +35,14 @@ export const BasketIcon = () => {
                     d="M28.333 23.9183V22.2516C28.333 19.1574 29.5622 16.19 31.7501 14.002C33.938 11.8141 36.9055 10.585 39.9997 10.585C43.0939 10.585 46.0613 11.8141 48.2493 14.002C50.4372 16.19 51.6663 19.1574 51.6663 22.2516V23.9183"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
                 <path
                     d="M33.333 37.2516V40.5849"
                     stroke="#120F07"
-                    stroke-width="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                />
-                <path
-                    d="M33.333 37.2516V40.5849"
-                    stroke="black"
-                    strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -58,7 +50,7 @@ export const BasketIcon = () => {
                     d="M33.333 37.2516V40.5849"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -66,14 +58,22 @@ export const BasketIcon = () => {
                     d="M33.333 37.2516V40.5849"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M33.333 37.2516V40.5849"
+                    stroke="black"
+                    strokeOpacity="0.2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
                 <path
                     d="M46.667 37.2516V40.5849"
                     stroke="#120F07"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -81,7 +81,7 @@ export const BasketIcon = () => {
                     d="M46.667 37.2516V40.5849"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -89,7 +89,7 @@ export const BasketIcon = () => {
                     d="M46.667 37.2516V40.5849"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -97,14 +97,14 @@ export const BasketIcon = () => {
                     d="M46.667 37.2516V40.5849"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
                 <path
                     d="M51.6663 52.8783C48.4337 55.698 44.2893 57.2516 39.9997 57.2516C35.7101 57.2516 31.5656 55.698 28.333 52.8783"
                     stroke="#120F07"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -112,7 +112,7 @@ export const BasketIcon = () => {
                     d="M51.6663 52.8783C48.4337 55.698 44.2893 57.2516 39.9997 57.2516C35.7101 57.2516 31.5656 55.698 28.333 52.8783"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -120,7 +120,7 @@ export const BasketIcon = () => {
                     d="M51.6663 52.8783C48.4337 55.698 44.2893 57.2516 39.9997 57.2516C35.7101 57.2516 31.5656 55.698 28.333 52.8783"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -128,14 +128,14 @@ export const BasketIcon = () => {
                     d="M51.6663 52.8783C48.4337 55.698 44.2893 57.2516 39.9997 57.2516C35.7101 57.2516 31.5656 55.698 28.333 52.8783"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
                 <path
                     d="M21.5467 23.9183C19.8506 23.9184 18.2183 24.5649 16.9822 25.7262C15.746 26.8875 14.999 28.4764 14.8932 30.1691L13.3632 54.6493C13.2354 56.694 13.5278 58.7431 14.2223 60.6704C14.9169 62.5977 15.9988 64.3623 17.4015 65.8554C18.8042 67.3485 20.4979 68.5385 22.3781 69.3519C24.2583 70.1653 26.2852 70.585 28.3338 70.585H51.666C53.7146 70.585 55.7415 70.1654 57.6217 69.3519C59.502 68.5385 61.1957 67.3486 62.5984 65.8555C64.001 64.3624 65.083 62.5978 65.7776 60.6704C66.4721 58.7431 66.7645 56.694 66.6367 54.6493L65.1067 30.1691C65.0009 28.4763 64.2539 26.8875 63.0177 25.7262C61.7816 24.5649 60.1493 23.9184 58.4532 23.9183H21.5467Z"
                     stroke="#120F07"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -143,7 +143,7 @@ export const BasketIcon = () => {
                     d="M21.5467 23.9183C19.8506 23.9184 18.2183 24.5649 16.9822 25.7262C15.746 26.8875 14.999 28.4764 14.8932 30.1691L13.3632 54.6493C13.2354 56.694 13.5278 58.7431 14.2223 60.6704C14.9169 62.5977 15.9988 64.3623 17.4015 65.8554C18.8042 67.3485 20.4979 68.5385 22.3781 69.3519C24.2583 70.1653 26.2852 70.585 28.3338 70.585H51.666C53.7146 70.585 55.7415 70.1654 57.6217 69.3519C59.502 68.5385 61.1957 67.3486 62.5984 65.8555C64.001 64.3624 65.083 62.5978 65.7776 60.6704C66.4721 58.7431 66.7645 56.694 66.6367 54.6493L65.1067 30.1691C65.0009 28.4763 64.2539 26.8875 63.0177 25.7262C61.7816 24.5649 60.1493 23.9184 58.4532 23.9183H21.5467Z"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -151,7 +151,7 @@ export const BasketIcon = () => {
                     d="M21.5467 23.9183C19.8506 23.9184 18.2183 24.5649 16.9822 25.7262C15.746 26.8875 14.999 28.4764 14.8932 30.1691L13.3632 54.6493C13.2354 56.694 13.5278 58.7431 14.2223 60.6704C14.9169 62.5977 15.9988 64.3623 17.4015 65.8554C18.8042 67.3485 20.4979 68.5385 22.3781 69.3519C24.2583 70.1653 26.2852 70.585 28.3338 70.585H51.666C53.7146 70.585 55.7415 70.1654 57.6217 69.3519C59.502 68.5385 61.1957 67.3486 62.5984 65.8555C64.001 64.3624 65.083 62.5978 65.7776 60.6704C66.4721 58.7431 66.7645 56.694 66.6367 54.6493L65.1067 30.1691C65.0009 28.4763 64.2539 26.8875 63.0177 25.7262C61.7816 24.5649 60.1493 23.9184 58.4532 23.9183H21.5467Z"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
@@ -159,7 +159,7 @@ export const BasketIcon = () => {
                     d="M21.5467 23.9183C19.8506 23.9184 18.2183 24.5649 16.9822 25.7262C15.746 26.8875 14.999 28.4764 14.8932 30.1691L13.3632 54.6493C13.2354 56.694 13.5278 58.7431 14.2223 60.6704C14.9169 62.5977 15.9988 64.3623 17.4015 65.8554C18.8042 67.3485 20.4979 68.5385 22.3781 69.3519C24.2583 70.1653 26.2852 70.585 28.3338 70.585H51.666C53.7146 70.585 55.7415 70.1654 57.6217 69.3519C59.502 68.5385 61.1957 67.3486 62.5984 65.8555C64.001 64.3624 65.083 62.5978 65.7776 60.6704C66.4721 58.7431 66.7645 56.694 66.6367 54.6493L65.1067 30.1691C65.0009 28.4763 64.2539 26.8875 63.0177 25.7262C61.7816 24.5649 60.1493 23.9184 58.4532 23.9183H21.5467Z"
                     stroke="black"
                     strokeOpacity="0.2"
-                    stroke-width="2"
+                    strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                 />
