@@ -6,6 +6,10 @@
     border-bottom: 1px solid #000;
     gap: 40px;
     padding: 24px 0px 24px 0px;
+
+    &:last-child{
+        border-bottom: none;
+    }
 }
 
 .titleWrap {
