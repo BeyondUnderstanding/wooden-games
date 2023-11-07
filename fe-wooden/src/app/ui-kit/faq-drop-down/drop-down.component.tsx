@@ -11,9 +11,10 @@ const DropDown = ({ qestion, children }: DropDownProps) => {
     const [isOpen, setOpen] = useState(false);
 
     return (
+        
         <div className={css.wrap}>
             <div className={css.titleWrap} onClick={() => setOpen(isOpen => !isOpen)}>
-                <h1 className={css.title}>{qestion}</h1>
+                <h2 className={css.title}>{qestion}</h2>
                 <div className={`${isOpen ? css.iconWrapOpen : css.iconWrap}`}>
                     <DropDownIcon />
                 </div>

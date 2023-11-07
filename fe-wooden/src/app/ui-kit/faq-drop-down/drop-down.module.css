@@ -24,6 +24,7 @@
         max-width: 720px;
         width: 100%;
         color: var(--Primary, #120f07);
+        font-size: 32px;
         font-family: 'ClashDisplay-Medium';
     }
 }
