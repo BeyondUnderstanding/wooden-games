@@ -3,7 +3,7 @@
 import { constVoid } from 'fp-ts/lib/function';
 import { TextSidePopup } from './text-side-popup.component';
 import { EmptyBasketPopup } from './empty-basket-popup.component';
-import { CheckOutPopup } from './check-out-popup.component';
+import { CheckOutPopup, FormData } from './check-out-popup.component';
 import { BasketPopup, Product } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { Property } from '@frp-ts/core';
@@ -37,6 +37,8 @@ export interface SidePopupProps {
     readonly onClose: () => void;
     readonly deleteFromBasket: (id: number) => void;
     readonly setNewPage: (args: Partial<Page>) => void;
+    readonly formData: FormData;
+    readonly updateFormData: (data: Partial<FormData>) => void;
 }
 
 export const SidePopup = ({
@@ -45,6 +47,8 @@ export const SidePopup = ({
     onClose,
     setNewPage,
     deleteFromBasket,
+    formData,
+    updateFormData,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -98,6 +102,8 @@ export const SidePopup = ({
                     onClickButton={constVoid}
                     onClickBack={onClickBack}
                     goToRulse={goFromCheckRulseToCheckout}
+                    formData={formData}
+                    updateFormData={updateFormData}
                 />
             );
         case 'basket':

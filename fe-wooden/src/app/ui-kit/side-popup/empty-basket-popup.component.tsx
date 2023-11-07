@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useOutsideClick } from '../../../utils/hooks';
 import { Button } from '../button/button.component';
 import { BasketIcon } from '../icons/basket-icon.component';
 import { SidePopupLayoutProps } from './side-popup.component';
@@ -14,10 +16,15 @@ export const EmptyBasketPopup = ({
     onClose,
     isOpen,
 }: EmptyBasketPopupProps) => {
+    const popupRef = useRef<HTMLDivElement | null>(null);
+    useOutsideClick(popupRef, isOpen, onClose);
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
-            <aside className={cn(css.aside, { [css.open]: isOpen })}>
+            <aside
+                className={cn(css.aside, { [css.open]: isOpen })}
+                ref={popupRef}
+            >
                 <div className={css.asideHeader}>
                     <h1 className={css.headerLabel}>{label}</h1>
                     <span className={css.headerSmallControl} onClick={onClose}>

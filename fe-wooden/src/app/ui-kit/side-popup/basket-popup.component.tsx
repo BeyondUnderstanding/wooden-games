@@ -12,6 +12,8 @@ import { CalendarInputContainer } from '../calendar-input/calendar-input.contain
 import { Property } from '@frp-ts/core';
 import { useProperty } from '@frp-ts/react';
 import { ChosenDate } from '../layout/layout.component';
+import { useRef } from 'react';
+import { useOutsideClick } from '../../../utils/hooks';
 
 export interface Product extends Omit<BasketProductCardProps, 'onClick'> {
     id: number;
@@ -44,10 +46,16 @@ export const BasketPopup = ({
         new Date().getFullYear().toString()
     );
 
+    const popupRef = useRef<HTMLDivElement | null>(null);
+    useOutsideClick(popupRef, isOpen, onClose);
+
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
-            <aside className={cn(css.aside, { [css.open]: isOpen })}>
+            <aside
+                className={cn(css.aside, { [css.open]: isOpen })}
+                ref={popupRef}
+            >
                 <div className={css.asideHeader}>
                     <h1 className={css.headerLabel}>Your Cart</h1>
                     <span className={css.headerSmallControl} onClick={onClose}>

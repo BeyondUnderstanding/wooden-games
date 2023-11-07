@@ -21,10 +21,11 @@ export type LayoutContainerProps = {
 export const LayoutContainer = ({ ...props }: LayoutContainerProps) => {
     const vm = useValueWithEffect(() => newLayoutViewModel(props), []);
 
-    const [isOpen, page, basketAmount] = useProperties(
+    const [isOpen, page, basketAmount, formData] = useProperties(
         vm.isOpen,
         vm.page,
-        vm.basketAmount
+        vm.basketAmount,
+        vm.checkoutForm
     );
 
     return React.createElement(Layout, {
@@ -33,5 +34,6 @@ export const LayoutContainer = ({ ...props }: LayoutContainerProps) => {
         isOpen,
         page,
         basketAmount,
+        formData,
     });
 };

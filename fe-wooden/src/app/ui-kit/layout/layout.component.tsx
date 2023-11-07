@@ -5,6 +5,7 @@ import { Page, SidePopup } from '../side-popup/side-popup.component';
 import { Footer } from '../footer/footer.component';
 import { Property } from '@frp-ts/core';
 import { useUUID } from '../../../utils/cookie.utils';
+import { FormData } from '../side-popup/check-out-popup.component';
 
 export interface PropsChildComponent {}
 
@@ -15,6 +16,8 @@ export type LayoutProps = {
     readonly chosenDate: Property<ChosenDate>;
     readonly page: Page;
     readonly basketAmount: number;
+    readonly formData: FormData;
+    readonly updateFormData: (data: Partial<FormData>) => void;
     readonly setChosenDate: (x: ChosenDate) => void;
     readonly setIsOpen: (x: boolean) => void;
     readonly setPage: (page: Partial<Page>) => void;
@@ -45,6 +48,8 @@ export const Layout = ({
     setChosenDate,
     basketAmount,
     deleteDromBasket,
+    formData,
+    updateFormData,
 }: LayoutProps) => {
     useUUID();
     const ChildrenComponent = childrenComponent && childrenComponent({});
@@ -57,6 +62,8 @@ export const Layout = ({
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
                 deleteFromBasket={deleteDromBasket}
+                formData={formData}
+                updateFormData={updateFormData}
             />
             <Header
                 openBasket={openBasket}

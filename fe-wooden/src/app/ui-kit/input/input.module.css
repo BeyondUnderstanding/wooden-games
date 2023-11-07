@@ -4,4 +4,8 @@
     border-radius: 12px;
     border: 1px solid var(--Primary, #120f07);
     background: var(--White, #fff);
+    outline: none;
+    &.notValid {
+        border: 1px solid var(--Red, #120f07);
+    }
 }

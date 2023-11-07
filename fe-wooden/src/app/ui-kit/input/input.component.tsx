@@ -1,7 +1,9 @@
+import { FormDataField } from '../side-popup/check-out-popup.component';
 import css from './input.module.css';
+import cn from 'classnames';
 
 interface InputProps {
-    readonly value: string;
+    readonly value: FormDataField;
     readonly placeholder: string;
     readonly onChenge: (x: string) => void;
 }
@@ -9,9 +11,9 @@ interface InputProps {
 export const Input = ({ value, onChenge, placeholder }: InputProps) => {
     return (
         <input
-            value={value}
-            onChange={(e) => onChenge(e.target.value)}
-            className={css.input}
+            value={value.data ?? ''}
+            onChange={(e) => onChenge(e.currentTarget.value)}
+            className={cn(css.input, { [css.notValid]: !value.isValid })}
             placeholder={placeholder}
         />
     );
