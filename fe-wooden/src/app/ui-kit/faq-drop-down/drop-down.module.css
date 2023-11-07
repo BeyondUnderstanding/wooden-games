@@ -7,7 +7,7 @@
     gap: 40px;
     padding: 24px 0px 24px 0px;
 
-    &:last-child{
+    &:last-child {
         border-bottom: none;
     }
 }
@@ -40,18 +40,17 @@
     letter-spacing: -0.18px;
     transition: 0.3s;
     transform-origin: top center;
-    transform:scaleY(0);
+    transform: scaleY(0);
     opacity: 0;
 
-    &.answerClose{
+    &.answerClose {
         height: 0px;
     }
 
     &.answerActive {
         opacity: 1;
         max-height: 100%;
-        transform:scaleY(1);
-        
+        transform: scaleY(1);
     }
 }
 
@@ -64,21 +63,3 @@
     transition: 0.3s;
     rotate: 45deg;
 }
-
-/* @keyframes iconOpen {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(45deg);
-    }
-}
-
-@keyframes iconClose {
-    from {
-        transform: rotate(45deg);
-    }
-    to {
-        transform: rotate(0deg);
-    }
-} */
