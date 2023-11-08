@@ -6,9 +6,12 @@ import {
     valueWithEffect,
 } from '../utils/run-view-model.utils';
 import { pipe } from 'fp-ts/lib/function';
-import { tap } from '@most/core';
+import { chain, debounce, fromPromise, tap } from '@most/core';
 import { createAdapter } from '@most/adapter';
 import { restService } from './service/global-action.service';
+import { ChosenDate } from './ui-kit/layout/layout.component';
+import { Stream } from '@most/types';
+import { getCookie } from 'cookies-next';
 
 interface HomePageStore {
     readonly basketProducts: Property<Array<Product>>;
@@ -16,6 +19,7 @@ interface HomePageStore {
     readonly setProducts: (x: Array<Product>) => void;
     readonly add2Basket: (x: Product) => void;
     readonly deleteFromBasket: (id: number) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 interface NewCalendarStoreProperty {
@@ -57,6 +61,17 @@ export const newHomePageStore: NewHomePageStore = ({
         }
     };
 
+    const updateDate = (date: ChosenDate): Stream<Array<Product>> =>
+        pipe(
+            service.updateDate({
+                start_date: date.start.toISOString(),
+                end_date: date.end.toISOString(),
+            }),
+            chain((_) => fromPromise(service.getBasket(getCookie('x-uuid')))),
+            tap((x) => basketProductsS.set(x)),
+            debounce(3)
+        );
+
     return valueWithEffect.new(
         {
             basketProducts: basketProductsS,
@@ -64,6 +79,7 @@ export const newHomePageStore: NewHomePageStore = ({
             setProducts: (x: Array<Product>) => basketProductsS.set(x),
             add2Basket: setProduct,
             deleteFromBasket,
+            updateDate,
         },
         add2BasketEffect
     );

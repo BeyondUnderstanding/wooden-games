@@ -6,6 +6,7 @@ import { Footer } from '../footer/footer.component';
 import { Property } from '@frp-ts/core';
 import { useUUID } from '../../../utils/cookie.utils';
 import { FormData } from '../side-popup/check-out-popup.component';
+import { Stream } from '@most/types';
 
 export interface PropsChildComponent {}
 
@@ -23,6 +24,7 @@ export type LayoutProps = {
     readonly setPage: (page: Partial<Page>) => void;
     readonly openBasket: () => void;
     readonly deleteDromBasket: (id: number) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 } & (
     | { children: React.ReactNode }
     | {
@@ -50,6 +52,7 @@ export const Layout = ({
     deleteDromBasket,
     formData,
     updateFormData,
+    updateDate,
 }: LayoutProps) => {
     useUUID();
     const ChildrenComponent = childrenComponent && childrenComponent({});
@@ -64,12 +67,14 @@ export const Layout = ({
                 deleteFromBasket={deleteDromBasket}
                 formData={formData}
                 updateFormData={updateFormData}
+                updateDate={updateDate}
             />
             <Header
                 openBasket={openBasket}
                 basketAmount={basketAmount}
                 chosenDate={chosenDate}
                 setChosenDate={setChosenDate}
+                updateDate={updateDate}
             />
             <main>
                 {children}

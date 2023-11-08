@@ -14,6 +14,7 @@ import { useProperty } from '@frp-ts/react';
 import { ChosenDate } from '../layout/layout.component';
 import { useRef } from 'react';
 import { useOutsideClick } from '../../../utils/hooks';
+import { Stream } from '@most/types';
 
 export interface Product extends Omit<BasketProductCardProps, 'onClick'> {
     id: number;
@@ -30,6 +31,7 @@ export interface BasketPopupProps
     readonly onProductDelete: (id: number) => void;
     readonly chosenDate: Property<ChosenDate>;
     readonly setChosenDate: (x: ChosenDate) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 export const BasketPopup = ({
@@ -41,6 +43,7 @@ export const BasketPopup = ({
     onProductDelete,
     chosenDate,
     setChosenDate,
+    updateDate,
 }: BasketPopupProps) => {
     const btnDateState = useProperty(chosenDate).label?.includes(
         new Date().getFullYear().toString()
@@ -81,6 +84,7 @@ export const BasketPopup = ({
                                 setChosenDate={setChosenDate}
                                 label="Choose another date"
                                 unsetLabel="Lease date not specified"
+                                updateDate={updateDate}
                             />
                         </div>
                     </div>

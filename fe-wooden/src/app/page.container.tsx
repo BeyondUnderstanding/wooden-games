@@ -9,6 +9,8 @@ import { MainSection } from './ui-kit/main-section/main-section.component';
 import { Products } from './ui-kit/products/products.component';
 import { ShortInformation } from './ui-kit/short-information-section/short-information-section.component';
 import { Property } from '@frp-ts/core';
+import { ChosenDate } from './ui-kit/layout/layout.component';
+import { Stream } from '@most/types';
 
 export type PageContainerProps = {
     readonly basketProducts: Array<Product>;
@@ -21,6 +23,7 @@ interface PageProps {
     readonly setProducts: (x: Array<Product>) => void;
     readonly add2Basket: (x: Product) => void;
     readonly deleteFromBasket: (id: number) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 const Page = ({
     basketProducts,
@@ -28,11 +31,13 @@ const Page = ({
     setProducts,
     add2Basket,
     deleteFromBasket,
+    updateDate,
 }: PageProps) => {
     return (
         <LayoutContainer
             products={basketProducts}
             deleteDromBasket={deleteFromBasket}
+            updateDate={updateDate}
         >
             <MainSection />
             <Products products={products} add2Basket={add2Basket} />

@@ -6,6 +6,7 @@ import { Property } from '@frp-ts/core';
 import { ChosenDate } from '../layout/layout.component';
 import Link from 'next/link';
 import cn from 'classnames';
+import { Stream } from '@most/types';
 
 interface BasketCrumbsProps {
     openBasket: () => void;
@@ -28,11 +29,13 @@ const BasketCrumbs = ({ openBasket, basketAmount }: BasketCrumbsProps) => {
 export interface HeaderProps extends BasketCrumbsProps {
     readonly chosenDate: Property<ChosenDate>;
     readonly setChosenDate: (x: ChosenDate) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 export const Header = ({
     chosenDate,
     setChosenDate,
+    updateDate,
     ...props
 }: HeaderProps) => {
     return (
@@ -45,6 +48,7 @@ export const Header = ({
                 setChosenDate={setChosenDate}
                 label="Choose Dates"
                 unsetLabel="Any Date"
+                updateDate={updateDate}
             />
             <div className={css.crumbs}>
                 <span>About Us</span>

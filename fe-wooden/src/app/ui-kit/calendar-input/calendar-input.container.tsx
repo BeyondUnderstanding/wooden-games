@@ -6,6 +6,7 @@ import React from 'react';
 import { useProperty } from '@frp-ts/react';
 import { Property } from '@frp-ts/core';
 import { ChosenDate } from '../layout/layout.component';
+import { Stream } from '@most/types';
 
 export interface CalendarInputContainerProps {
     readonly isBasket?: boolean;
@@ -17,6 +18,7 @@ export interface CalendarInputContainerProps {
         readonly button: Array<string>;
         readonly wrap: Array<string>;
     };
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 export const CalendarInputContainer = ({

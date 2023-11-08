@@ -8,10 +8,11 @@ import { SelectInputsLabels } from '../calendar/calendar.container';
 import { ButtonType } from '../button/button.component';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
-import { chain, multicast, skip, tap } from '@most/core';
+import { chain, debounce, multicast, skip, tap } from '@most/core';
 import { ChosenDate } from '../layout/layout.component';
 import { InputType } from '../select-input/select-input.component';
-import { restService } from '../../service/global-action.service';
+// import { restService } from '../../service/global-action.service';
+import { Stream } from '@most/types';
 
 interface CalendarInputViewModel {
     readonly chosenDate: Property<ChosenDate>;
@@ -34,6 +35,7 @@ interface NewCalendarViewModelProperty {
     readonly isBasket?: boolean;
     readonly chosenDate: Property<ChosenDate>;
     readonly setChosenDate: (x: ChosenDate) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 type NewCalendarInputViewModel = (
@@ -44,6 +46,7 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
     isBasket,
     chosenDate,
     setChosenDate,
+    updateDate,
 }) => {
     const selectLabels = newLensedAtom({
         start: 'Start',
@@ -103,13 +106,9 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
     const updateDateEffect = pipe(
         chosenDate,
         fromProperty,
+        debounce(2),
         skip(1),
-        chain((date) =>
-            restService().updateDate({
-                start_date: date.start.toISOString(),
-                end_date: date.end.toISOString(),
-            })
-        )
+        chain((date) => updateDate(date))
     );
 
     return valueWithEffect.new(

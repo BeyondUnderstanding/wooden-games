@@ -8,6 +8,7 @@ import { BasketPopup, Product } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { Property } from '@frp-ts/core';
 import { ChosenDate } from '../layout/layout.component';
+import { Stream } from '@most/types';
 
 export interface SidePopupLayoutProps {
     readonly children: React.ReactNode;
@@ -39,6 +40,7 @@ export interface SidePopupProps {
     readonly setNewPage: (args: Partial<Page>) => void;
     readonly formData: FormData;
     readonly updateFormData: (data: Partial<FormData>) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 export const SidePopup = ({
@@ -49,6 +51,7 @@ export const SidePopup = ({
     deleteFromBasket,
     formData,
     updateFormData,
+    updateDate,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -117,6 +120,7 @@ export const SidePopup = ({
                     onProductDelete={deleteFromBasket}
                     setChosenDate={page.setChosenDate}
                     chosenDate={page.chosenDate}
+                    updateDate={updateDate}
                 />
             );
         case 'text':
