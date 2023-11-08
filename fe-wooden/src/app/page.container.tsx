@@ -20,7 +20,7 @@ export type PageContainerProps = {
 interface PageProps {
     readonly basketProducts: Property<Array<Product>>;
     readonly products: Array<Product>;
-    readonly setProducts: (x: Array<Product>) => void;
+    readonly setBasketProducts: (x: Array<Product>) => void;
     readonly add2Basket: (x: Product) => void;
     readonly deleteFromBasket: (id: number) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
@@ -28,7 +28,7 @@ interface PageProps {
 const Page = ({
     basketProducts,
     products,
-    setProducts,
+    setBasketProducts,
     add2Basket,
     deleteFromBasket,
     updateDate,
@@ -38,6 +38,7 @@ const Page = ({
             products={basketProducts}
             deleteDromBasket={deleteFromBasket}
             updateDate={updateDate}
+            setBasketProducts={setBasketProducts}
         >
             <MainSection />
             <Products products={products} add2Basket={add2Basket} />

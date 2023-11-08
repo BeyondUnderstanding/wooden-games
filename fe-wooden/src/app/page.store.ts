@@ -16,7 +16,7 @@ import { getCookie } from 'cookies-next';
 interface HomePageStore {
     readonly basketProducts: Property<Array<Product>>;
     readonly products: Property<Array<Product>>;
-    readonly setProducts: (x: Array<Product>) => void;
+    readonly setBasketProducts: (x: Array<Product>) => void;
     readonly add2Basket: (x: Product) => void;
     readonly deleteFromBasket: (id: number) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
@@ -76,7 +76,7 @@ export const newHomePageStore: NewHomePageStore = ({
         {
             basketProducts: basketProductsS,
             products: productsS,
-            setProducts: (x: Array<Product>) => basketProductsS.set(x),
+            setBasketProducts: (x: Array<Product>) => basketProductsS.set(x),
             add2Basket: setProduct,
             deleteFromBasket,
             updateDate,

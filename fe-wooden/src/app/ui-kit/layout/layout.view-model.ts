@@ -9,8 +9,10 @@ import { Product } from '../side-popup/basket-popup.component';
 import { ChosenDate } from './layout.component';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
-import { tap } from '@most/core';
+import { chain, tap } from '@most/core';
 import { FormData } from '../side-popup/check-out-popup.component';
+import { createAdapter } from '@most/adapter';
+import { restService } from '../../service/global-action.service';
 
 interface LayoutViewModel {
     readonly isOpen: Property<boolean>;
@@ -23,17 +25,22 @@ interface LayoutViewModel {
     readonly setIsOpen: (x: boolean) => void;
     readonly setPage: (page: Partial<Page>) => void;
     readonly openBasket: () => void;
+    readonly checkoutOnClick: () => void;
 }
 
 interface NewCalendarViewModelProperty {
     readonly products: Property<Array<Product>>;
+    readonly setBasketProducts: (x: Array<Product>) => void;
 }
 
 type NewLayoutViewModel = (
     props: NewCalendarViewModelProperty
 ) => ValueWithEffect<LayoutViewModel>;
 
-export const newLayoutViewModel: NewLayoutViewModel = ({ products }) => {
+export const newLayoutViewModel: NewLayoutViewModel = ({
+    products,
+    setBasketProducts,
+}) => {
     const isOpen = newLensedAtom(false);
     const setIsOpen = (x: boolean) => isOpen.set(x);
 
@@ -151,6 +158,20 @@ export const newLayoutViewModel: NewLayoutViewModel = ({ products }) => {
         })
     );
 
+    const [checkoutOnClick, checkoutEffectInit] = createAdapter<void>();
+
+    const t = pipe(
+        checkoutEffectInit,
+        chain((_) => restService().createOrder(checkoutForm.get())),
+        tap((resp) => {
+            if (resp.status === 200) {
+                setPage({ url: 'empty', products: [] });
+                setBasketProducts([]);
+                window.open(resp.data.checkout_url);
+            }
+        })
+    );
+
     return valueWithEffect.new(
         {
             isOpen,
@@ -163,9 +184,11 @@ export const newLayoutViewModel: NewLayoutViewModel = ({ products }) => {
             basketAmount,
             checkoutForm,
             updateFormData,
+            checkoutOnClick,
         },
         basketProductsAmountEffect,
         basketProductsEffect,
-        validateFormEffect
+        validateFormEffect,
+        t
     );
 };

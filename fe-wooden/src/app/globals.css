@@ -63,7 +63,6 @@ main {
 
 body::-webkit-scrollbar {
     width: 10px;
-    height: 71px;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -189,10 +188,6 @@ abbr[title] {
     cursor: pointer;
 }
 
-/* .react-calendar__tile--now:enabled:hover,
-.react-calendar__tile--now:enabled:focus {
-    background: #ffffa9;
-} */
 .react-calendar__tile--hasActive {
     background: #76baff;
 }

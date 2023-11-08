@@ -17,6 +17,7 @@ export type LayoutContainerProps = {
     readonly children?: React.ReactNode;
     readonly childrenComponent?: (p: PropsChildComponent) => JSX.Element;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
+    readonly setBasketProducts: (x: Array<Product>) => void;
 } & (
     | { children: React.ReactNode }
     | {
