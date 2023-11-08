@@ -7,7 +7,7 @@ const meta: Meta<typeof DropDown> = {
     argTypes: {
         qestion: { control: 'text' },
     },
-}
+};
 
 export default meta;
 type Story = StoryObj<DropDownProps>;
