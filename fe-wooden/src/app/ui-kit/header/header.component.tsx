@@ -3,6 +3,10 @@
 import css from './header.module.css';
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 import { Property } from '@frp-ts/core';
+import { ChosenDate } from '../layout/layout.component';
+import Link from 'next/link';
+import cn from 'classnames';
+import { Stream } from '@most/types';
 
 interface BasketCrumbsProps {
     openBasket: () => void;
@@ -13,27 +17,38 @@ const BasketCrumbs = ({ openBasket, basketAmount }: BasketCrumbsProps) => {
     return (
         <div className={css.basketCrumbsWrap}>
             <span onClick={openBasket}>Cart</span>
-            <span className={css.amount}>{basketAmount}</span>
+            <span
+                className={cn(css.amount, { [css.notEmpty]: basketAmount > 0 })}
+            >
+                {basketAmount}
+            </span>
         </div>
     );
 };
 
 export interface HeaderProps extends BasketCrumbsProps {
-    readonly chosenDate: Property<string>;
-    readonly setChosenDate: (x: string) => void;
+    readonly chosenDate: Property<ChosenDate>;
+    readonly setChosenDate: (x: ChosenDate) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 export const Header = ({
     chosenDate,
     setChosenDate,
+    updateDate,
     ...props
 }: HeaderProps) => {
     return (
         <header className={css.wrap}>
-            <span className={css.label}>Wooden Games</span>
+            <Link href={'/'}>
+                <span className={css.label}>Wooden Games</span>
+            </Link>
             <CalendarInputContainer
                 chosenDate={chosenDate}
                 setChosenDate={setChosenDate}
+                label="Choose Dates"
+                unsetLabel="Any Date"
+                updateDate={updateDate}
             />
             <div className={css.crumbs}>
                 <span>About Us</span>

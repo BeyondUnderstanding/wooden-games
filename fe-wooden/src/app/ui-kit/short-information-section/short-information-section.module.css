@@ -3,7 +3,7 @@
     margin: 0 auto;
     max-width: 1680px;
     width: 100%;
-    padding: 80px 24px 24px 24px;
+    padding: 80px 24px;
     flex-direction: column;
     gap: 80px;
     box-sizing: content-box;

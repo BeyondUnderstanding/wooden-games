@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Header, HeaderProps } from './header.component';
 import { constVoid } from 'fp-ts/lib/function';
+import { newLensedAtom } from '@frp-ts/lens';
 
 const meta: Meta<typeof Header> = {
     component: Header,
@@ -14,6 +15,8 @@ export const HeaderStory: Story = {
     args: {
         openBasket: constVoid,
         basketAmount: 1,
+        chosenDate: newLensedAtom(''),
+        setChosenDate: () => {},
     },
     render: ({ ...args }) => <Header {...args} />,
 };

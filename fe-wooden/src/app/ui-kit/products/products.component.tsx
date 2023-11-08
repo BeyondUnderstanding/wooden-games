@@ -1,16 +1,15 @@
 'use client';
 
-import { constVoid } from 'fp-ts/lib/function';
 import { ProductCard } from '../product-card/product-card.component';
 import { Product } from '../side-popup/basket-popup.component';
 import css from './products.module.css';
-import { StaticImageData } from 'next/image';
 
 export interface ProductsProps {
-    readonly products: Array<Product & { src: string | StaticImageData }>;
+    readonly products: Array<Product>;
+    readonly add2Basket: (product: Product) => void;
 }
 
-export const Products = ({ products }: ProductsProps) => {
+export const Products = ({ products, add2Basket }: ProductsProps) => {
     return (
         <section>
             <h1 className={css.label}>Game Collection</h1>
@@ -18,7 +17,9 @@ export const Products = ({ products }: ProductsProps) => {
                 {products.map((el) => (
                     <ProductCard
                         {...el}
-                        onClick={constVoid}
+                        onClick={() => {
+                            add2Basket(el);
+                        }}
                         key={el.coast + '_' + el.name + '_' + el.src}
                     />
                 ))}

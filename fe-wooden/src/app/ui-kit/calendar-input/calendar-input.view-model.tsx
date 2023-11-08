@@ -8,11 +8,14 @@ import { SelectInputsLabels } from '../calendar/calendar.container';
 import { ButtonType } from '../button/button.component';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
-import { multicast, tap } from '@most/core';
+import { chain, debounce, multicast, skip, tap } from '@most/core';
+import { ChosenDate } from '../layout/layout.component';
+import { InputType } from '../select-input/select-input.component';
+// import { restService } from '../../service/global-action.service';
+import { Stream } from '@most/types';
 
 interface CalendarInputViewModel {
-    readonly chosenDate: Property<string>;
-    readonly selectdDate: Property<Date>;
+    readonly chosenDate: Property<ChosenDate>;
     readonly selectLabels: Property<{
         start: string;
         end: string;
@@ -30,8 +33,9 @@ interface CalendarInputViewModel {
 
 interface NewCalendarViewModelProperty {
     readonly isBasket?: boolean;
-    readonly chosenDate: Property<string>;
-    readonly setChosenDate: (x: string) => void;
+    readonly chosenDate: Property<ChosenDate>;
+    readonly setChosenDate: (x: ChosenDate) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 type NewCalendarInputViewModel = (
@@ -42,8 +46,8 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
     isBasket,
     chosenDate,
     setChosenDate,
+    updateDate,
 }) => {
-    const selectdDate = newLensedAtom(new Date());
     const selectLabels = newLensedAtom({
         start: 'Start',
         end: 'End',
@@ -53,31 +57,44 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
     const buttonType = newLensedAtom<ButtonType>('def');
     const isHeaderError = newLensedAtom(false);
 
+    const dtae2ChosenDate = (date: Date, label: InputType): Date => {
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            label.value
+        );
+    };
+
     const onSelectDate = (
         x: string,
         date: Date,
         labels: SelectInputsLabels
     ) => {
-        setChosenDate(x);
+        setChosenDate({
+            start: dtae2ChosenDate(date, labels.start),
+            end: dtae2ChosenDate(date, labels.end),
+            label: x,
+        });
         calendarIsShown.set(false);
-        selectdDate.set(date);
-        selectLabels.set(labels);
+        selectLabels.set({ start: labels.start.label, end: labels.end.label });
     };
 
     const setButtonTypeEffect = pipe(
         chosenDate,
         fromProperty,
         tap((chosenDate) => {
-            console.log(chosenDate);
             const btnType = isBasket
                 ? 'link'
-                : chosenDate.includes(new Date().getFullYear().toString())
+                : chosenDate.label?.includes(
+                      new Date().getFullYear().toString()
+                  )
                 ? 'prime'
                 : 'def';
             buttonType.set(btnType);
             const err =
                 (isBasket &&
-                    !chosenDate.includes(
+                    !chosenDate.label?.includes(
                         new Date().getFullYear().toString()
                     )) ??
                 false;
@@ -86,10 +103,17 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
         multicast
     );
 
+    const updateDateEffect = pipe(
+        chosenDate,
+        fromProperty,
+        debounce(2),
+        skip(1),
+        chain((date) => updateDate(date))
+    );
+
     return valueWithEffect.new(
         {
             chosenDate,
-            selectdDate,
             selectLabels,
             calendarIsShown,
             onSelectDate,
@@ -97,6 +121,7 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
             isHeaderError,
             setCalendarIsShown: (x) => calendarIsShown.set(x),
         },
-        setButtonTypeEffect
+        setButtonTypeEffect,
+        updateDateEffect
     );
 };

@@ -2,7 +2,7 @@
 
 import css from './product-card.module.css';
 import cn from 'classnames';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { Button } from '../button/button.component';
 
 export interface CardProps {
@@ -10,7 +10,7 @@ export interface CardProps {
     readonly name: string;
     readonly coast: number;
     readonly onClick: () => void;
-    readonly src: string | StaticImageData;
+    readonly src: string;
 }
 
 export const ProductCard = ({

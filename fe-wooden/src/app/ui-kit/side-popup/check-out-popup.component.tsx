@@ -6,11 +6,27 @@ import { Input } from '../input/input.component';
 import { SidePopupLayoutProps } from './side-popup.component';
 import css from './side-popup.module.css';
 import cn from 'classnames';
+import { useRef } from 'react';
+import { useOutsideClick } from '../../../utils/hooks';
+
+export interface FormDataField {
+    readonly data: string | undefined;
+    readonly isValid: boolean;
+}
+
+export interface FormData {
+    readonly name: FormDataField;
+    readonly passport: FormDataField;
+    readonly email: FormDataField;
+    readonly phone: FormDataField;
+}
 
 export interface CheckOutPopupProps
     extends Omit<SidePopupLayoutProps, 'children'> {
     readonly onClickBack: () => void;
     readonly goToRulse: () => void;
+    readonly formData: FormData;
+    readonly updateFormData: (data: Partial<FormData>) => void;
 }
 
 export const CheckOutPopup = ({
@@ -21,11 +37,18 @@ export const CheckOutPopup = ({
     isOpen,
     onClickBack,
     goToRulse,
+    formData,
+    updateFormData,
 }: CheckOutPopupProps) => {
+    const popupRef = useRef<HTMLDivElement | null>(null);
+    useOutsideClick(popupRef, isOpen, onClose);
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
-            <aside className={cn(css.aside, { [css.open]: isOpen })}>
+            <aside
+                className={cn(css.aside, { [css.open]: isOpen })}
+                ref={popupRef}
+            >
                 <div className={css.asideContentWrap}>
                     <div className={css.asideHeader}>
                         <h1
@@ -45,24 +68,52 @@ export const CheckOutPopup = ({
                     <h1 className={css.headerLabel}>{label}</h1>
                     <div className={css.checkoutWrapContent}>
                         <Input
-                            value={''}
+                            value={formData.name}
                             placeholder={'Your name'}
-                            onChenge={constVoid}
+                            onChenge={(e) =>
+                                updateFormData({
+                                    name: {
+                                        data: e,
+                                        isValid: formData.name.isValid,
+                                    },
+                                })
+                            }
                         />
                         <Input
-                            value={''}
+                            value={formData.passport}
                             placeholder={'Passport'}
-                            onChenge={constVoid}
+                            onChenge={(e) =>
+                                updateFormData({
+                                    passport: {
+                                        data: e,
+                                        isValid: formData.passport.isValid,
+                                    },
+                                })
+                            }
                         />
                         <Input
-                            value={''}
+                            value={formData.email}
                             placeholder={'Email'}
-                            onChenge={constVoid}
+                            onChenge={(e) =>
+                                updateFormData({
+                                    email: {
+                                        data: e,
+                                        isValid: formData.email.isValid,
+                                    },
+                                })
+                            }
                         />
                         <Input
-                            value={''}
+                            value={formData.phone}
                             placeholder={'Phone'}
-                            onChenge={constVoid}
+                            onChenge={(e) =>
+                                updateFormData({
+                                    phone: {
+                                        data: e,
+                                        isValid: formData.phone.isValid,
+                                    },
+                                })
+                            }
                         />
                         <CheckBox getCheckedState={constVoid}>
                             <span>
@@ -81,7 +132,12 @@ export const CheckOutPopup = ({
                 <Button
                     label={labelButton}
                     onClick={onClickButton}
-                    disabled={false}
+                    disabled={
+                        !formData.email.isValid &&
+                        !formData.name.isValid &&
+                        !formData.passport.isValid &&
+                        !formData.phone.isValid
+                    }
                     type={'def'}
                 />
             </aside>

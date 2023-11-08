@@ -11,9 +11,13 @@ import {
 import { CalendarInputContainer } from '../calendar-input/calendar-input.container';
 import { Property } from '@frp-ts/core';
 import { useProperty } from '@frp-ts/react';
+import { ChosenDate } from '../layout/layout.component';
+import { useRef } from 'react';
+import { useOutsideClick } from '../../../utils/hooks';
+import { Stream } from '@most/types';
 
 export interface Product extends Omit<BasketProductCardProps, 'onClick'> {
-    id: string;
+    id: number;
 }
 
 export interface BasketPopupProps
@@ -24,9 +28,10 @@ export interface BasketPopupProps
     readonly products: Array<Product>;
     readonly goToCheckRulse: () => void;
     readonly onClick: () => void;
-    readonly onProductDelete: (id: string) => void;
-    readonly chosenDate: Property<string>;
-    readonly setChosenDate: (x: string) => void;
+    readonly onProductDelete: (id: number) => void;
+    readonly chosenDate: Property<ChosenDate>;
+    readonly setChosenDate: (x: ChosenDate) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 export const BasketPopup = ({
@@ -38,16 +43,22 @@ export const BasketPopup = ({
     onProductDelete,
     chosenDate,
     setChosenDate,
+    updateDate,
 }: BasketPopupProps) => {
-    const btnDateState = useProperty(chosenDate).includes(
+    const btnDateState = useProperty(chosenDate).label?.includes(
         new Date().getFullYear().toString()
     );
-    console.log(chosenDate.get(), 'BasketPopup');
+
+    const popupRef = useRef<HTMLDivElement | null>(null);
+    useOutsideClick(popupRef, isOpen, onClose);
 
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
-            <aside className={cn(css.aside, { [css.open]: isOpen })}>
+            <aside
+                className={cn(css.aside, { [css.open]: isOpen })}
+                ref={popupRef}
+            >
                 <div className={css.asideHeader}>
                     <h1 className={css.headerLabel}>Your Cart</h1>
                     <span className={css.headerSmallControl} onClick={onClose}>
@@ -60,8 +71,7 @@ export const BasketPopup = ({
                             <BasketProductCard
                                 onClick={() => onProductDelete(el.id)}
                                 {...el}
-                                // зер нот гуд
-                                key={el.name + '_' + i}
+                                key={el.name + '_' + el.src}
                             />
                         ))}
                     </div>
@@ -72,6 +82,9 @@ export const BasketPopup = ({
                                 isBasket={true}
                                 chosenDate={chosenDate}
                                 setChosenDate={setChosenDate}
+                                label="Choose another date"
+                                unsetLabel="Lease date not specified"
+                                updateDate={updateDate}
                             />
                         </div>
                     </div>
@@ -90,7 +103,8 @@ export const BasketPopup = ({
                     disabled={
                         !(
                             products.every((el) => !el.disabled) &&
-                            btnDateState == true
+                            btnDateState == true &&
+                            products.length > 2
                         )
                     }
                 />
