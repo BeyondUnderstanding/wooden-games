@@ -20,34 +20,19 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    animation: closeAnimate 0.3s;
-    right: -640px;
     background: #f8f7f4;
     z-index: 3;
+    position: fixed;
+    right: -640px;
+    transition: 0.4s;
+    transform-origin: right center;
+    transform: scaleX(0) translateX(20%);
 }
-
+    
 .aside.open {
-    animation: openAnimate 0.3s;
     right: 0;
-}
-
-@keyframes openAnimate {
-    from {
-        right: -640px;
-    }
-    to {
-        right: 0;
-    }
-}
-
-@keyframes closeAnimate {
-    from {
-        right: 0;
-    }
-    to {
-        right: -640px;
-    }
+    transition: 0.4s;
+    transform: scaleX(1) translateX(0);
 }
 
 .asideHeader {

@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { useOutsideClick } from '../../../utils/hooks';
 import { Button } from '../button/button.component';
 import { ArrowIcon } from '../icons/arrow-icon.component';
 import { SidePopupLayoutProps } from './side-popup.component';
@@ -19,10 +21,15 @@ export const TextSidePopup = ({
     content,
     onClickBack,
 }: TextSidePopupProps) => {
+    const popupRef = useRef<HTMLDivElement | null>(null);
+    useOutsideClick(popupRef, isOpen, onClose);
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
-            <aside className={cn(css.aside, { [css.open]: isOpen })}>
+            <aside
+                className={cn(css.aside, { [css.open]: isOpen })}
+                ref={popupRef}
+            >
                 <div className={css.asideContentWrap}>
                     <div className={css.asideHeader}>
                         <h1

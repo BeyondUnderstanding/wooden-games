@@ -11,6 +11,7 @@ import { CalendarInputContainer } from '../calendar-input/calendar-input.contain
 import { ChosenDate } from '../layout/layout.component';
 import { Property } from '@frp-ts/core';
 import { Button } from '../button/button.component';
+import { Stream } from '@most/types';
 
 interface SmallLabelProps {
     readonly children: JSX.Element;
@@ -30,6 +31,7 @@ export interface ProductInfoPageProps {
     readonly chosenDate: Property<ChosenDate>;
     readonly setChosenDate: (x: ChosenDate) => void;
     readonly header: string;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
 }
 
 export const ProductInfoPage = ({
@@ -37,6 +39,7 @@ export const ProductInfoPage = ({
     setChosenDate,
     characteristics,
     header,
+    updateDate,
 }: ProductInfoPageProps) => {
     return (
         <div className={css.wrap}>
@@ -79,6 +82,7 @@ export const ProductInfoPage = ({
                             button: [css.calendarInputButtonTheme],
                             wrap: [css.calendarInputwrapTeme],
                         }}
+                        updateDate={updateDate}
                     />
                 </div>
                 <div className={css.block}>

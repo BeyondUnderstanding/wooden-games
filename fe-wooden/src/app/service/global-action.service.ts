@@ -3,6 +3,7 @@ import { fromPromise } from '@most/core';
 import axios, { AxiosResponse } from 'axios';
 import { Product } from '../ui-kit/side-popup/basket-popup.component';
 import { getCookie } from 'cookies-next';
+import { FormData } from '../ui-kit/side-popup/check-out-popup.component';
 
 interface AddBasketItemI {
     readonly id: number;
@@ -20,7 +21,7 @@ interface ItemsResponce {
     images: Array<{ link: string; priority: number }>;
 }
 
-const domain = 'https://api.woodengames.ge/v1/client';
+const domain = 'http://master.wooden_backend.staginator.local/v1/client';
 const API = {
     domain,
     basket: `${domain}/basket`,
@@ -38,6 +39,9 @@ export interface RestService {
         readonly end_date: string;
     }) => Stream<number>;
     readonly delFromBasket: (id: number) => Promise<number>;
+    readonly createOrder: (
+        clientData: FormData
+    ) => Stream<AxiosResponse<{ checkout_url: string }>>;
 }
 
 export type NewRestService = () => RestService;
@@ -107,5 +111,23 @@ export const restService: NewRestService = () => ({
             })
             .catch(() => 500);
         return fromPromise(prom);
+    },
+    createOrder: (userData) => {
+        return fromPromise(
+            axios.post(
+                API.basket + '/create_order',
+                {
+                    client_name: userData.name.data,
+                    client_phone: userData.phone.data,
+                    client_email: userData.email.data,
+                    legal_id: userData.passport.data,
+                },
+                {
+                    headers: {
+                        'x-uuid': getCookie('x-uuid'),
+                    },
+                }
+            )
+        );
     },
 });

@@ -61,10 +61,13 @@ export const CalendarInput = ({
                 })}
             >
                 <h4
-                    className={cn({
-                        [css.date]: isBasket,
-                        [css.error]: isHeaderError,
-                    })}
+                    className={cn(
+                        {
+                            [css.date]: isBasket,
+                            [css.error]: isHeaderError,
+                        },
+                        css.header
+                    )}
                 >
                     {chosenDate.label ?? unsetLabel}
                 </h4>

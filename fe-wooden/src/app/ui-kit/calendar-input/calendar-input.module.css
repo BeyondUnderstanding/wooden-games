@@ -17,6 +17,9 @@
         gap: 12px;
         justify-content: unset;
     }
+    .header {
+        font-size: 14px;
+    }
 }
 
 .wrap {

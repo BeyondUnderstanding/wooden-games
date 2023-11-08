@@ -1,13 +1,13 @@
 'use client';
 
-import { constVoid } from 'fp-ts/lib/function';
 import { TextSidePopup } from './text-side-popup.component';
 import { EmptyBasketPopup } from './empty-basket-popup.component';
-import { CheckOutPopup } from './check-out-popup.component';
+import { CheckOutPopup, FormData } from './check-out-popup.component';
 import { BasketPopup, Product } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { Property } from '@frp-ts/core';
 import { ChosenDate } from '../layout/layout.component';
+import { Stream } from '@most/types';
 
 export interface SidePopupLayoutProps {
     readonly children: React.ReactNode;
@@ -37,6 +37,10 @@ export interface SidePopupProps {
     readonly onClose: () => void;
     readonly deleteFromBasket: (id: number) => void;
     readonly setNewPage: (args: Partial<Page>) => void;
+    readonly formData: FormData;
+    readonly updateFormData: (data: Partial<FormData>) => void;
+    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
+    readonly checkoutOnClick: () => void;
 }
 
 export const SidePopup = ({
@@ -45,6 +49,10 @@ export const SidePopup = ({
     onClose,
     setNewPage,
     deleteFromBasket,
+    formData,
+    updateFormData,
+    updateDate,
+    checkoutOnClick,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -85,7 +93,7 @@ export const SidePopup = ({
                     label="Your Cart"
                     onClose={onClose}
                     labelButton="Start Shopping"
-                    onClickButton={constVoid}
+                    onClickButton={onClose}
                 />
             );
         case 'checkout':
@@ -95,9 +103,11 @@ export const SidePopup = ({
                     label={'Rental rules'}
                     onClose={onClose}
                     labelButton={'It makes sense to me'}
-                    onClickButton={constVoid}
+                    onClickButton={checkoutOnClick}
                     onClickBack={onClickBack}
                     goToRulse={goFromCheckRulseToCheckout}
+                    formData={formData}
+                    updateFormData={updateFormData}
                 />
             );
         case 'basket':
@@ -111,6 +121,7 @@ export const SidePopup = ({
                     onProductDelete={deleteFromBasket}
                     setChosenDate={page.setChosenDate}
                     chosenDate={page.chosenDate}
+                    updateDate={updateDate}
                 />
             );
         case 'text':
@@ -120,7 +131,7 @@ export const SidePopup = ({
                     label={page.label}
                     onClose={onClose}
                     labelButton={'It makes sense to me'}
-                    onClickButton={constVoid}
+                    onClickButton={onClose}
                     content={page.content}
                     onClickBack={onClickBack}
                 />
