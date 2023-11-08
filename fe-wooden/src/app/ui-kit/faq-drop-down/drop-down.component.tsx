@@ -19,18 +19,16 @@ const DropDown = ({ qestion, children }: DropDownProps) => {
             >
                 <h2 className={css.title}>{qestion}</h2>
                 <div
-                    className={cn({
+                    className={cn(css.iconWrapClose, {
                         [css.iconWrapOpen]: isOpen,
-                        [css.iconWrapClose]: !isOpen,
                     })}
                 >
                     <DropDownIcon />
                 </div>
             </div>
             <div
-                className={cn(css.answerWrap, {
-                    [css.answerActive]: isOpen,
-                    [css.AnswerClose]: !isOpen,
+                className={cn(css.answerWrapClose, {
+                    [css.answerWrapActive]: isOpen,
                 })}
             >
                 {children}
