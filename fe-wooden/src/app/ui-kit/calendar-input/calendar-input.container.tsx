@@ -19,6 +19,7 @@ export interface CalendarInputContainerProps {
         readonly wrap: Array<string>;
     };
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
+    readonly occupiedDates: Array<Date>;
 }
 
 export const CalendarInputContainer = ({

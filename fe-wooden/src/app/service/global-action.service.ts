@@ -42,6 +42,7 @@ export interface RestService {
     readonly createOrder: (
         clientData: FormData
     ) => Stream<AxiosResponse<{ checkout_url: string }>>;
+    readonly getOccupiedDates: () => Promise<AxiosResponse<Array<Date>>>;
 }
 
 export type NewRestService = () => RestService;
@@ -129,5 +130,11 @@ export const restService: NewRestService = () => ({
                 }
             )
         );
+    },
+    getOccupiedDates: () => {
+        return axios.get(API.games + '/get_occupied_dates').then((resp) => ({
+            ...resp,
+            data: resp.data.map((x: string) => new Date(x)),
+        }));
     },
 });

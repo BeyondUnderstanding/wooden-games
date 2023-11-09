@@ -30,12 +30,14 @@ export interface HeaderProps extends BasketCrumbsProps {
     readonly chosenDate: Property<ChosenDate>;
     readonly setChosenDate: (x: ChosenDate) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
+    readonly occupiedDates: Array<Date>;
 }
 
 export const Header = ({
     chosenDate,
     setChosenDate,
     updateDate,
+    occupiedDates,
     ...props
 }: HeaderProps) => {
     return (
@@ -49,6 +51,7 @@ export const Header = ({
                 label="Choose Dates"
                 unsetLabel="Any Date"
                 updateDate={updateDate}
+                occupiedDates={occupiedDates}
             />
             <div className={css.crumbs}>
                 <span>About Us</span>
