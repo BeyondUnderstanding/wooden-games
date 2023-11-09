@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import DropDown from './faq.component';
+import Faq from './faq.component';
 
-const meta: Meta<typeof DropDown> = {
-    component: DropDown,
+const meta: Meta<typeof Faq> = {
+    component: Faq,
 };
 
 export default meta;
 
 type Story = StoryObj;
 
-export const DropDownStory: Story = {
-    name: 'DropDown',
+export const FaqStory: Story = {
+    name: 'Faq',
 
-    render: () => <DropDown />,
+    render: () => <Faq />,
 };

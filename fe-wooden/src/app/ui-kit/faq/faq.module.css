@@ -3,10 +3,29 @@
     max-width: 1728px;
     width: 100%;
     flex-wrap: wrap;
-    padding: 24px;
-    flex-direction: row;
-    gap: 40px;
+    padding: 40px, 24px, 0, 24px;
+    flex-direction: column;
+    gap: 24px;
     background: var(--Sand-Light, #f8f7f4);
+}
+
+.titleh {
+    font-family: 'ClashDisplay-Bold';
+    font-size: 48px;
+}
+
+.listWrap {
+    display: flex;
+    gap: 40px;
+
+    .list {
+        max-width: 1680px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        padding: 24px 0px 24px 0px;
+    }
 }
 
 .title {
@@ -14,28 +33,11 @@
     width: 100%;
     color: var(--Primary, #120f07);
     font-family: 'ClashDisplay-Medium';
+    font-size: 32px;
 }
 
-.questions {
+.questionsWrap {
     display: flex;
-    flex-direction: column;
-    gap: 24px;
-
-    .dropDown{
-        display: flex;
-        flex-direction: row;
-        max-width: 740px;
-        width:100%;
-        border-bottom: 1px solid #000;
-        gap: 40px;
-    }
-    .text {
-        display: flex;
-        flex-direction: column;
-        max-width: 740px;
-        width:100%;
-        gap: 24px;
-        padding-bottom: 24px;
-        
-    }
+    max-width: 656px;
+    width: 100%;
 }
