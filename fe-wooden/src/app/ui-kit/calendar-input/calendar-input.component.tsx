@@ -33,6 +33,7 @@ export interface CalendarInputProps {
         readonly button: Array<string>;
         readonly wrap: Array<string>;
     };
+    readonly occupiedDates: Array<Date>;
 }
 
 export const CalendarInput = ({
@@ -47,6 +48,7 @@ export const CalendarInput = ({
     buttonType,
     isHeaderError,
     theme = { button: [], wrap: [] },
+    occupiedDates,
 }: CalendarInputProps) => {
     const refCalendar = useRef<HTMLDivElement | null>(null);
     useOutsideClick(refCalendar, calendarIsShown, () =>
@@ -87,7 +89,7 @@ export const CalendarInput = ({
                     <CalendarContainer
                         onClose={() => setCalendarIsShown(false)}
                         onSelectDate={onSelectDate}
-                        occupiedDates={[]}
+                        occupiedDates={occupiedDates}
                         selectDate={chosenDate}
                         initialStartLabel={selectLabels.start}
                         initialEndLabel={selectLabels.end}

@@ -15,6 +15,7 @@ import { Stream } from '@most/types';
 export type PageContainerProps = {
     readonly basketProducts: Array<Product>;
     readonly products: Array<Product>;
+    readonly occupiedDates: Array<Date>;
 };
 
 interface PageProps {
@@ -24,6 +25,7 @@ interface PageProps {
     readonly add2Basket: (x: Product) => void;
     readonly deleteFromBasket: (id: number) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
+    readonly occupiedDates: Array<Date>;
 }
 const Page = ({
     basketProducts,
@@ -32,6 +34,7 @@ const Page = ({
     add2Basket,
     deleteFromBasket,
     updateDate,
+    occupiedDates,
 }: PageProps) => {
     return (
         <LayoutContainer
@@ -39,6 +42,7 @@ const Page = ({
             deleteDromBasket={deleteFromBasket}
             updateDate={updateDate}
             setBasketProducts={setBasketProducts}
+            occupiedDates={occupiedDates}
         >
             <MainSection />
             <Products products={products} add2Basket={add2Basket} />

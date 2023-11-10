@@ -32,6 +32,7 @@ export interface BasketPopupProps
     readonly chosenDate: Property<ChosenDate>;
     readonly setChosenDate: (x: ChosenDate) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
+    readonly occupiedDates: Array<Date>;
 }
 
 export const BasketPopup = ({
@@ -44,6 +45,7 @@ export const BasketPopup = ({
     chosenDate,
     setChosenDate,
     updateDate,
+    occupiedDates,
 }: BasketPopupProps) => {
     const btnDateState = useProperty(chosenDate).label?.includes(
         new Date().getFullYear().toString()
@@ -85,6 +87,7 @@ export const BasketPopup = ({
                                 label="Choose another date"
                                 unsetLabel="Lease date not specified"
                                 updateDate={updateDate}
+                                occupiedDates={occupiedDates}
                             />
                         </div>
                     </div>

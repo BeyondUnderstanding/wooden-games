@@ -41,6 +41,7 @@ export interface SidePopupProps {
     readonly updateFormData: (data: Partial<FormData>) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
     readonly checkoutOnClick: () => void;
+    readonly occupiedDates: Array<Date>;
 }
 
 export const SidePopup = ({
@@ -53,6 +54,7 @@ export const SidePopup = ({
     updateFormData,
     updateDate,
     checkoutOnClick,
+    occupiedDates,
 }: SidePopupProps) => {
     const goToCheckRulse = () => {
         setNewPage({
@@ -122,6 +124,7 @@ export const SidePopup = ({
                     setChosenDate={page.setChosenDate}
                     chosenDate={page.chosenDate}
                     updateDate={updateDate}
+                    occupiedDates={occupiedDates}
                 />
             );
         case 'text':

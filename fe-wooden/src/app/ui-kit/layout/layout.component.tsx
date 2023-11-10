@@ -26,6 +26,7 @@ export type LayoutProps = {
     readonly deleteDromBasket: (id: number) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
     readonly checkoutOnClick: () => void;
+    readonly occupiedDates: Array<Date>;
 } & (
     | { children: React.ReactNode }
     | {
@@ -55,6 +56,7 @@ export const Layout = ({
     updateFormData,
     updateDate,
     checkoutOnClick,
+    occupiedDates,
 }: LayoutProps) => {
     useUUID();
     const ChildrenComponent = childrenComponent && childrenComponent({});
@@ -71,6 +73,7 @@ export const Layout = ({
                 updateFormData={updateFormData}
                 updateDate={updateDate}
                 checkoutOnClick={checkoutOnClick}
+                occupiedDates={occupiedDates}
             />
             <Header
                 openBasket={openBasket}
@@ -78,6 +81,7 @@ export const Layout = ({
                 chosenDate={chosenDate}
                 setChosenDate={setChosenDate}
                 updateDate={updateDate}
+                occupiedDates={occupiedDates}
             />
             <main>
                 {children}
