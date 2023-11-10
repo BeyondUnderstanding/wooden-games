@@ -61,7 +61,7 @@ export const newHomePageStore: NewHomePageStore = ({
         }
     };
 
-    const updateDate = (date: ChosenDate): Stream<Array<Product>> =>
+    const updateDate = (date: ChosenDate) =>
         pipe(
             service.updateDate({
                 start_date: date.start.toISOString(),
@@ -69,6 +69,10 @@ export const newHomePageStore: NewHomePageStore = ({
             }),
             chain((_) => fromPromise(service.getBasket(getCookie('x-uuid')))),
             tap((x) => basketProductsS.set(x)),
+            chain((_) => service.getItemsByDate(date)),
+            tap(({ products }) => {
+                productsS.set(products);
+            }),
             debounce(3)
         );
 

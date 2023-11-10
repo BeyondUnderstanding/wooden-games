@@ -2,8 +2,10 @@ import { Stream } from '@most/types';
 import { fromPromise } from '@most/core';
 import axios, { AxiosResponse } from 'axios';
 import { Product } from '../ui-kit/side-popup/basket-popup.component';
-import { getCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 import { FormData } from '../ui-kit/side-popup/check-out-popup.component';
+import { ChosenDate } from '../ui-kit/layout/layout.component';
+import { v4 as uuidv4 } from 'uuid';
 
 interface AddBasketItemI {
     readonly id: number;
@@ -33,7 +35,10 @@ export interface RestService {
         raw: AddBasketItemI
     ) => Promise<AxiosResponse<AddBasketItemReurnT>>;
     readonly getBasket: (uid: string | undefined) => Promise<Array<Product>>;
-    readonly getItems: () => Promise<Array<Product>>;
+    readonly getItems: (uid: string | undefined) => Promise<Array<Product>>;
+    readonly getItemsByDate: (
+        date: ChosenDate
+    ) => Stream<{ products: Array<Product> }>;
     readonly updateDate: (data: {
         readonly start_date: string;
         readonly end_date: string;
@@ -87,18 +92,55 @@ export const restService: NewRestService = () => ({
             .catch(() => []);
         return prom;
     },
-    getItems: () => {
-        const prom = axios.get<Array<ItemsResponce>>(API.games).then((resp) => {
-            const data: Array<Product> = resp.data.map((data) => ({
-                src: data.images[0]?.link ?? '',
-                coast: data.price,
-                name: data.title,
-                disabled: !data.is_available,
-                id: data.id,
-            }));
-            return data;
-        });
+    getItems: (uid) => {
+        // let uuid = uid ?? setCookie('x-uuid', uuidv4());
+        let uuid;
+        if (!uid) {
+            uuid = uuidv4();
+            setCookie('x-uuid', uuid);
+        } else {
+            uuid = uid;
+        }
+        const prom = axios
+            .get<Array<ItemsResponce>>(API.games, {
+                headers: {
+                    'x-uuid': uuid,
+                },
+            })
+            .then((resp) => {
+                const data: Array<Product> = resp.data.map((data) => ({
+                    src: data.images[0]?.link ?? '',
+                    coast: data.price,
+                    name: data.title,
+                    disabled: !data.is_available,
+                    id: data.id,
+                }));
+                return data;
+            });
         return prom;
+    },
+    getItemsByDate: (date) => {
+        return fromPromise(
+            axios
+                .get<Array<ItemsResponce>>(
+                    API.games +
+                        `/by_date?start_date=${date.start.toISOString()}&end_date=${date.end.toISOString()}`,
+                    {
+                        headers: {
+                            'x-uuid': getCookie('x-uuid'),
+                        },
+                    }
+                )
+                .then((resp) => ({
+                    products: resp.data.map((data) => ({
+                        src: data.images[0]?.link ?? '',
+                        coast: data.price,
+                        name: data.title,
+                        disabled: !data.is_available,
+                        id: data.id,
+                    })),
+                }))
+        );
     },
     updateDate: (data) => {
         const prom = axios
