@@ -6,11 +6,9 @@
     border-bottom: 1px solid #000;
     padding: 24px 0px;
 
-    &.delBorder {
-        &:last-child {
+    &.delBorder:last-child {
             border-bottom: none;
         }
-    }
 }
 
 .titleWrap {
