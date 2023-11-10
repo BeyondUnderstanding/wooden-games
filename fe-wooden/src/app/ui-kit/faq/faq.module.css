@@ -2,42 +2,46 @@
     display: flex;
     max-width: 1728px;
     width: 100%;
-    flex-wrap: wrap;
-    padding: 40px, 24px, 0, 24px;
+    padding: 40px 24px 40px 24px;
     flex-direction: column;
     gap: 24px;
     background: var(--Sand-Light, #f8f7f4);
 }
 
-.titleh {
+.title {
     font-family: 'ClashDisplay-Bold';
     font-size: 48px;
 }
 
 .listWrap {
     display: flex;
+    flex-direction: column;
     gap: 40px;
 
     .list {
-        max-width: 1680px;
-        width: 100%;
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
         gap: 40px;
-        padding: 24px 0px 24px 0px;
+        padding-bottom: 20px;
+
+        .title {
+            max-width: 820px;
+            width: 100%;
+            color: var(--Primary, #120f07);
+            font-family: 'ClashDisplay-Medium';
+            font-size: 32px;
+            padding-top: 24px;
+        }
+
+        .questionsWrap {
+            display: flex;
+            flex-direction: column;
+            max-width: 820px;
+            width: 100%;
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
     }
-}
-
-.title {
-    max-width: 820px;
-    width: 100%;
-    color: var(--Primary, #120f07);
-    font-family: 'ClashDisplay-Medium';
-    font-size: 32px;
-}
-
-.questionsWrap {
-    display: flex;
-    max-width: 656px;
-    width: 100%;
 }

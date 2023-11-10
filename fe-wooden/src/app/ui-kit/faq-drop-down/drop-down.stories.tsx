@@ -5,7 +5,7 @@ import DropDown, { DropDownProps } from './drop-down.component';
 const meta: Meta<typeof DropDown> = {
     component: DropDown,
     argTypes: {
-        qestion: { control: 'text' },
+        question: { control: 'text' },
     },
 };
 
@@ -16,7 +16,7 @@ type Story = StoryObj<DropDownProps>;
 export const DropDownStory: Story = {
     name: 'DropDown',
     args: {
-        qestion: 'When do you roast and ship?',
+        question: 'When do you roast and ship?',
         children: (
             <>
                 <p>

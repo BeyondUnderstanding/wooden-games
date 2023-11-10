@@ -28,7 +28,7 @@
     transform-origin: right center;
     transform: scaleX(0) translateX(20%);
 }
-    
+
 .aside.open {
     right: 0;
     transition: 0.4s;
