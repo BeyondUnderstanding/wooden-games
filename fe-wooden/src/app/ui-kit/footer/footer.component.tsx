@@ -19,7 +19,7 @@ export const Footer = () => {
                 </div>
                 <div className={css.links}>
                     <div className={css.item}>
-                        <p className={css.title}>Conacts</p>
+                        <p className={css.title}>Contact</p>
                         <Link
                             href="mailto:woodengames@gmail.com"
                             className={css.text}
