@@ -5,19 +5,20 @@ import cn from 'classnames';
 import { DropDownIcon } from '../icons/drop-down-icon.component';
 
 export interface DropDownProps {
-    readonly qestion: string;
+    readonly question: string;
     readonly children: JSX.Element;
+    readonly isWithoutBorder?: boolean;
 }
-const DropDown = ({ qestion, children }: DropDownProps) => {
+const DropDown = ({ question, children, isWithoutBorder }: DropDownProps) => {
     const [isOpen, setOpen] = useState(false);
 
     return (
-        <div className={css.wrap}>
+        <div className={cn(css.wrap, { [css.delBorder]: isWithoutBorder })}>
             <div
                 className={css.titleWrap}
                 onClick={() => setOpen((isOpen) => !isOpen)}
             >
-                <h2 className={css.title}>{qestion}</h2>
+                <h2 className={css.title}>{question}</h2>
                 <div
                     className={cn(css.iconWrapClose, {
                         [css.iconWrapOpen]: isOpen,
