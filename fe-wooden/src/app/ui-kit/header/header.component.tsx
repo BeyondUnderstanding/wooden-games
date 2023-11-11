@@ -55,7 +55,7 @@ export const Header = ({
             />
             <div className={css.crumbs}>
                 <Link href={'/about-us'}>
-                    <span>About Us</span>
+                    About Us
                 </Link>
                 <span>Rental Rules</span>
                 <span>English</span>

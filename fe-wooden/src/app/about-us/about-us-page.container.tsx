@@ -9,7 +9,7 @@ import { Property } from '@frp-ts/core';
 import { ChosenDate } from '../ui-kit/layout/layout.component';
 import { Stream } from '@most/types';
 import { AboutUsMain } from '../ui-kit/about-us-main/about-us-main.component';
-import AboutUsLower from '../ui-kit/about-us-lower/about-us-lower.component';
+import AboutUsAside from '../ui-kit/about-us-aside/about-us-aside.component';
 
 export type AboutUsPageContainerProps = {
     readonly basketProducts: Array<Product>;
@@ -41,7 +41,7 @@ const PageAboutUS = ({
             occupiedDates={occupiedDates}
         >
             <AboutUsMain />
-            <AboutUsLower />
+            <AboutUsAside />
         </LayoutContainer>
     );
 };
