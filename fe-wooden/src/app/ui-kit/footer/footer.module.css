@@ -7,6 +7,7 @@
     flex-direction: column;
     gap: 40px;
     background: var(--Sand-Light, #f8f7f4);
+    padding: 0 24px 24px 24px;
 }
 
 .content {

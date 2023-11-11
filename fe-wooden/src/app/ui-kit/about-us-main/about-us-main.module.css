@@ -17,7 +17,6 @@
     display: flex;
     padding: 24px 0px 24px 0px;
     gap: 40px;
-    flex-wrap: wrap;
 
     .element {
         display: flex;

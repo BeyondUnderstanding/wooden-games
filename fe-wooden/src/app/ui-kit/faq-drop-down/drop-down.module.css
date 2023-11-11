@@ -7,8 +7,8 @@
     padding: 24px 0px;
 
     &.delBorder:last-child {
-            border-bottom: none;
-        }
+        border-bottom: none;
+    }
 }
 
 .titleWrap {
