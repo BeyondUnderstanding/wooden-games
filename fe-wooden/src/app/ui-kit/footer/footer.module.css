@@ -1,5 +1,6 @@
 .footer {
     max-width: 1728px;
+    min-width: 360px;
     width: 100%;
     margin: auto;
     display: flex;
@@ -7,6 +8,7 @@
     flex-direction: column;
     gap: 40px;
     background: var(--Sand-Light, #f8f7f4);
+    padding: 0 24px 24px 24px;
 }
 
 .content {
