@@ -35,6 +35,41 @@ export interface BasketPopupProps
     readonly occupiedDates: Array<Date>;
 }
 
+/*
+    min заказ 3 игры на 3 часа - нет скидки
+    5 игр на 3 часа - 15% скидка + Менеджер
+    3 игры на 5 часов - 15% скидка + Менеджер
+    9 игр на 5 часов + 3d тик так + 30% скидки + 2 менеджера 
+*/
+export interface GetDiscount {
+    discount: 0.85 | 0.7 | 0;
+    menegers: 0 | 1 | 2;
+}
+const getDiscount = (products: Product[], h: number): GetDiscount => {
+    if (products.length > 4 && h > 2 && products.length < 9 && h < 5) {
+        return {
+            discount: 0.85,
+            menegers: 1,
+        };
+    }
+    if (products.length === 3 && h > 4) {
+        return {
+            discount: 0.85,
+            menegers: 1,
+        };
+    }
+    if (products.length > 8 && h > 4) {
+        return {
+            discount: 0.7,
+            menegers: 2,
+        };
+    }
+    return {
+        discount: 0,
+        menegers: 0,
+    };
+};
+
 export const BasketPopup = ({
     onClose,
     isOpen,
@@ -47,9 +82,17 @@ export const BasketPopup = ({
     updateDate,
     occupiedDates,
 }: BasketPopupProps) => {
+    // danger zone start
     const btnDateState = useProperty(chosenDate).label?.includes(
         new Date().getFullYear().toString()
     );
+
+    const clockHours = Number(
+        useProperty(chosenDate).label?.split(',')[1].split('h')[0]
+    );
+
+    const clockHoursValidate = Number.isNaN(clockHours) ? 1 : clockHours;
+    // end zone
 
     const popupRef = useRef<HTMLDivElement | null>(null);
     useOutsideClick(popupRef, isOpen, onClose);
@@ -92,9 +135,12 @@ export const BasketPopup = ({
                         </div>
                     </div>
                     <BasketInfo
-                        subtotal={products
-                            .map((el) => el.coast)
-                            .reduce((a, b) => a + b, 0)}
+                        subtotal={
+                            products
+                                .map((el) => el.coast)
+                                .reduce((a, b) => a + b, 0) * clockHoursValidate
+                        }
+                        discount={getDiscount(products, clockHoursValidate)}
                         delivery={10}
                     />
                 </div>

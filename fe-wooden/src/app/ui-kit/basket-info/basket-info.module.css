@@ -15,6 +15,13 @@
         font-size: 16px;
         line-height: 26px;
     }
+    .lineDepricated {
+        text-decoration: line-through;
+        margin-right: 16px;
+    }
+    .discount {
+        font-weight: 700;
+    }
 
     .line:last-child {
         border-bottom: none;
