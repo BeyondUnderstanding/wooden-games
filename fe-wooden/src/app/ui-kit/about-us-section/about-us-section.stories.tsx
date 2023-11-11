@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import AboutUsAside from './about-us-aside.component';
+import AboutUsSection from './about-us-section.component';
 import React from 'react';
 
-const meta: Meta<typeof AboutUsAside> = {
-    component: AboutUsAside,
+const meta: Meta<typeof AboutUsSection> = {
+    component: AboutUsSection,
 };
 
 export default meta;
@@ -13,5 +13,5 @@ type Story = StoryObj;
 export const AboutUsLowerStory: Story = {
     name: 'AboutUsAside',
 
-    render: () => <AboutUsAside />,
+    render: () => <AboutUsSection />,
 };
