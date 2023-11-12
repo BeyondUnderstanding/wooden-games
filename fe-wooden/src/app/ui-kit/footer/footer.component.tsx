@@ -45,7 +45,7 @@ export const Footer = () => {
                     </div>
                     <div className={css.item}>
                         <p className={css.title}>Information</p>
-                        <Link href="/" className={css.text}>
+                        <Link href="/faq" className={css.text}>
                             FAQ — Rent and Return
                         </Link>
                         <Link href="/" className={css.text}>
