@@ -2,12 +2,12 @@
 
 import React from 'react';
 import Image from 'next/image';
-import css from './about-us-lower.module.css';
+import css from './about-us-section.module.css';
 import ticTacToe from '../../../../public/img/short-information-section/ticTacToe.jpg';
 import abacus from '../../../../public/img/short-information-section/abakus.jpg';
 import jenga from '../../../../public/img/short-information-section/jengaAndKids.jpg';
 
-const AboutUsLower = () => {
+const AboutUsSection = () => {
     return (
         <section className={css.wrap}>
             <div className={css.element}>
@@ -55,4 +55,4 @@ const AboutUsLower = () => {
     );
 };
 
-export default AboutUsLower;
+export default AboutUsSection;
