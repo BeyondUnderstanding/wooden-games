@@ -24,7 +24,10 @@ export const Button = ({
 }: ButtonProps) => {
     return (
         <button
-            onClick={() => !disabled && onClick()}
+            onClick={(e) => {
+                e.stopPropagation();
+                !disabled && onClick();
+            }}
             className={cn(css.wrap, ...theme, {
                 [css.disabled]: disabled,
                 [css.small]: size === 'small',

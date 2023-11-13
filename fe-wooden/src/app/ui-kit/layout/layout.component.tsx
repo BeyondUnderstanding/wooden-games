@@ -8,7 +8,10 @@ import { useUUID } from '../../../utils/cookie.utils';
 import { FormData } from '../side-popup/check-out-popup.component';
 import { Stream } from '@most/types';
 
-export interface PropsChildComponent {}
+export interface PropsChildComponent {
+    readonly chosenDate: Property<ChosenDate>;
+    readonly setChosenDate: (x: ChosenDate) => void;
+}
 
 export type LayoutProps = {
     readonly children?: React.ReactNode;
@@ -59,7 +62,8 @@ export const Layout = ({
     occupiedDates,
 }: LayoutProps) => {
     useUUID();
-    const ChildrenComponent = childrenComponent && childrenComponent({});
+    const ChildrenComponent =
+        childrenComponent && childrenComponent({ chosenDate, setChosenDate });
 
     return (
         <>
@@ -84,8 +88,8 @@ export const Layout = ({
                 occupiedDates={occupiedDates}
             />
             <main>
-                {children}
                 {ChildrenComponent && ChildrenComponent}
+                {children}
             </main>
             <Footer />
         </>

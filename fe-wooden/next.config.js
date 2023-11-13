@@ -9,6 +9,7 @@ const nextConfig = {
     },
     experimental: {
         outputStandalone: true,
+        output: 'standalone',
     },
     reactProductionProfiling: true,
     images: {
