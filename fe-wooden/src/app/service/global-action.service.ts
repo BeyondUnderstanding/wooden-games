@@ -80,7 +80,7 @@ const getServiceUid = (uid: string | undefined) => {
     } else {
         uuid = uid;
     }
-    return uid;
+    return uuid;
 };
 
 const be2FeItem = (data: ItemsResponce) => ({
@@ -142,16 +142,6 @@ export const restService: NewRestService = () => ({
                 },
             })
             .then((resp) => resp.data.map(be2FeItem));
-        // .then((resp) => {
-        //     const data: Array<Product> = resp.data.map((data) => ({
-        //         src: data.images[0]?.link ?? '',
-        //         coast: data.price,
-        //         name: data.title,
-        //         disabled: !data.is_available,
-        //         id: data.id,
-        //     }));
-        //     return data;
-        // });
         return prom;
     },
     getItemsByDate: (date) => {
@@ -167,15 +157,7 @@ export const restService: NewRestService = () => ({
                     }
                 )
                 .then((resp) => ({
-                    // products: resp.data.map((data) => ({
-                    //     src: data.images[0]?.link ?? '',
-                    //     coast: data.price,
-                    //     name: data.title,
-                    //     disabled: !data.is_available,
-                    //     id: data.id,
-                    // })),
                     products: resp.data.map(be2FeItem),
-                    // be2FeItem
                 }))
         );
     },
