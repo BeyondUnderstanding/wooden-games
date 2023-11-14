@@ -1,15 +1,16 @@
 .label {
     color: var(--Primary, #120f07);
     font-family: 'ClashDisplay-Bold';
-    font-size: 48px;
+    font-size: clamp(2.125rem, 1.913rem + 1.04vw, 3rem);
     font-style: normal;
     font-weight: 700;
-    line-height: 48px;
-    padding: 61px 24px 24px 24px;
+    line-height: clamp(2.25rem, 2.068rem + 0.89vw, 3rem);
+    padding: clamp(1.875rem, 1.405rem + 2.29vw, 3.813rem) 24px
+        clamp(1rem, 0.879rem + 0.59vw, 1.5rem) 24px;
 }
 .wrapProducts {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, clamp(328px, 100%, 549px));
     margin: 0 auto;
     column-gap: 8px;
     row-gap: 16px;

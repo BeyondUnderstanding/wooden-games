@@ -54,9 +54,7 @@ export const Header = ({
                 occupiedDates={occupiedDates}
             />
             <div className={css.crumbs}>
-                <Link href={'/about-us'}>
-                    About Us
-                </Link>
+                <Link href={'/about-us'}>About Us</Link>
                 <span>Rental Rules</span>
                 <span>English</span>
                 <BasketCrumbs {...props} />

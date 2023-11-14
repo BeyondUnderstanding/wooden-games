@@ -1,26 +1,26 @@
 .wrap {
     display: flex;
     margin: 0 auto;
-    max-width: 1680px;
+    max-width: clamp(328px, 100%, 1680px);
     width: 100%;
-    padding: 80px 24px;
+    padding: clamp(3.75rem, 3.447rem + 1.48vw, 5rem) 0px;
     flex-direction: column;
-    gap: 80px;
+    gap: clamp(3.75rem, 3.447rem + 1.48vw, 5rem);
     box-sizing: content-box;
 }
 
 .note {
     display: flex;
     margin: 0 auto;
-    max-width: 600px;
+    max-width: clamp(328px, 100%, 600px);
     text-align: center;
     flex-direction: column;
     gap: 16px;
 
     .title {
         font-family: 'ClashDisplay-Bold';
-        font-size: 48px;
-        line-height: 48px;
+        font-size: clamp(2.125rem, 1.07rem + 5.15vw, 3rem);
+        line-height: clamp(2.25rem, 1.346rem + 4.41vw, 3rem);
     }
     .text {
         font-family: 'Inter-Regular';
