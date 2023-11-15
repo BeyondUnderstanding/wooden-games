@@ -37,7 +37,7 @@ export const PlayersIcon = () => {
                 <path
                     d="M10.1213 2.87868C11.2929 4.05026 11.2929 5.94974 10.1213 7.12132C8.94974 8.29289 7.05026 8.29289 5.87868 7.12132C4.70711 5.94974 4.70711 4.05026 5.87868 2.87868C7.05026 1.70711 8.94974 1.70711 10.1213 2.87868Z"
                     stroke="black"
-                    stroke-opacity="0.2"
+                    strokeOpacity="0.2"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -45,7 +45,7 @@ export const PlayersIcon = () => {
                 <path
                     d="M10.1213 2.87868C11.2929 4.05026 11.2929 5.94974 10.1213 7.12132C8.94974 8.29289 7.05026 8.29289 5.87868 7.12132C4.70711 5.94974 4.70711 4.05026 5.87868 2.87868C7.05026 1.70711 8.94974 1.70711 10.1213 2.87868Z"
                     stroke="black"
-                    stroke-opacity="0.2"
+                    strokeOpacity="0.2"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -53,7 +53,7 @@ export const PlayersIcon = () => {
                 <path
                     d="M10.1213 2.87868C11.2929 4.05026 11.2929 5.94974 10.1213 7.12132C8.94974 8.29289 7.05026 8.29289 5.87868 7.12132C4.70711 5.94974 4.70711 4.05026 5.87868 2.87868C7.05026 1.70711 8.94974 1.70711 10.1213 2.87868Z"
                     stroke="black"
-                    stroke-opacity="0.2"
+                    strokeOpacity="0.2"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"

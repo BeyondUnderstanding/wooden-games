@@ -7,7 +7,7 @@ export const WeightIcon = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <g clip-path="url(#clip0_235_3306)">
+            <g clipPath="url(#clip0_235_3306)">
                 <path
                     d="M8 16C11.3137 16 14 13.3137 14 10C14 6.68629 11.3137 4 8 4C4.68629 4 2 6.68629 2 10C2 13.3137 4.68629 16 8 16Z"
                     fill="#120F07"

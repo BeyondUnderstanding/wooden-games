@@ -24,7 +24,6 @@ const getProps = async () => {
 };
 
 export default async function Home() {
-
     const { productsResponce, basketResponce, occupiedDates } =
         await getProps();
     return (

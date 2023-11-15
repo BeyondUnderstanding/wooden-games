@@ -23,6 +23,23 @@ interface ItemsResponce {
     images: Array<{ link: string; priority: number }>;
 }
 
+export interface ProductPageResp {
+    id: number;
+    title: string;
+    price: number;
+    is_available: boolean;
+    images: Array<{
+        link: string;
+        priority: number;
+    }>;
+    attributes: Array<{
+        name: string;
+        value: string;
+        is_main: boolean;
+    }>;
+    description: string;
+}
+
 const domain = 'http://master.wooden_backend.staginator.local/v1/client';
 const API = {
     domain,
@@ -48,7 +65,31 @@ export interface RestService {
         clientData: FormData
     ) => Stream<AxiosResponse<{ checkout_url: string }>>;
     readonly getOccupiedDates: () => Promise<AxiosResponse<Array<Date>>>;
+    readonly getGameById: (
+        id: number,
+        uid: string | undefined
+    ) => Promise<ProductPageResp>;
+    readonly getFeatured: (uid: string | undefined) => Promise<Array<Product>>;
 }
+
+const getServiceUid = (uid: string | undefined) => {
+    let uuid;
+    if (!uid) {
+        uuid = uuidv4();
+        setCookie('x-uuid', uuid);
+    } else {
+        uuid = uid;
+    }
+    return uuid;
+};
+
+const be2FeItem = (data: ItemsResponce) => ({
+    src: data.images[0]?.link ?? '',
+    coast: data.price,
+    name: data.title,
+    disabled: !data.is_available,
+    id: data.id,
+});
 
 export type NewRestService = () => RestService;
 
@@ -93,30 +134,14 @@ export const restService: NewRestService = () => ({
         return prom;
     },
     getItems: (uid) => {
-        // let uuid = uid ?? setCookie('x-uuid', uuidv4());
-        let uuid;
-        if (!uid) {
-            uuid = uuidv4();
-            setCookie('x-uuid', uuid);
-        } else {
-            uuid = uid;
-        }
+        const uuid = getServiceUid(uid);
         const prom = axios
             .get<Array<ItemsResponce>>(API.games, {
                 headers: {
                     'x-uuid': uuid,
                 },
             })
-            .then((resp) => {
-                const data: Array<Product> = resp.data.map((data) => ({
-                    src: data.images[0]?.link ?? '',
-                    coast: data.price,
-                    name: data.title,
-                    disabled: !data.is_available,
-                    id: data.id,
-                }));
-                return data;
-            });
+            .then((resp) => resp.data.map(be2FeItem));
         return prom;
     },
     getItemsByDate: (date) => {
@@ -132,13 +157,7 @@ export const restService: NewRestService = () => ({
                     }
                 )
                 .then((resp) => ({
-                    products: resp.data.map((data) => ({
-                        src: data.images[0]?.link ?? '',
-                        coast: data.price,
-                        name: data.title,
-                        disabled: !data.is_available,
-                        id: data.id,
-                    })),
+                    products: resp.data.map(be2FeItem),
                 }))
         );
     },
@@ -178,5 +197,27 @@ export const restService: NewRestService = () => ({
             ...resp,
             data: resp.data.map((x: string) => new Date(x)),
         }));
+    },
+    getGameById: (id, uid) => {
+        const uuid = getServiceUid(uid);
+
+        return axios
+            .get(API.games + `/get?id=${id}`, {
+                headers: {
+                    'x-uuid': uuid,
+                },
+            })
+            .then((resp) => resp.data);
+    },
+    getFeatured: (uid) => {
+        const uuid = getServiceUid(uid);
+        const prom = axios
+            .get<Array<ItemsResponce>>(API.games + '/featured', {
+                headers: {
+                    'x-uuid': uuid,
+                },
+            })
+            .then((resp) => resp.data.map(be2FeItem));
+        return prom;
     },
 });

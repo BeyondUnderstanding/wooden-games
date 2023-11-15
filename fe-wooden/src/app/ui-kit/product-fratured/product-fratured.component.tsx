@@ -1,22 +1,23 @@
-'use client';
-
+import { useRouter } from 'next/navigation';
 import { ProductCard } from '../product-card/product-card.component';
 import { Product } from '../side-popup/basket-popup.component';
-import { useRouter } from 'next/navigation';
-import css from './products.module.css';
+import css from './product-fratured.module.css';
 
-export interface ProductsProps {
-    readonly products: Array<Product>;
+interface ProductFraturedProps {
+    readonly fratured: ReadonlyArray<Product>;
     readonly add2Basket: (product: Product) => void;
 }
 
-export const Products = ({ products, add2Basket }: ProductsProps) => {
+export const ProductFratured = ({
+    fratured,
+    add2Basket,
+}: ProductFraturedProps) => {
     const router = useRouter();
     return (
-        <section>
-            <h1 className={css.label}>Game Collection</h1>
+        <div className={css.wrap}>
+            <h2>Other games</h2>
             <div className={css.wrapProducts}>
-                {products.map((el) => (
+                {fratured.map((el) => (
                     <div
                         onClick={() => router.push(`/game/${el.id}`)}
                         key={el.coast + '_' + el.name + '_' + el.src}
@@ -30,6 +31,6 @@ export const Products = ({ products, add2Basket }: ProductsProps) => {
                     </div>
                 ))}
             </div>
-        </section>
+        </div>
     );
 };
