@@ -13,11 +13,17 @@ export const ImageBox = () => {
             {photos.map((src) => (
                 <Image
                     src={src}
-                    width={832}
-                    height={620}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     className={css.photo}
                     alt="game picture"
                     key={src.src}
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxWidth: '832px',
+                    }}
                 />
             ))}
         </div>

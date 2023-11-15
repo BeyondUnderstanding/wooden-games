@@ -11,12 +11,12 @@ export const MainSection = () => {
                     Games from England
                 </span>
                 <span className={css.text}>
-                    Many people are familiar with this game,but at this size
+                    Many people are familiar with this game, but at this size
                     it`&apos;s a very different experience.
                 </span>
             </div>
 
-            <div className={css.lower}>
+            <div className={css.footnotes}>
                 <div className={css.element}>Games for Team Building</div>
                 <div className={css.element}>Play Area for the Party </div>
                 <div className={css.element}>Welcome Area for the Wedding</div>
