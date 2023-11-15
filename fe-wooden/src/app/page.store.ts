@@ -38,6 +38,7 @@ export const newHomePageStore: NewHomePageStore = ({
     const service = restService();
 
     const basketProductsS = newLensedAtom<Array<Product>>(basketProducts);
+    // const basketProductsS = newLensedAtom<Array<Product>>([]);
     const productsS = newLensedAtom(products);
 
     const [setProduct, productEffect] = createAdapter<Product>();
@@ -75,7 +76,10 @@ export const newHomePageStore: NewHomePageStore = ({
             }),
             debounce(3)
         );
-
+    const getBasketEffect = pipe(
+        fromPromise(service.getBasket(getCookie('x-uuid'))),
+        tap((x) => basketProductsS.set(x))
+    );
     return valueWithEffect.new(
         {
             basketProducts: basketProductsS,
@@ -85,6 +89,7 @@ export const newHomePageStore: NewHomePageStore = ({
             deleteFromBasket,
             updateDate,
         },
-        add2BasketEffect
+        add2BasketEffect,
+        getBasketEffect
     );
 };

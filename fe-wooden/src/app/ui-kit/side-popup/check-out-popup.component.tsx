@@ -132,12 +132,7 @@ export const CheckOutPopup = ({
                 <Button
                     label={labelButton}
                     onClick={onClickButton}
-                    disabled={
-                        !formData.email.isValid &&
-                        !formData.name.isValid &&
-                        !formData.passport.isValid &&
-                        !formData.phone.isValid
-                    }
+                    disabled={false}
                     type={'def'}
                 />
             </aside>

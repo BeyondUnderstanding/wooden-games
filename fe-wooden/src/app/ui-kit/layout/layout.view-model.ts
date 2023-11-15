@@ -9,7 +9,7 @@ import { Product } from '../side-popup/basket-popup.component';
 import { ChosenDate } from './layout.component';
 import { pipe } from 'fp-ts/lib/function';
 import { fromProperty } from '../../../utils/property.utils';
-import { chain, tap } from '@most/core';
+import { chain, empty, tap } from '@most/core';
 import { FormData } from '../side-popup/check-out-popup.component';
 import { createAdapter } from '@most/adapter';
 import { restService } from '../../service/global-action.service';
@@ -61,10 +61,10 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
     });
 
     const checkoutForm = newLensedAtom<FormData>({
-        name: { data: undefined, isValid: false },
-        passport: { data: undefined, isValid: false },
-        email: { data: undefined, isValid: false },
-        phone: { data: undefined, isValid: false },
+        name: { data: undefined, isValid: true },
+        passport: { data: undefined, isValid: true },
+        email: { data: undefined, isValid: true },
+        phone: { data: undefined, isValid: true },
     });
 
     const updateFormData = (data: Partial<FormData>) =>
@@ -109,15 +109,19 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
     );
 
     // смотрит на изменение полей формы checkout и выставляет их валидными елси соответствует условиям
-    const validateFormEffect = pipe(
-        checkoutForm,
-        fromProperty,
-        tap((form) => {
-            if (
-                form.phone.data &&
-                /^\+995[57]\d{8}$/.test(form.phone.data) &&
-                !form.phone.isValid
-            ) {
+    const [checkoutOnClick, checkoutEvent] = createAdapter<void>();
+
+    const checkoutEffect = pipe(
+        checkoutEvent,
+        chain((_) => {
+            const form = checkoutForm.get();
+
+            if (form.phone.data && !/^\+995[57]\d{8}$/.test(form.phone.data)) {
+                checkoutForm.modify((form) => ({
+                    ...form,
+                    phone: { ...form.phone, isValid: false },
+                }));
+            } else {
                 checkoutForm.modify((form) => ({
                     ...form,
                     phone: { ...form.phone, isValid: true },
@@ -125,44 +129,54 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
             }
             if (
                 form.email.data &&
-                /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
+                !/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/.test(
                     form.email.data
-                ) &&
-                !form.email.isValid
+                )
             ) {
+                checkoutForm.modify((form) => ({
+                    ...form,
+                    email: { ...form.email, isValid: false },
+                }));
+            } else {
                 checkoutForm.modify((form) => ({
                     ...form,
                     email: { ...form.email, isValid: true },
                 }));
             }
-            if (
-                form.passport.data &&
-                /^\d{11}$/.test(form.passport.data) &&
-                !form.passport.isValid
-            ) {
+            if (!!form.passport.data && !/^\d{11}$/.test(form.passport.data)) {
+                checkoutForm.modify((form) => ({
+                    ...form,
+                    passport: { ...form.passport, isValid: false },
+                }));
+            } else {
                 checkoutForm.modify((form) => ({
                     ...form,
                     passport: { ...form.passport, isValid: true },
                 }));
             }
-            if (
-                form.name.data &&
-                form.name.data.length > 3 &&
-                !form.name.isValid
-            ) {
+            if (form.name.data && form.name.data.length < 3) {
+                checkoutForm.modify((form) => ({
+                    ...form,
+                    name: { ...form.name, isValid: false },
+                }));
+            } else {
                 checkoutForm.modify((form) => ({
                     ...form,
                     name: { ...form.name, isValid: true },
                 }));
             }
-        })
-    );
 
-    const [checkoutOnClick, checkoutEffectInit] = createAdapter<void>();
-
-    const t = pipe(
-        checkoutEffectInit,
-        chain((_) => restService().createOrder(checkoutForm.get())),
+            if (
+                checkoutForm.get().name.isValid &&
+                checkoutForm.get().email.isValid &&
+                checkoutForm.get().passport.isValid &&
+                checkoutForm.get().phone.isValid
+            ) {
+                return restService().createOrder(checkoutForm.get());
+            } else {
+                return empty();
+            }
+        }),
         tap((resp) => {
             if (resp.status === 200) {
                 setPage({ url: 'empty', products: [] });
@@ -188,7 +202,7 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
         },
         basketProductsAmountEffect,
         basketProductsEffect,
-        validateFormEffect,
-        t
+        // validateFormEffect,
+        checkoutEffect
     );
 };

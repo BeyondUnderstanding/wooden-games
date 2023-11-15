@@ -26,7 +26,7 @@ const getProps = async () => {
 export default async function Home() {
     const { productsResponce, basketResponce, occupiedDates } =
         await getProps();
-    console.log('productsResponce', productsResponce);
+    console.log('main', basketResponce.length);
     return (
         <PageContainer
             basketProducts={basketResponce}
