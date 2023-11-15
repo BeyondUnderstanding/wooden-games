@@ -24,10 +24,16 @@ export const ProductCard = ({
         <div className={css.wrap}>
             <Image
                 src={src}
-                width={549}
-                height={518}
+                width={0}
+                height={0}
+                sizes="100vw"
                 className={css.image}
                 alt="Game picture"
+                style={{
+                    width: '100%',
+                    height: 'auto',
+                    maxWidth: '549px',
+                }}
             />
             <div className={css.lowerBar}>
                 <div>
