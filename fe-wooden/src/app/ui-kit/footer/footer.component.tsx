@@ -8,7 +8,7 @@ export const Footer = () => {
     return (
         <footer className={css.footer}>
             <div className={css.content}>
-                <div className={css.left}>
+                <div className={css.headline}>
                     <Link href="/" className={css.title}>
                         Wooden Games
                     </Link>

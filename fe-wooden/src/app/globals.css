@@ -55,8 +55,7 @@ body {
 }
 
 main {
-    max-width: 1728px;
-    width: 100%;
+    width: clamp(380px, 100%, 1728px);
     margin: 0 auto;
     padding: 24px 24px 0 24px;
 }

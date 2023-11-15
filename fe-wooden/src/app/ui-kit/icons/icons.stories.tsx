@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { AlarmIcon } from './alarm-icon.component';
 import { ArrowIcon, ArrowIconLeft } from './arrow-icon.component';
 import { CloseIcon } from './close-icon.component';
-import { DropDownIcon} from './drop-down-icon.component';
+import { DropDownIcon } from './drop-down-icon.component';
 
 const meta: Meta<typeof AlarmIcon> = {
     component: AlarmIcon,
