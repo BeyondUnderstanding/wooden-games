@@ -9,6 +9,7 @@ import cn from 'classnames';
 import { Stream } from '@most/types';
 import { useState } from 'react';
 import BurgerMenu from '../burger-menu/burger-menu.component';
+import BurgerIcon from '../burger-icon/burger-icon.component';
 
 interface BasketCrumbsProps {
     openBasket: () => void;
@@ -47,32 +48,12 @@ export const Header = ({
     return (
         <header className={css.wrap}>
             <div className={css.titleWrap}>
-                <div
-                    className={css.burger}
-                    onClick={() => {
-                        setOpen(!isBurgerOpen);
-                    }}
-                >
-                    <div
-                        className={cn(css.line, {
-                            [css.lineOpen]: isBurgerOpen,
-                            [css.lineClose]: !isBurgerOpen,
-                        })}
-                    />
-                    <div
-                        className={cn(css.line, {
-                            [css.lineOpen]: isBurgerOpen,
-                            [css.lineClose]: !isBurgerOpen,
-                        })}
-                    />
-                    <div
-                        className={cn(css.line, {
-                            [css.lineOpen]: isBurgerOpen,
-                            [css.lineClose]: !isBurgerOpen,
-                        })}
+                <div className={css.burgerIconWrap}>
+                    <BurgerIcon
+                    isBurgerOpen={isBurgerOpen}
+                    setOpen={open => setOpen(open)}
                     />
                 </div>
-
                 <div
                     className={cn(css.burgerMenuClose, {
                         [css.burgerMenuOpen]: isBurgerOpen,
