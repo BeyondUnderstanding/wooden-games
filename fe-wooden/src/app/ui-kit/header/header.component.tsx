@@ -8,7 +8,7 @@ import Link from 'next/link';
 import cn from 'classnames';
 import { Stream } from '@most/types';
 import { useState } from 'react';
-import BurgerMenu from '../burrger-menu/burger-menu.component';
+import BurgerMenu from '../burger-menu/burger-menu.component';
 
 interface BasketCrumbsProps {
     openBasket: () => void;
