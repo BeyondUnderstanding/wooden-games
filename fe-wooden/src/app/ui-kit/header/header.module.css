@@ -1,37 +1,79 @@
 .wrap {
     display: flex;
-    max-width: 1728px;
-    width: 100%;
+    width: clamp(380px, 100%, 1728px);
     margin: 0 auto;
-    padding: 12px 24px;
+    padding: clamp(1rem, 0.859rem + 0.59vw, 1.5rem);
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--Sand-Dark, #e5e3db);
     background: var(--Sand-Light, #f8f7f4);
 }
 
-.crumbs {
-    max-width: 371px;
-    width: 100%;
+.titleWrap {
+    order: 1;
+}
+
+.burgerIconWrap {
+    visibility: hidden;
+    position: absolute;
+}
+
+.burgerMenuClose {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: -16px;
+    transition: 0.3s;
+    transform-origin: top center;
+    transform: scaleY(0);
+    opacity: 0;
+    z-index: 2;
+
+    &.burgerMenuOpen {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.calendarInput {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    max-width: 354px;
+    width: 100%;
+    display: block;
+    order: 2;
     align-items: center;
 }
 
+.crumbs {
+    display: flex;
+    max-width: 395px;
+    width: 100%;
+    font-size: 14px;
+    gap: 40px;
+    color: var(--Primary, #120f07);
+    justify-content: flex-end;
+    align-items: center;
+    order: 3;
+}
+.links {
+    display: flex;
+    gap: 40px;
+}
 .crumbs span {
     cursor: pointer;
 }
+.titleWrap {
+    display: flex;
+    gap: 25px;
+}
 
 .label {
-    color: var(--Primary, #120f07);
     font-family: 'ClashDisplay-Bold';
-    font-size: 24px;
-    font-weight: 700;
+    font-size: clamp(1.25rem, 1.18rem + 0.3vw, 1.5rem);
 }
 
 .basketCrumbsWrap {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     gap: 8px;
 }
@@ -54,5 +96,35 @@
         border: 1px solid var(--Red, #d84840);
         background: var(--Red, #d84840);
         color: var(--White, #fff);
+    }
+}
+
+@media screen and (max-width: 852px) {
+    .calendarInput {
+        padding-top: 18px;
+        order: 4;
+        margin: 0 auto;
+    }
+
+    .wrap {
+        flex-wrap: wrap;
+    }
+
+    .burgerIconWrap {
+        visibility: visible;
+        position: static;
+    }
+}
+
+@media screen and (max-width: 647px) {
+    .links {
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .basketCrumbsWrap,
+    .crumbs {
+        max-width: 63px;
+        width: 100%;
     }
 }
