@@ -40,7 +40,7 @@ export interface ProductPageResp {
     description: string;
 }
 
-const domain = 'http://master.wooden_backend.staginator.local/v1/client';
+const domain = 'https://api.woodengames.ge/v1/client';
 const API = {
     domain,
     basket: `${domain}/basket`,
