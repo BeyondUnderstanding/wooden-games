@@ -57,7 +57,11 @@ body {
 main {
     width: clamp(380px, 100%, 1728px);
     margin: 0 auto;
-    padding: 24px 24px 0 24px;
+    padding: 
+        clamp(1rem, 0.859rem + 0.59vw, 1.5rem) 
+        clamp(1rem, 0.859rem + 0.59vw, 1.5rem) 
+        0 
+        clamp(1rem, 0.859rem + 0.59vw, 1.5rem);
 }
 
 body::-webkit-scrollbar {
