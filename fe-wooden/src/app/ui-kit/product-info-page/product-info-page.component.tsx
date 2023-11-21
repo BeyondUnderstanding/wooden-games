@@ -1,4 +1,3 @@
-import { constVoid } from 'fp-ts/lib/function';
 import { CheckRuls } from '../check-ruls/check-ruls.component';
 import { ProductCharacteristics } from '../product-characteristics/product-characteristics.component';
 import { PlayersIcon } from '../icons/players-icon.component';
@@ -40,6 +39,7 @@ export interface ProductInfoPageProps {
         readonly src: string;
     };
     readonly add2Basket: (x: Product) => void;
+    readonly goToCheckRulse: () => void;
 }
 
 export const ProductInfoPage = ({
@@ -49,6 +49,7 @@ export const ProductInfoPage = ({
     updateDate,
     occupiedDates,
     add2Basket,
+    goToCheckRulse,
 }: ProductInfoPageProps) => {
     const allCharacteristics = productData.characteristics.map((el) => ({
         ...el,
@@ -82,7 +83,13 @@ export const ProductInfoPage = ({
                         <WeightIcon />
                     </SmallLabel>
                 </div>
-                <div className={css.textWrap}>{productData.description}</div>
+                <div
+                    className={css.textWrap}
+                    dangerouslySetInnerHTML={{
+                        __html: productData.description,
+                    }}
+                ></div>
+
                 <div className={css.controlsWrap}>
                     <div className={css.block}>
                         <span>Your Date:</span>
@@ -115,7 +122,7 @@ export const ProductInfoPage = ({
                     </div>
                 </div>
                 <CheckRuls
-                    goToCheckRulse={constVoid}
+                    goToCheckRulse={goToCheckRulse}
                     theme={[css.checkRulsTheme]}
                 />
                 <ProductCharacteristics

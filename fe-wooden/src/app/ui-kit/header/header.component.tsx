@@ -34,6 +34,7 @@ export interface HeaderProps extends BasketCrumbsProps {
     readonly setChosenDate: (x: ChosenDate) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
     readonly occupiedDates: Array<Date>;
+    readonly openRentalRuls: () => void;
 }
 
 export const Header = ({
@@ -41,6 +42,7 @@ export const Header = ({
     setChosenDate,
     updateDate,
     occupiedDates,
+    openRentalRuls,
     ...props
 }: HeaderProps) => {
     const [isBurgerOpen, setOpen] = useState(false);
@@ -50,8 +52,8 @@ export const Header = ({
             <div className={css.titleWrap}>
                 <div className={css.burgerIconWrap}>
                     <BurgerIcon
-                    isBurgerOpen={isBurgerOpen}
-                    setOpen={open => setOpen(open)}
+                        isBurgerOpen={isBurgerOpen}
+                        setOpen={(open) => setOpen(open)}
                     />
                 </div>
                 <div
@@ -59,7 +61,7 @@ export const Header = ({
                         [css.burgerMenuOpen]: isBurgerOpen,
                     })}
                 >
-                    <BurgerMenu />
+                    <BurgerMenu openRentalRuls={openRentalRuls} />
                 </div>
 
                 <Link href={'/'}>
@@ -79,8 +81,8 @@ export const Header = ({
             <div className={css.crumbs}>
                 <div className={css.links}>
                     <Link href={'/about-us'}>About Us</Link>
-                    <Link href={'/'}>Rental Rules</Link>
-                    <Link href={'/'}>English</Link>
+                    <span onClick={openRentalRuls}>Rental Rules</span>
+                    {/* <Link href={'/'}>English</Link> */}
                 </div>
                 <BasketCrumbs {...props} />
             </div>

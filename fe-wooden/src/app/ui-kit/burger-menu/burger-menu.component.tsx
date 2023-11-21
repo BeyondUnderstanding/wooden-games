@@ -3,10 +3,13 @@
 import React from 'react';
 import css from './burger-menu.module.css';
 import Link from 'next/link';
-import { SelectInputContainer } from '../select-input/select-input.container';
+// import { SelectInputContainer } from '../select-input/select-input.container';
 import { InputType } from '../select-input/select-input.component';
 
-const BurgerMenu = () => {
+interface BurgerMenuProps {
+    readonly openRentalRuls: () => void;
+}
+const BurgerMenu = ({ openRentalRuls }: BurgerMenuProps) => {
     const languages: Array<InputType> = [
         { value: 1, label: 'English', isDisable: false },
         { value: 2, label: 'ქართული', isDisable: false },
@@ -21,31 +24,38 @@ const BurgerMenu = () => {
                 <Link href="/about-us" className={css.link}>
                     About Us
                 </Link>
-                <Link href="/rental-rules" className={css.link}>
+                <span className={css.link} onClick={openRentalRuls}>
                     Rental Rules
-                </Link>{' '}
-                {/* <--- is it tru href? */}
+                </span>{' '}
                 <Link href="/faq" className={css.link}>
                     FAQ
                 </Link>
             </div>
             <div className={css.social}>
-                <Link href="/" className={css.network}>
+                <Link
+                    href="https://www.instagram.com/woodengames_ge/"
+                    target="_blank"
+                    className={css.text}
+                >
                     Instagram
                 </Link>
-                <Link href="/" className={css.network}>
+                <Link
+                    href="https://www.facebook.com/woodengamesge"
+                    target="_blank"
+                    className={css.text}
+                >
                     Facebook
                 </Link>
             </div>
 
-            <SelectInputContainer
+            {/* <SelectInputContainer
                 options={languages}
                 initialLabel={'English'}
                 onChange={() => {
                     console.log(`It's will changes the language`);
                 }}
                 notFillTimeError={false}
-            />
+            /> */}
 
             <p className={css.copyright}>
                 Copyright © 2023 Wooden Games. All rights reserved.
