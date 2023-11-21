@@ -27,6 +27,7 @@
     transform-origin: right center;
     transform: scaleX(0) translateX(20%);
     gap: 7px;
+    max-height: 1051px;
 }
 
 .aside.open {
