@@ -1,4 +1,3 @@
-import { constVoid } from 'fp-ts/lib/function';
 import { Button } from '../button/button.component';
 import { CheckBox } from '../check-box/check-box.component';
 import { ArrowIcon } from '../icons/arrow-icon.component';
@@ -6,7 +5,7 @@ import { Input } from '../input/input.component';
 import { SidePopupLayoutProps } from './side-popup.component';
 import css from './side-popup.module.css';
 import cn from 'classnames';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useOutsideClick } from '../../../utils/hooks';
 
 export interface FormDataField {
@@ -41,6 +40,7 @@ export const CheckOutPopup = ({
     updateFormData,
 }: CheckOutPopupProps) => {
     const popupRef = useRef<HTMLDivElement | null>(null);
+    const [checkboxState, setCheckboxState] = useState(false);
     useOutsideClick(popupRef, isOpen, onClose);
     return (
         <div className={cn({ [css.asideWrap]: isOpen })}>
@@ -115,7 +115,7 @@ export const CheckOutPopup = ({
                                 })
                             }
                         />
-                        <CheckBox getCheckedState={constVoid}>
+                        <CheckBox getCheckedState={(x) => setCheckboxState(x)}>
                             <span>
                                 I have read the{' '}
                                 <span
@@ -132,7 +132,7 @@ export const CheckOutPopup = ({
                 <Button
                     label={labelButton}
                     onClick={onClickButton}
-                    disabled={false}
+                    disabled={!checkboxState}
                     type={'def'}
                 />
             </aside>
