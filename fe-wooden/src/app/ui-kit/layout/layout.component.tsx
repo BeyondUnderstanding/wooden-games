@@ -7,10 +7,13 @@ import { Property } from '@frp-ts/core';
 import { useUUID } from '../../../utils/cookie.utils';
 import { FormData } from '../side-popup/check-out-popup.component';
 import { Stream } from '@most/types';
+import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
+import { GeneralConditionsBody } from '../general-conditions/general-conditions.component';
 
 export interface PropsChildComponent {
     readonly chosenDate: Property<ChosenDate>;
     readonly setChosenDate: (x: ChosenDate) => void;
+    readonly goToCheckRulse: () => void;
 }
 
 export type LayoutProps = {
@@ -62,8 +65,34 @@ export const Layout = ({
     occupiedDates,
 }: LayoutProps) => {
     useUUID();
+
+    const goFromCheckRulseToCheckout = () => {
+        setIsOpen(true);
+        setPage({
+            url: 'text',
+            label: 'Rental rules',
+            subUrl: 'checkout',
+            content: <RentalRulsBody />,
+        });
+    };
+
+    const termsConditionsOpen = () => {
+        setIsOpen(true);
+        setPage({
+            url: 'text',
+            label: 'Rental rules',
+            subUrl: 'checkout',
+            content: <GeneralConditionsBody />,
+        });
+    };
+
     const ChildrenComponent =
-        childrenComponent && childrenComponent({ chosenDate, setChosenDate });
+        childrenComponent &&
+        childrenComponent({
+            chosenDate,
+            setChosenDate,
+            goToCheckRulse: goFromCheckRulseToCheckout,
+        });
 
     return (
         <>
@@ -86,12 +115,13 @@ export const Layout = ({
                 setChosenDate={setChosenDate}
                 updateDate={updateDate}
                 occupiedDates={occupiedDates}
+                openRentalRuls={goFromCheckRulseToCheckout}
             />
             <main>
                 {ChildrenComponent && ChildrenComponent}
                 {children}
             </main>
-            <Footer />
+            <Footer termsConditionsOpen={termsConditionsOpen} />
         </>
     );
 };

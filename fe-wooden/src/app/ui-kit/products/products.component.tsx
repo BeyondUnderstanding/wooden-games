@@ -19,7 +19,7 @@ export const Products = ({ products, add2Basket }: ProductsProps) => {
                 {products.map((el) => (
                     <div
                         onClick={() => router.push(`/game/${el.id}`)}
-                        key={el.coast + '_' + el.name + '_' + el.src}
+                        key={el.coast + '_' + el.name}
                     >
                         <ProductCard
                             {...el}
