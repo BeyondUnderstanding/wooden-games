@@ -5,7 +5,7 @@
     padding: 40px 24px;
     gap: 48px;
     background: var(--Orange-Light, #ffe089);
-    border-radius: 85px;
+    border-radius: 32px;
     margin: clamp(1rem, 0.636rem + 1.78vw, 2.5rem) 0;
     justify-content: center;
 }
