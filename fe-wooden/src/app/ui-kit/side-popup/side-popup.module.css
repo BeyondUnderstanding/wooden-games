@@ -35,6 +35,7 @@
     transition: 0.4s;
     transform: scaleX(1) translateX(0);
     gap: 7px;
+    height: 100%;
 }
 
 .asideHeader {
