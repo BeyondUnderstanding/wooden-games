@@ -3,6 +3,7 @@
     width: clamp(360px, 100%, 1728px);
     flex-direction: column;
     gap: 24px;
+    margin: 0 auto;
 }
 
 .title {
@@ -39,6 +40,23 @@
     .listWrap {
         .list {
             flex-wrap: wrap;
+            justify-content: center;
         }
+    }
+
+    .title{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .listWrap {
+        .list {
+            justify-content: start;
+        }
+    }
+
+    .title{
+        text-align: start;
     }
 }
