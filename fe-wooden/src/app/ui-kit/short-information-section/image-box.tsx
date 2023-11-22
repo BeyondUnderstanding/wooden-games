@@ -22,7 +22,7 @@ export const ImageBox = () => {
                     style={{
                         width: '100%',
                         height: 'auto',
-                        maxWidth: '832px',
+                        maxWidth: '732px',
                     }}
                 />
             ))}

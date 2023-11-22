@@ -21,8 +21,9 @@ const AboutUsSection = () => {
                 />
 
                 <p className={css.text}>
-                    Roasting exquisite coffee while making an impact at origin
-                    and at home
+                    Looking for a unique team-building experience? Our wooden
+                    games provide an ideal platform for fostering teamwork,
+                    communication, and camaraderie among colleagues.
                 </p>
             </div>
 
@@ -36,8 +37,10 @@ const AboutUsSection = () => {
                     alt="game photo"
                 />
                 <p className={css.text}>
-                    Roasting exquisite coffee while making an impact at origin
-                    and at home
+                    In a world dominated by smartphones, Wooden Games offers a
+                    refreshing break. Step away from screens, immerse yourself
+                    in the tactile pleasure of wooden games, and rediscover the
+                    joy of genuine human connection.
                 </p>
             </div>
 
@@ -51,8 +54,10 @@ const AboutUsSection = () => {
                     alt="game photo"
                 />
                 <p className={css.text}>
-                    Roasting exquisite coffee while making an impact at origin
-                    and at home
+                    Our mission is to create an environment where people can
+                    unplug, unwind, and connect in a meaningful way. We believe
+                    in the power of play to bring out the best in individuals
+                    and teams, fostering positive memories that last a lifetime.
                 </p>
             </div>
         </section>

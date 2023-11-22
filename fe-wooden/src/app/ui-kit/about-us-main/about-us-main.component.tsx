@@ -12,16 +12,29 @@ export const AboutUsMain = () => {
             <div className={css.content}>
                 <div className={css.element}>
                     <div className={css.heading}>
-                        <h2 className={css.caption}>
-                            Roasting exquisite coffee while making an impact at
-                            origin and at home
-                        </h2>
+                        <h3 className={css.caption}>
+                            Welcome to Wooden Games - Where Fun Meets Tradition!
+                        </h3>
                         <p className={css.text}>
-                            The birthplace of wooden games is rightly considered
-                            to be England. Conservative yet progressive, it was
-                            England that gave the world the famous game
-                            of Jenga! The English love of this kind of game
-                            dates back to the kingdom’s distant past.2
+                            We believe in bringing people together through the
+                            timeless joy of wooden games. Our passion lies in
+                            creating memorable moments, fostering connections,
+                            and adding a touch of nostalgia to your events.
+                        </p>
+                        <h3 className={css.caption}>What We Offer</h3>
+                        <p className={css.text}>
+                            Our diverse selection of wooden games caters to a
+                            wide audience, from family gatherings to corporate
+                            teambuilding events. Clients have the opportunity to
+                            rent our games by the hour, ensuring flexible and
+                            affordable entertainment solutions.
+                        </p>
+                        <h3 className={css.caption}>Fun and Engagement:</h3>
+                        <p className={css.text}>
+                            Our games are designed to spark joy, laughter, and
+                            friendly competition. They serve as the perfect
+                            icebreaker, encouraging guests to interact and enjoy
+                            each other&apos;s company.
                         </p>
                     </div>
                     <Image
@@ -53,16 +66,26 @@ export const AboutUsMain = () => {
                         }}
                     />
                     <div className={css.heading}>
-                        <h2 className={css.caption}>
-                            Roasting exquisite coffee while making an impact at
-                            origin and at home
-                        </h2>
+                        <h3 className={css.caption}>Let&apos;s Play!</h3>
                         <p className={css.text}>
-                            The birthplace of wooden games is rightly considered
-                            to be England. Conservative yet progressive, it was
-                            England that gave the world the famous game
-                            of Jenga! The English love of this kind of game
-                            dates back to the kingdom’s distant past.2
+                            Whether you&apos;re hosting a birthday party, a
+                            corporate event, or a wedding celebration, Wooden
+                            Games is here to elevate your experience. Join us in
+                            rediscovering the joy of traditional wooden games –
+                            where every move, every laugh, and every victory
+                            contribute to a truly unforgettable occasion.
+                        </p>
+                        <h3 className={css.caption}>
+                            Seamless Booking Experience
+                        </h3>
+                        <p className={css.text}>
+                            To make your experience even more convenient, we
+                            offer a user-friendly online booking platform.
+                            Browse through our collection of games, choose your
+                            favorites, and book them directly through our
+                            website. Our streamlined process ensures that you
+                            can secure the games you love with just a few
+                            clicks.
                         </p>
                     </div>
                 </div>

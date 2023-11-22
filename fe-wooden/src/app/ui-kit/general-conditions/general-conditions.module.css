@@ -1,0 +1,18 @@
+.wrap {
+    height: calc(900px - 10em);
+    overflow-y: auto;
+}
+
+.wrap::-webkit-scrollbar {
+    width: 3px;
+    height: 71px;
+}
+
+.wrap::-webkit-scrollbar-thumb {
+    background: var(--Primary, #120f07);
+    border-radius: 5px;
+}
+
+.wrap::-webkit-scrollbar-track {
+    background: inherit;
+}

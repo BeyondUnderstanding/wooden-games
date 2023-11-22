@@ -4,7 +4,11 @@ import React from 'react';
 import css from './footer.module.css';
 import Link from 'next/link';
 
-export const Footer = () => {
+interface FooterProps {
+    readonly termsConditionsOpen: () => void;
+}
+
+export const Footer = ({ termsConditionsOpen }: FooterProps) => {
     return (
         <footer className={css.footer}>
             <div className={css.content}>
@@ -21,14 +25,14 @@ export const Footer = () => {
                     <div className={css.item}>
                         <p className={css.title}>Contact</p>
                         <Link
-                            href="mailto:woodengames@gmail.com"
+                            href="mailto:woodengamesge@gmail.com"
                             className={css.text}
                         >
-                            woodengames@gmail.com
+                            woodengamesge@gmail.com
                         </Link>
-                        <Link href="tel:+995-325-432-432 " className={css.text}>
+                        {/* <Link href="tel:+995-325-432-432 " className={css.text}>
                             +995 (325) 432-432
-                        </Link>
+                        </Link> */}
                         <p className={css.text}>English</p>
                     </div>
                     <div className={css.item}>
@@ -39,31 +43,42 @@ export const Footer = () => {
                         <Link href="/about-us" className={css.text}>
                             About Us
                         </Link>
-                        <Link href="/" className={css.text}>
+                        {/* <Link href="/" className={css.text}>
                             Find Us
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className={css.item}>
                         <p className={css.title}>Information</p>
                         <Link href="/faq" className={css.text}>
-                            FAQ — Rent and Return
+                            FAQ — Rent and Return
                         </Link>
-                        <Link href="/" className={css.text}>
+                        {/* <Link href="/" className={css.text}>
                             Users Review
-                        </Link>
-                        <Link href="/" className={css.text}>
-                            Privacy Policy
-                        </Link>
-                        <Link href="/" className={css.text}>
+                        </Link> */}
+                        <span
+                            className={css.text}
+                            onClick={termsConditionsOpen}
+                        >
+                            Terms and conditions
+                        </span>
+                        {/* <Link href="/" className={css.text}>
                             Cookies Settings
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className={css.item}>
                         <p className={css.title}>Social</p>
-                        <Link href="/" target="_blank" className={css.text}>
+                        <Link
+                            href="https://www.instagram.com/woodengames_ge/"
+                            target="_blank"
+                            className={css.text}
+                        >
                             Instagram
                         </Link>
-                        <Link href="/" target="_blank" className={css.text}>
+                        <Link
+                            href="https://www.facebook.com/woodengamesge"
+                            target="_blank"
+                            className={css.text}
+                        >
                             Facebook
                         </Link>
                     </div>

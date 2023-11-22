@@ -8,7 +8,7 @@ export const MainSection = () => {
             <div className={css.info}>
                 <span className={css.title}>
                     Crafted Wooden <br />
-                    Games from England
+                    Games
                 </span>
                 <span className={css.text}>
                     Many people are familiar with this game, but at this size
@@ -20,6 +20,9 @@ export const MainSection = () => {
                 <div className={css.element}>Games for Team Building</div>
                 <div className={css.element}>Play Area for the Party </div>
                 <div className={css.element}>Welcome Area for the Wedding</div>
+                <div className={css.element}>
+                    Coffee break Zone for the Conference
+                </div>
             </div>
         </div>
     );

@@ -99,7 +99,7 @@
     }
 }
 
-@media screen and (max-width: 852px) {
+@media screen and (max-width: 900px) {
     .calendarInput {
         padding-top: 18px;
         order: 4;
