@@ -27,6 +27,9 @@
 }
 
 .name {
+    display: inline-flex;
+    max-width: 311px;
+    width: 100%;
     font-family: 'Inter-Bold';
     font-size: 18px;
     letter-spacing: -1px;

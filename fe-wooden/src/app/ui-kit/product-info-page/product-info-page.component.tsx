@@ -10,6 +10,7 @@ import { Button } from '../button/button.component';
 import { Stream } from '@most/types';
 import { Product } from '../side-popup/basket-popup.component';
 import { ProductPageResp } from '../../service/global-action.service';
+import { ProductGalery,ProductGaleryProps } from '../product-galery/product-galery.component';
 
 interface SmallLabelProps {
     readonly children: JSX.Element;
@@ -69,7 +70,9 @@ export const ProductInfoPage = ({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src={productData.src}
-                width={820}
+                width={0}
+                height={0}
+                sizes="100vw"
                 className={css.photo}
                 alt="game photo"
             />
