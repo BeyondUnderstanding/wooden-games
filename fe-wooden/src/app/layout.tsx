@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
     title: 'Wooden Games',
@@ -64,14 +65,16 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>{children}</body>
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-4P4FXPHQV2"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'G-4P4FXPHQV2');
-            </script>
+            <Script async src="https://www.googletagmanager.com/gtag/js?id=G-4P4FXPHQV2"></Script>
+            <Script>
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+    
+                    gtag('config', 'G-4P4FXPHQV2');
+                    `}
+            </Script>
         </html>
     );
 }
