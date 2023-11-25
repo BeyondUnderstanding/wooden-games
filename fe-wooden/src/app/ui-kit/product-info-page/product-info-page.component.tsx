@@ -10,12 +10,14 @@ import { Button } from '../button/button.component';
 import { Stream } from '@most/types';
 import { Product } from '../side-popup/basket-popup.component';
 import { ProductPageResp } from '../../service/global-action.service';
-import { ProductGalery,ProductGaleryProps } from '../product-galery/product-galery.component';
+import Image  from 'next/image';
+import { ProductGalery } from '../../ui-kit/product-galery/product-galery.component';
 
 interface SmallLabelProps {
     readonly children: JSX.Element;
     readonly label: string;
 }
+
 const SmallLabel = ({ children, label }: SmallLabelProps) => {
     return (
         <div className={css.smallLabel}>
@@ -41,6 +43,7 @@ export interface ProductInfoPageProps {
     };
     readonly add2Basket: (x: Product) => void;
     readonly goToCheckRulse: () => void;
+    readonly imgs: Array<string>;
 }
 
 export const ProductInfoPage = ({
@@ -51,6 +54,7 @@ export const ProductInfoPage = ({
     occupiedDates,
     add2Basket,
     goToCheckRulse,
+    imgs,
 }: ProductInfoPageProps) => {
     const allCharacteristics = productData.characteristics.map((el) => ({
         ...el,
@@ -65,10 +69,14 @@ export const ProductInfoPage = ({
             ...productData,
             name: productData.header,
         });
+    imgs.unshift(productData.src);
+    console.log(imgs);
     return (
         <div className={css.wrapContent}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+
+            <ProductGalery imgs={imgs} />
+            <Image
                 src={productData.src}
                 width={0}
                 height={0}
