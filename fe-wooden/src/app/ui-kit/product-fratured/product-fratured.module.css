@@ -1,6 +1,12 @@
 .wrap {
-    margin-top: 64px;
-    margin-bottom: 40px;
+    margin: clamp(24px, 1.227rem + 1.21vw, 40px) 0;
+
+    .headeLabel {
+        color: var(--Primary, #120f07);
+        font-family: 'ClashDisplay-Bold';
+        font-size: clamp(34px, 0.55rem + 7vw, 48px);
+        margin-bottom: 24px;
+    }
 
     .wrapProducts {
         margin-top: 24px;

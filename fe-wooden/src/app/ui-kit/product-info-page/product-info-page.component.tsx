@@ -10,8 +10,8 @@ import { Button } from '../button/button.component';
 import { Stream } from '@most/types';
 import { Product } from '../side-popup/basket-popup.component';
 import { ProductPageResp } from '../../service/global-action.service';
-import Image  from 'next/image';
-import { ProductGalery } from '../../ui-kit/product-galery/product-galery.component';
+import Image from 'next/image';
+import { ProductGaleryMobile } from '../../ui-kit/product-galery/product-galery.component';
 
 interface SmallLabelProps {
     readonly children: JSX.Element;
@@ -69,21 +69,24 @@ export const ProductInfoPage = ({
             ...productData,
             name: productData.header,
         });
-    imgs.unshift(productData.src);
-    console.log(imgs);
+
+    const galery = [productData.src, ...imgs];
+
     return (
         <div className={css.wrapContent}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-
-            <ProductGalery imgs={imgs} />
-            <Image
-                src={productData.src}
-                width={0}
-                height={0}
-                sizes="100vw"
-                className={css.photo}
-                alt="game photo"
-            />
+            <div className={css.galeryWrap}>
+                <ProductGaleryMobile imgs={galery} />
+            </div>
+            <div className={css.photoWrap}>
+                <Image
+                    src={productData.src}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className={css.photo}
+                    alt="game photo"
+                />
+            </div>
             <div className={css.wrap}>
                 <h1 className={css.headeLabel}>{productData.header}</h1>
                 <div className={css.labelsWrap}>

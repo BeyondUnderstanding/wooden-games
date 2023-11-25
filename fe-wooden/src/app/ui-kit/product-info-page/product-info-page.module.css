@@ -3,19 +3,29 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: clamp(24px, 1.208rem + 1.23vw, 40px);
-    margin-top: clamp( 16px, 0.854rem + 0.62vw, 24px);
-    margin-bottom: clamp( 16px, 0.854rem + 0.62vw, 24px);
+    margin-top: clamp(16px, 0.854rem + 0.62vw, 24px);
+    margin-bottom: clamp(16px, 0.854rem + 0.62vw, 24px);
+}
+.galeryWrap {
+    max-width: 360px;
+    width: 100%;
+    display: none;
+}
+.photoWrap{
+    max-width: 820px;
+    width: 100%;
 }
 
-.photo{
-    width: clamp(262px,100%,820px);
+.photo {
+    max-width: 820px;
+    width: 100%;
     height: auto;
 }
 .wrap {
     display: flex;
     flex-direction: column;
     margin: 60px 0 0 40px;
-    width: clamp(360px,100%, 560px);
+    width: clamp(360px, 100%, 560px);
 
     .headeLabel {
         color: var(--Primary, #120f07);
@@ -25,7 +35,7 @@
         line-height: clamp(36px, 0.9rem + 6vw, 48px);
         margin-bottom: 24px;
     }
-    
+
     .labelsWrap {
         display: flex;
         gap: 8px;
@@ -118,7 +128,6 @@
     gap: 10px;
     color: var(--Primary, #120f07);
 
-
     border-radius: 50px;
     border: 1px solid var(--Primary, #120f07);
     background: #fff;
@@ -132,18 +141,30 @@
     margin-top: 24px;
 }
 
+
 @media screen and (max-width: 1462px) {
-  .wrap {
-    margin: 0;
-  }
+    .wrap {
+        margin: 0;
+    }
 }
 
 @media screen and (max-width: 594px) {
+    .galeryWrap {
+        display: block;
+    }
+
+    .photoWrap {
+        display: none;
+    }
+
+    .wrap:last-child {
+        margin-top: 0px;
+    }
 
     .controlsWrap {
         justify-content: center;
 
-        .block{
+        .block {
             max-width: 346px;
         }
         .block:first-child {
