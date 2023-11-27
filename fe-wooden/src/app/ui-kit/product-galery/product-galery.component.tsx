@@ -4,12 +4,11 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import css from './product-galery.module.css';
 import Image from 'next/image';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 
 export interface ProductGaleryProps {
     readonly imgs: Array<string>;
-    
 }
 
 export const ProductGalery = ({ imgs }: ProductGaleryProps) => {
@@ -43,12 +42,6 @@ export const ProductGalery = ({ imgs }: ProductGaleryProps) => {
 export const ProductGaleryMobile = ({ imgs }: ProductGaleryProps) => {
     return (
         <Swiper
-            style={{
-                '--swiper-navigation-color': '#000',
-                '--swiper-pagination-color': '#000',
-            }}
-            w
-            spaceBetween={30}
             centeredSlides={true}
             autoplay={{
                 delay: 2500,
@@ -56,8 +49,7 @@ export const ProductGaleryMobile = ({ imgs }: ProductGaleryProps) => {
             pagination={{
                 clickable: true,
             }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
+            modules={[Autoplay, Pagination]}
         >
             {imgs.map((src) => (
                 <SwiperSlide key={src}>
