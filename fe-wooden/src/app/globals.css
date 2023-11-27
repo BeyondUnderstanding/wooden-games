@@ -58,9 +58,9 @@ main {
     width: clamp(380px, 100%, 1728px);
     margin: 0 auto;
     padding: 
+        clamp(1rem, 0.859rem + 0.59vw, 1.5rem)
         clamp(1rem, 0.859rem + 0.59vw, 1.5rem) 
-        clamp(1rem, 0.859rem + 0.59vw, 1.5rem) 
-        0 
+        0
         clamp(1rem, 0.859rem + 0.59vw, 1.5rem);
 }
 
@@ -243,4 +243,8 @@ abbr[title] {
     line-height: 16px;
     letter-spacing: -0.13px;
     padding: 7px 12px;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--Primary, #120f07) !important;
 }

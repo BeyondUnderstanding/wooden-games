@@ -18,8 +18,7 @@ export const ProductFratured = ({
             <h2 className={css.headeLabel}>Other games</h2>
             <div className={css.wrapProducts}>
                 {fratured.map((el) => (
-                    <div 
-                        
+                    <div
                         onClick={() => router.push(`/game/${el.id}`)}
                         key={el.coast + '_' + el.name + '_' + el.src}
                     >

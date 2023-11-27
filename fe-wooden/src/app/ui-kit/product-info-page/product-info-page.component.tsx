@@ -70,12 +70,10 @@ export const ProductInfoPage = ({
             name: productData.header,
         });
 
-    const galery = [productData.src, ...imgs];
-
     return (
         <div className={css.wrapContent}>
             <div className={css.galeryWrap}>
-                <ProductGaleryMobile imgs={galery} />
+                <ProductGaleryMobile imgs={[productData.src, ...imgs]} />
             </div>
             <div className={css.photoWrap}>
                 <Image
