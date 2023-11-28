@@ -60,6 +60,7 @@ const Page = ({
                     updateDate,
                     productData,
                     add2Basket,
+                    imgs,
                 })
             }
         >

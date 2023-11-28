@@ -15,7 +15,7 @@ export const ProductFratured = ({
     const router = useRouter();
     return (
         <div className={css.wrap}>
-            <h2>Other games</h2>
+            <h2 className={css.headeLabel}>Other games</h2>
             <div className={css.wrapProducts}>
                 {fratured.map((el) => (
                     <div
