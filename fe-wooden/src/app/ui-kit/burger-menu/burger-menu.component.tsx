@@ -35,14 +35,14 @@ const BurgerMenu = ({ openRentalRuls }: BurgerMenuProps) => {
                 <Link
                     href="https://www.instagram.com/woodengames_ge/"
                     target="_blank"
-                    className={css.text}
+                    className={css.network}
                 >
                     Instagram
                 </Link>
                 <Link
                     href="https://www.facebook.com/woodengamesge"
                     target="_blank"
-                    className={css.text}
+                    className={css.network}
                 >
                     Facebook
                 </Link>
