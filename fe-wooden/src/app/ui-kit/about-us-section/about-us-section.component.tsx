@@ -13,11 +13,13 @@ const AboutUsSection = () => {
             <div className={css.element}>
                 <Image
                     src={ticTacToe}
-                    width={200}
-                    height={200}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     className={css.photo}
                     alt="game photo"
                 />
+
                 <p className={css.text}>
                     Looking for a unique team-building experience? Our wooden
                     games provide an ideal platform for fostering teamwork,
@@ -28,8 +30,9 @@ const AboutUsSection = () => {
             <div className={css.element}>
                 <Image
                     src={abacus}
-                    width={200}
-                    height={200}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     className={css.photo}
                     alt="game photo"
                 />
@@ -44,8 +47,9 @@ const AboutUsSection = () => {
             <div className={css.element}>
                 <Image
                     src={jenga}
-                    width={200}
-                    height={200}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     className={css.photo}
                     alt="game photo"
                 />
