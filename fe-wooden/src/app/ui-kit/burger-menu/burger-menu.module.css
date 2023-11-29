@@ -7,6 +7,7 @@
     background: var(--Sand-Light, #f8f7f4);
     color: var(--Primary, #120f07);
 }
+
 .linksWrap {
     display: flex;
     flex-direction: column;
