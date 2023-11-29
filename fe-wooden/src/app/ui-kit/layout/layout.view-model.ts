@@ -65,6 +65,8 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
         passport: { data: undefined, isValid: true },
         email: { data: undefined, isValid: true },
         phone: { data: undefined, isValid: true },
+        deliveryAddress: { data: undefined, isValid: true },
+        comment: { data: undefined, isValid: true },
     });
 
     const updateFormData = (data: Partial<FormData>) =>
@@ -165,12 +167,27 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
                     name: { ...form.name, isValid: true },
                 }));
             }
+            if (
+                form.deliveryAddress.data &&
+                form.deliveryAddress.data.length > 10
+            ) {
+                checkoutForm.modify((form) => ({
+                    ...form,
+                    deliveryAddress: { ...form.name, isValid: true },
+                }));
+            } else {
+                checkoutForm.modify((form) => ({
+                    ...form,
+                    deliveryAddress: { ...form.name, isValid: false },
+                }));
+            }
 
             if (
                 checkoutForm.get().name.isValid &&
                 checkoutForm.get().email.isValid &&
                 checkoutForm.get().passport.isValid &&
-                checkoutForm.get().phone.isValid
+                checkoutForm.get().phone.isValid &&
+                checkoutForm.get().deliveryAddress.isValid
             ) {
                 return restService().createOrder(checkoutForm.get());
             } else {

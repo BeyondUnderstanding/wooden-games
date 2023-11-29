@@ -18,6 +18,8 @@ export interface FormData {
     readonly passport: FormDataField;
     readonly email: FormDataField;
     readonly phone: FormDataField;
+    readonly deliveryAddress: FormDataField;
+    readonly comment: FormDataField;
 }
 
 export interface CheckOutPopupProps
@@ -111,6 +113,31 @@ export const CheckOutPopup = ({
                                     phone: {
                                         data: e,
                                         isValid: formData.phone.isValid,
+                                    },
+                                })
+                            }
+                        />
+                        <Input
+                            value={formData.deliveryAddress}
+                            placeholder={'Delivery address'}
+                            onChenge={(e) =>
+                                updateFormData({
+                                    deliveryAddress: {
+                                        data: e,
+                                        isValid:
+                                            formData.deliveryAddress.isValid,
+                                    },
+                                })
+                            }
+                        />
+                        <Input
+                            value={formData.comment}
+                            placeholder={'Comment'}
+                            onChenge={(e) =>
+                                updateFormData({
+                                    comment: {
+                                        data: e,
+                                        isValid: formData.comment.isValid,
                                     },
                                 })
                             }
