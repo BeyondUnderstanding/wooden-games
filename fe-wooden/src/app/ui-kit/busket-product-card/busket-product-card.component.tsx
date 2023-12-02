@@ -10,8 +10,6 @@ export interface BasketProductCardProps {
     readonly onClick: () => void;
 }
 
-const IMG_SIZE = 120;
-
 export const BasketProductCard = ({
     src,
     coast,
@@ -23,15 +21,17 @@ export const BasketProductCard = ({
         <div className={css.wrap}>
             <Image
                 src={src}
-                width={IMG_SIZE}
-                height={IMG_SIZE}
+                width={0}
+                height={0}
                 className={css.image}
+                sizes="100vw"
                 alt="Game picture"
+                
             />
             <div className={css.infoWrap}>
                 <div className={css.info}>
-                    <span>{name}</span>
-                    <span>{`${coast}.00`} ₾ / h</span>
+                    <span className={css.name}>{name}</span>
+                    <span className={css.coast}>{`${coast}.00`} ₾ / h</span>
                 </div>
                 <div className={css.controll}>
                     <Button
