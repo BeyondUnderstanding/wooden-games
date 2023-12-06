@@ -101,7 +101,7 @@ export const BasketPopup = ({
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
             <aside
-                className={cn(css.aside, { [css.open]: isOpen })}
+                className={cn(css.aside, { [css.open]: isOpen }, css.basket)}
                 ref={popupRef}
             >
                 <div className={css.asideHeader}>
@@ -120,6 +120,8 @@ export const BasketPopup = ({
                             />
                         ))}
                     </div>
+                </div>
+                <div className={css.infoWrap}>
                     <div>
                         <span>Your Date:</span>
                         <div>
@@ -143,21 +145,21 @@ export const BasketPopup = ({
                         discount={getDiscount(products, clockHoursValidate)}
                         delivery={10}
                     />
+                    <Button
+                        label={'Go to Checkout'}
+                        onClick={onClick}
+                        type={'def'}
+                        //  я хз че тут происходит иначе оно не хочет работать
+                        disabled={
+                            !(
+                                products.every((el) => !el.disabled) &&
+                                btnDateState == true &&
+                                products.length > 2
+                            )
+                        }
+                    />
+                    <CheckRuls goToCheckRulse={goToCheckRulse} />
                 </div>
-                <Button
-                    label={'Go to Checkout'}
-                    onClick={onClick}
-                    type={'def'}
-                    //  я хз че тут происходит иначе оно не хочет работать
-                    disabled={
-                        !(
-                            products.every((el) => !el.disabled) &&
-                            btnDateState == true &&
-                            products.length > 2
-                        )
-                    }
-                />
-                <CheckRuls goToCheckRulse={goToCheckRulse} />
             </aside>
         </div>
     );
