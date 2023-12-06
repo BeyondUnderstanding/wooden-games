@@ -141,7 +141,7 @@ export const BasketPopup = ({
                                 .reduce((a, b) => a + b, 0) * clockHoursValidate
                         }
                         discount={getDiscount(products, clockHoursValidate)}
-                        delivery={10}
+                        delivery={15}
                     />
                 </div>
                 <Button

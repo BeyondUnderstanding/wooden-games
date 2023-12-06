@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
     title: 'Wooden Games',
     keywords: [
+        'party games rent',
         'corporate party',
         'corporate event',
         'corporative',
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
         'official event',
     ],
     description:
-        'Renting games for your event is a great way to create a fun and interactive atmosphere. Keep your guests entertained and engaged without resorting to smartphones. Learn more about how to make your coffee break a memorable and enjoyable experience with these games',
+        'Renting games for your party is a great way to create a fun and interactive atmosphere. Keep your guests entertained and engaged without resorting to smartphones. Learn more about how to make your coffee break a memorable and enjoyable experience with these games',
 };
 
 export default function RootLayout({

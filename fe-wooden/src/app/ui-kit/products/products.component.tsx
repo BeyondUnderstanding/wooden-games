@@ -4,6 +4,7 @@ import { ProductCard } from '../product-card/product-card.component';
 import { Product } from '../side-popup/basket-popup.component';
 import { useRouter } from 'next/navigation';
 import css from './products.module.css';
+import Link from 'next/link';
 
 export interface ProductsProps {
     readonly products: Array<Product>;
@@ -17,9 +18,9 @@ export const Products = ({ products, add2Basket }: ProductsProps) => {
             <h1 className={css.label}>Game Collection</h1>
             <div className={css.wrapProducts}>
                 {products.map((el) => (
-                    <div
-                        onClick={() => router.push(`/game/${el.id}`)}
+                    <Link
                         key={el.coast + '_' + el.name}
+                        href={`/game/${el.id}`}
                     >
                         <ProductCard
                             {...el}
@@ -27,7 +28,7 @@ export const Products = ({ products, add2Basket }: ProductsProps) => {
                                 add2Basket(el);
                             }}
                         />
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>
