@@ -101,7 +101,7 @@ export const BasketPopup = ({
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
             <aside
-                className={cn(css.aside, { [css.open]: isOpen }, css.basket)}
+                className={cn(css.aside, css.basket, { [css.open]: isOpen })}
                 ref={popupRef}
             >
                 <div className={css.asideHeader}>
