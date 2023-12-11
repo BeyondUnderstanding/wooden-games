@@ -70,8 +70,8 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
         )
     );
 
-    const notFillStartTimeError = newLensedAtom(false);
-    const notFillEndTimeError = newLensedAtom(false);
+    const notFillStartTimeError = newLensedAtom(!!selectDate.start ?? false);
+    const notFillEndTimeError = newLensedAtom(!!selectDate.end ?? false);
 
     const highlightDates = ({ date, view }: TileArgs) =>
         view === 'month' &&
@@ -89,9 +89,15 @@ export const newCalendarViewModel: NewCalendarViewModel = ({
             </span>
         ) : null;
 
+    const toInputTypeFromDate = (date: Date): InputType => ({
+        value: date.getHours(),
+        label: `${date.getHours()}:00`,
+        isDisable: false,
+    });
+
     const selectDateCb = () => {
-        const end = endTime.get();
-        const start = startTime.get();
+        const end = endTime.get() ?? toInputTypeFromDate(selectDate.end);
+        const start = startTime.get() ?? toInputTypeFromDate(selectDate.start);
 
         if (end !== undefined && start !== undefined) {
             onSelectDate(

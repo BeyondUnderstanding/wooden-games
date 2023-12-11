@@ -11,14 +11,6 @@ export const RentalRulsBody = () => {
                     If you cancel the order later than 3 days in advance, the
                     prepayment will not be refunded.
                 </li>
-                <li>
-                    By paying for games on the website, you are only booking the
-                    games and paying half of the rental fee.
-                </li>
-                <li>
-                    The other half of the payment is due on the day of your
-                    event.
-                </li>
                 <li>Delivery fee is not included, 15 ₾</li>
                 <li>
                     If any game components are lost or damaged, you will be

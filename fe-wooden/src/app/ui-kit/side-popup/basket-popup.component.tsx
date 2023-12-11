@@ -46,13 +46,13 @@ export interface GetDiscount {
     menegers: 0 | 1 | 2;
 }
 const getDiscount = (products: Product[], h: number): GetDiscount => {
-    if (products.length > 4 && h > 2 && products.length < 9 && h < 5) {
+    if (products.length === 3 && h > 4) {
         return {
             discount: 0.85,
             menegers: 1,
         };
     }
-    if (products.length === 3 && h > 4) {
+    if (products.length > 4 && h > 2 && products.length < 8 && h < 6) {
         return {
             discount: 0.85,
             menegers: 1,
@@ -143,7 +143,7 @@ export const BasketPopup = ({
                                 .reduce((a, b) => a + b, 0) * clockHoursValidate
                         }
                         discount={getDiscount(products, clockHoursValidate)}
-                        delivery={10}
+                        delivery={15}
                     />
                     <Button
                         label={'Go to Checkout'}
