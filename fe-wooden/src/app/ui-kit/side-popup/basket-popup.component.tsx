@@ -52,7 +52,7 @@ const getDiscount = (products: Product[], h: number): GetDiscount => {
             menegers: 1,
         };
     }
-    if (products.length > 4 && h > 2 && products.length < 8 && h < 6) {
+    if (products.length > 4 && h > 2 && products.length < 8) {
         return {
             discount: 0.85,
             menegers: 1,

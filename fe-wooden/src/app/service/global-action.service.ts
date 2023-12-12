@@ -62,7 +62,8 @@ export interface RestService {
     }) => Stream<number>;
     readonly delFromBasket: (id: number) => Promise<number>;
     readonly createOrder: (
-        clientData: FormData
+        clientData: FormData,
+        typePayment: 'card' | 'prepayment'
     ) => Stream<AxiosResponse<{ checkout_url: string }>>;
     readonly getOccupiedDates: () => Promise<AxiosResponse<Array<Date>>>;
     readonly getGameById: (
@@ -174,7 +175,7 @@ export const restService: NewRestService = () => ({
             .catch(() => 500);
         return fromPromise(prom);
     },
-    createOrder: (userData) => {
+    createOrder: (userData, payment_method) => {
         return fromPromise(
             axios.post(
                 API.basket + '/create_order',
@@ -185,6 +186,7 @@ export const restService: NewRestService = () => ({
                     legal_id: userData.passport.data,
                     delivery_address: userData.deliveryAddress.data,
                     extra: userData.comment.data,
+                    payment_method,
                 },
                 {
                     headers: {

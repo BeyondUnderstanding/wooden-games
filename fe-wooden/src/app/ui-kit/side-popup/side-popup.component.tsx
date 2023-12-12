@@ -40,7 +40,7 @@ export interface SidePopupProps {
     readonly formData: FormData;
     readonly updateFormData: (data: Partial<FormData>) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
-    readonly checkoutOnClick: () => void;
+    readonly checkoutOnClick: (typePayment: 'card' | 'prepayment') => void;
     readonly occupiedDates: Array<Date>;
 }
 

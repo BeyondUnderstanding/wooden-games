@@ -25,7 +25,7 @@ interface LayoutViewModel {
     readonly setIsOpen: (x: boolean) => void;
     readonly setPage: (page: Partial<Page>) => void;
     readonly openBasket: () => void;
-    readonly checkoutOnClick: () => void;
+    readonly checkoutOnClick: (typePayment: 'card' | 'prepayment') => void;
 }
 
 interface NewCalendarViewModelProperty {
@@ -111,11 +111,13 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
     );
 
     // смотрит на изменение полей формы checkout и выставляет их валидными елси соответствует условиям
-    const [checkoutOnClick, checkoutEvent] = createAdapter<void>();
+    const [checkoutOnClick, checkoutEvent] = createAdapter<
+        'card' | 'prepayment'
+    >();
 
     const checkoutEffect = pipe(
         checkoutEvent,
-        chain((_) => {
+        chain((typePayment) => {
             const form = checkoutForm.get();
 
             if (form.phone.data && !/^\+995[57]\d{8}$/.test(form.phone.data)) {
@@ -173,12 +175,15 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
             ) {
                 checkoutForm.modify((form) => ({
                     ...form,
-                    deliveryAddress: { ...form.name, isValid: true },
+                    deliveryAddress: { ...form.deliveryAddress, isValid: true },
                 }));
             } else {
                 checkoutForm.modify((form) => ({
                     ...form,
-                    deliveryAddress: { ...form.name, isValid: false },
+                    deliveryAddress: {
+                        ...form.deliveryAddress,
+                        isValid: false,
+                    },
                 }));
             }
 
@@ -189,7 +194,10 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
                 checkoutForm.get().phone.isValid &&
                 checkoutForm.get().deliveryAddress.isValid
             ) {
-                return restService().createOrder(checkoutForm.get());
+                return restService().createOrder(
+                    checkoutForm.get(),
+                    typePayment
+                );
             } else {
                 return empty();
             }
@@ -198,7 +206,9 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
             if (resp.status === 200) {
                 setPage({ url: 'empty', products: [] });
                 setBasketProducts([]);
-                window.open(resp.data.checkout_url);
+                if (resp.data.checkout_url !== null) {
+                    window.open(resp.data.checkout_url);
+                }
             }
         })
     );
