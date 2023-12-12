@@ -31,7 +31,7 @@ export type LayoutProps = {
     readonly openBasket: () => void;
     readonly deleteDromBasket: (id: number) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
-    readonly checkoutOnClick: () => void;
+    readonly checkoutOnClick: (typePayment: 'card' | 'prepayment') => void;
     readonly occupiedDates: Array<Date>;
 } & (
     | { children: React.ReactNode }

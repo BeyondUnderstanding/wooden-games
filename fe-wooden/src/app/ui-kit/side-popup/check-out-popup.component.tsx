@@ -23,7 +23,8 @@ export interface FormData {
 }
 
 export interface CheckOutPopupProps
-    extends Omit<SidePopupLayoutProps, 'children'> {
+    extends Omit<SidePopupLayoutProps, 'children' | 'onClickButton'> {
+    readonly onClickButton: (typePayment: 'card' | 'prepayment') => void;
     readonly onClickBack: () => void;
     readonly goToRulse: () => void;
     readonly formData: FormData;
@@ -156,12 +157,23 @@ export const CheckOutPopup = ({
                         </CheckBox>
                     </div>
                 </div>
-                <Button
-                    label={labelButton}
-                    onClick={onClickButton}
-                    disabled={!checkboxState}
-                    type={'def'}
-                />
+                <div className={css.controls}>
+                    <Button
+                        label={labelButton}
+                        onClick={() => onClickButton('card')}
+                        disabled={!checkboxState}
+                        type={'def'}
+                        theme={[css.btn]}
+                    />
+
+                    <Button
+                        label={'Payment via manager'}
+                        onClick={() => onClickButton('prepayment')}
+                        disabled={!checkboxState}
+                        type={'def'}
+                        theme={[css.btn]}
+                    />
+                </div>
             </aside>
         </div>
     );
