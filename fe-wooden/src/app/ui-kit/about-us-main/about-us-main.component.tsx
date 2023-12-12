@@ -38,20 +38,32 @@ export const AboutUsMain = () => {
                         </p>
                     </div>
                     <Image
-                        width={800}
-                        height={560}
+                        width={0}
+                        height={0}
+                        sizes="100vw"
                         src={ticTacToe}
                         className={css.photo}
                         alt="game photo"
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            maxWidth: '800px',
+                        }}
                     />
                 </div>
                 <div className={css.element}>
                     <Image
-                        width={800}
-                        height={560}
+                        width={0}
+                        height={0}
+                        sizes="100vw"
                         src={balls}
                         className={css.photo}
                         alt="game photo"
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            maxWidth: '800px',
+                        }}
                     />
                     <div className={css.heading}>
                         <h3 className={css.caption}>Let&apos;s Play!</h3>

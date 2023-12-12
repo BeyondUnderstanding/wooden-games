@@ -102,7 +102,7 @@ export const SidePopup = ({
             return (
                 <CheckOutPopup
                     isOpen={isOpen}
-                    label={'Rental rules'}
+                    label={'Checkout'}
                     onClose={onClose}
                     labelButton={'It makes sense to me'}
                     onClickButton={checkoutOnClick}

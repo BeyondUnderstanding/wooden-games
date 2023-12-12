@@ -26,6 +26,7 @@ export const Button = ({
         <button
             onClick={(e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 !disabled && onClick();
             }}
             className={cn(css.wrap, ...theme, {

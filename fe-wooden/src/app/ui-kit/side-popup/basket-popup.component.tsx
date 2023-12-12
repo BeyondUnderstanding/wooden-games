@@ -46,13 +46,13 @@ export interface GetDiscount {
     menegers: 0 | 1 | 2;
 }
 const getDiscount = (products: Product[], h: number): GetDiscount => {
-    if (products.length > 4 && h > 2 && products.length < 9 && h < 5) {
+    if (products.length === 3 && h > 4) {
         return {
             discount: 0.85,
             menegers: 1,
         };
     }
-    if (products.length === 3 && h > 4) {
+    if (products.length > 4 && h > 2 && products.length < 8 && h < 6) {
         return {
             discount: 0.85,
             menegers: 1,
@@ -101,7 +101,7 @@ export const BasketPopup = ({
         <div className={cn({ [css.asideWrap]: isOpen })}>
             <div className={cn({ [css.asideWrapBlure]: isOpen })} />
             <aside
-                className={cn(css.aside, { [css.open]: isOpen })}
+                className={cn(css.aside, css.basket, { [css.open]: isOpen })}
                 ref={popupRef}
             >
                 <div className={css.asideHeader}>
@@ -120,6 +120,8 @@ export const BasketPopup = ({
                             />
                         ))}
                     </div>
+                </div>
+                <div className={css.infoWrap}>
                     <div>
                         <span>Your Date:</span>
                         <div>
@@ -141,23 +143,23 @@ export const BasketPopup = ({
                                 .reduce((a, b) => a + b, 0) * clockHoursValidate
                         }
                         discount={getDiscount(products, clockHoursValidate)}
-                        delivery={10}
+                        delivery={15}
                     />
+                    <Button
+                        label={'Go to Checkout'}
+                        onClick={onClick}
+                        type={'def'}
+                        //  я хз че тут происходит иначе оно не хочет работать
+                        disabled={
+                            !(
+                                products.every((el) => !el.disabled) &&
+                                btnDateState == true &&
+                                products.length > 2
+                            )
+                        }
+                    />
+                    <CheckRuls goToCheckRulse={goToCheckRulse} />
                 </div>
-                <Button
-                    label={'Go to Checkout'}
-                    onClick={onClick}
-                    type={'def'}
-                    //  я хз че тут происходит иначе оно не хочет работать
-                    disabled={
-                        !(
-                            products.every((el) => !el.disabled) &&
-                            btnDateState == true &&
-                            products.length > 2
-                        )
-                    }
-                />
-                <CheckRuls goToCheckRulse={goToCheckRulse} />
             </aside>
         </div>
     );

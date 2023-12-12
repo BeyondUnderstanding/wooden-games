@@ -183,6 +183,8 @@ export const restService: NewRestService = () => ({
                     client_phone: userData.phone.data,
                     client_email: userData.email.data,
                     legal_id: userData.passport.data,
+                    delivery_address: userData.deliveryAddress.data,
+                    extra: userData.comment.data,
                 },
                 {
                     headers: {
