@@ -40,7 +40,7 @@ export interface ProductPageResp {
     description: string;
 }
 
-const domain = 'https://api.woodengames.ge/v1/client';
+const domain = process.env.DOMAIN_URL;
 const API = {
     domain,
     basket: `${domain}/basket`,

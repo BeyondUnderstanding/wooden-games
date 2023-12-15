@@ -11,6 +11,7 @@
     font-family: 'Inter-Regular';
     background-color: var(--Sand-Dark, rgba(229, 227, 219, 1));
     flex-direction: column;
+    overflow: hidden;
 }
 
 .wrap:hover {

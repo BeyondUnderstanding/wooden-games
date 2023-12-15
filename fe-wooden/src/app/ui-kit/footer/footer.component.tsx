@@ -56,7 +56,7 @@ export const Footer = ({ termsConditionsOpen }: FooterProps) => {
                             Users Review
                         </Link> */}
                         <span
-                            className={css.text}
+                            className={(css.text, css.pointer)}
                             onClick={termsConditionsOpen}
                         >
                             Terms and conditions
