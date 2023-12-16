@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import css from './product-galery.module.css';
-import Image from 'next/image';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
 
@@ -18,7 +18,7 @@ export const ProductGalery = ({ imgs }: ProductGaleryProps) => {
                 {imgs.map((src) => (
                     <SwiperSlide key={src}>
                         <div className={css.swiperWrapMobile}>
-                            <Image
+                            <img
                                 src={src}
                                 alt="game photo"
                                 width={0}
@@ -54,7 +54,7 @@ export const ProductGaleryMobile = ({ imgs }: ProductGaleryProps) => {
             {imgs.map((src) => (
                 <SwiperSlide key={src}>
                     <div className={css.wrapMobile}>
-                        <Image
+                        <img
                             src={src}
                             alt="game photo"
                             width={0}

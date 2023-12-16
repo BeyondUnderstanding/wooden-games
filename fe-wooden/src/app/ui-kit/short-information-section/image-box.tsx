@@ -1,4 +1,5 @@
-import Image, { StaticImageData } from 'next/image';
+/* eslint-disable @next/next/no-img-element */
+import { StaticImageData } from 'next/image';
 import css from './short-information-section.module.css';
 import abacus from '../../../../public/img/short-information-section/abakus.jpg';
 import balls from '../../../../public/img/short-information-section/chainBalls.jpg';
@@ -11,8 +12,8 @@ export const ImageBox = () => {
     return (
         <div className={css.images}>
             {photos.map((src) => (
-                <Image
-                    src={src}
+                <img
+                    src={src.src}
                     width={0}
                     height={0}
                     sizes="100vw"

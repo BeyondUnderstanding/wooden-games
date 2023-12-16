@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
 import css from './busket-product-card.module.css';
 import { Button } from '../button/button.component';
 
@@ -19,14 +19,13 @@ export const BasketProductCard = ({
 }: BasketProductCardProps) => {
     return (
         <div className={css.wrap}>
-            <Image
+            <img
                 src={src}
                 width={0}
                 height={0}
                 className={css.image}
                 sizes="100vw"
                 alt="Game picture"
-                
             />
             <div className={css.infoWrap}>
                 <div className={css.info}>

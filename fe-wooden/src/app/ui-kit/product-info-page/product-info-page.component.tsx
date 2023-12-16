@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { CheckRuls } from '../check-ruls/check-ruls.component';
 import { ProductCharacteristics } from '../product-characteristics/product-characteristics.component';
 import { PlayersIcon } from '../icons/players-icon.component';
@@ -10,7 +11,6 @@ import { Button } from '../button/button.component';
 import { Stream } from '@most/types';
 import { Product } from '../side-popup/basket-popup.component';
 import { ProductPageResp } from '../../service/global-action.service';
-import Image from 'next/image';
 import { ProductGaleryMobile } from '../../ui-kit/product-galery/product-galery.component';
 
 interface SmallLabelProps {
@@ -76,7 +76,7 @@ export const ProductInfoPage = ({
                 <ProductGaleryMobile imgs={[productData.src, ...imgs]} />
             </div>
             <div className={css.photoWrap}>
-                <Image
+                <img
                     src={productData.src}
                     width={0}
                     height={0}

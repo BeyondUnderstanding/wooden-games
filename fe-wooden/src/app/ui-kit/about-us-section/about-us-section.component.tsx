@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import css from './about-us-section.module.css';
 import ticTacToe from '../../../../public/img/short-information-section/ticTacToe.jpg';
 import abacus from '../../../../public/img/short-information-section/abakus.jpg';
@@ -11,8 +11,8 @@ const AboutUsSection = () => {
     return (
         <section className={css.wrap}>
             <div className={css.element}>
-                <Image
-                    src={ticTacToe}
+                <img
+                    src={ticTacToe.src}
                     width={0}
                     height={0}
                     sizes="100vw"
@@ -28,8 +28,8 @@ const AboutUsSection = () => {
             </div>
 
             <div className={css.element}>
-                <Image
-                    src={abacus}
+                <img
+                    src={abacus.src}
                     width={0}
                     height={0}
                     sizes="100vw"
@@ -45,8 +45,8 @@ const AboutUsSection = () => {
             </div>
 
             <div className={css.element}>
-                <Image
-                    src={jenga}
+                <img
+                    src={jenga.src}
                     width={0}
                     height={0}
                     sizes="100vw"

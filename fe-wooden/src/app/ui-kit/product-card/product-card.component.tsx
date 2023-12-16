@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import css from './product-card.module.css';
 import cn from 'classnames';
-import Image from 'next/image';
 import { Button } from '../button/button.component';
 
 export interface CardProps {
@@ -22,7 +22,7 @@ export const ProductCard = ({
 }: CardProps) => {
     return (
         <div className={css.wrap}>
-            <Image
+            <img
                 src={src}
                 width={0}
                 height={0}
@@ -31,8 +31,9 @@ export const ProductCard = ({
                 alt="Game picture"
                 style={{
                     width: '100%',
-                    height: 'auto',
+                    height: '518px',
                     maxWidth: '549px',
+                    objectFit: 'contain',
                 }}
             />
             <div className={css.lowerBar}>

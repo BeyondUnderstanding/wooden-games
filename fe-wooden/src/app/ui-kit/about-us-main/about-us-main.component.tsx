@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import css from './about-us-main.module.css';
-import Image from 'next/image';
 import ticTacToe from '../../../../public/img/short-information-section/ticTacToe.jpg';
 import balls from '../../../../public/img/short-information-section/chainBalls.jpg';
 
@@ -37,11 +37,11 @@ export const AboutUsMain = () => {
                             each other&apos;s company.
                         </p>
                     </div>
-                    <Image
+                    <img
                         width={0}
                         height={0}
                         sizes="100vw"
-                        src={ticTacToe}
+                        src={ticTacToe.src}
                         className={css.photo}
                         alt="game photo"
                         style={{
@@ -52,11 +52,11 @@ export const AboutUsMain = () => {
                     />
                 </div>
                 <div className={css.element}>
-                    <Image
+                    <img
                         width={0}
                         height={0}
                         sizes="100vw"
-                        src={balls}
+                        src={balls.src}
                         className={css.photo}
                         alt="game photo"
                         style={{
