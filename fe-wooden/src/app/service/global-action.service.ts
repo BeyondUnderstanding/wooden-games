@@ -41,6 +41,8 @@ export interface ProductPageResp {
 }
 
 const domain = process.env.DOMAIN_URL;
+console.log(process.env.DOMAIN_URL, 'process.env.DOMAIN_URL');
+
 const API = {
     domain,
     basket: `${domain}/basket`,
