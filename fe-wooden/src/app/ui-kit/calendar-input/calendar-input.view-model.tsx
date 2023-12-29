@@ -96,6 +96,9 @@ export const newCalendarInputViewModel: NewCalendarInputViewModel = ({
                 (isBasket &&
                     !chosenDate.label?.includes(
                         new Date().getFullYear().toString()
+                    ) &&
+                    !chosenDate.label?.includes(
+                        (new Date().getFullYear() + 1).toString()
                     )) ??
                 false;
             isHeaderError.set(err);
