@@ -83,9 +83,10 @@ export const BasketPopup = ({
     occupiedDates,
 }: BasketPopupProps) => {
     // danger zone start
-    const btnDateState = useProperty(chosenDate).label?.includes(
-        new Date().getFullYear().toString()
-    );
+    const btnDateStateLavel = useProperty(chosenDate).label;
+    const btnDateState =
+        btnDateStateLavel?.includes(new Date().getFullYear().toString()) ||
+        btnDateStateLavel?.includes((new Date().getFullYear() + 1).toString());
 
     const clockHours = Number(
         useProperty(chosenDate).label?.split(',')[1].split('h')[0]
