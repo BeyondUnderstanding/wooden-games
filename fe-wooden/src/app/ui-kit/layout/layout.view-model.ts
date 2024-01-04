@@ -25,7 +25,9 @@ interface LayoutViewModel {
     readonly setIsOpen: (x: boolean) => void;
     readonly setPage: (page: Partial<Page>) => void;
     readonly openBasket: () => void;
-    readonly checkoutOnClick: (typePayment: 'card' | 'prepayment') => void;
+    readonly checkoutOnClick: (
+        typePayment: 'cryptocom' | 'prepayment' | 'paypal'
+    ) => void;
 }
 
 interface NewCalendarViewModelProperty {
@@ -112,7 +114,7 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
 
     // смотрит на изменение полей формы checkout и выставляет их валидными елси соответствует условиям
     const [checkoutOnClick, checkoutEvent] = createAdapter<
-        'card' | 'prepayment'
+        'cryptocom' | 'prepayment' | 'paypal'
     >();
 
     const checkoutEffect = pipe(

@@ -13,6 +13,9 @@ export const ProductFratured = ({
     add2Basket,
 }: ProductFraturedProps) => {
     const router = useRouter();
+    if (fratured.length < 1) {
+        return null;
+    }
     return (
         <div className={css.wrap}>
             <h2 className={css.headeLabel}>Other games</h2>
