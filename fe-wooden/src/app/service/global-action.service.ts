@@ -63,7 +63,7 @@ export interface RestService {
     readonly delFromBasket: (id: number) => Promise<number>;
     readonly createOrder: (
         clientData: FormData,
-        typePayment: 'card' | 'prepayment'
+        typePayment: 'cryptocom' | 'prepayment' | 'paypal'
     ) => Stream<AxiosResponse<{ checkout_url: string }>>;
     readonly getOccupiedDates: () => Promise<AxiosResponse<Array<Date>>>;
     readonly getGameById: (
