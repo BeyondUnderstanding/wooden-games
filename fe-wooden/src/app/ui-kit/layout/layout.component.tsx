@@ -9,6 +9,7 @@ import { FormData } from '../side-popup/check-out-popup.component';
 import { Stream } from '@most/types';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { GeneralConditionsBody } from '../general-conditions/general-conditions.component';
+import { PaymentTypes } from '../../service/global-action.service';
 
 export interface PropsChildComponent {
     readonly chosenDate: Property<ChosenDate>;
@@ -31,9 +32,7 @@ export type LayoutProps = {
     readonly openBasket: () => void;
     readonly deleteDromBasket: (id: number) => void;
     readonly updateDate: (date: ChosenDate) => Stream<unknown>;
-    readonly checkoutOnClick: (
-        typePayment: 'cryptocom' | 'prepayment' | 'paypal'
-    ) => void;
+    readonly checkoutOnClick: (typePayment: PaymentTypes) => void;
     readonly occupiedDates: Array<Date>;
 } & (
     | { children: React.ReactNode }
@@ -96,28 +95,46 @@ export const Layout = ({
             goToCheckRulse: goFromCheckRulseToCheckout,
         });
 
+    const calendarData = {
+        chosenDate,
+        setChosenDate,
+        label: 'Choose Dates',
+        unsetLabel: 'Any Date',
+        updateDate,
+        occupiedDates,
+    };
+
+    const HeaderResolve = Header({
+        calendarData,
+    });
+
+    const SidePopupResolve = SidePopup({
+        calendarData: {
+            ...calendarData,
+            unsetLabel: 'Lease date not specified',
+            label: 'Choose another date',
+            isBasket: true,
+        },
+        SidePopupControls: {
+            isOpen,
+            onClose: () => setIsOpen(false),
+        },
+    });
+
     return (
         <>
-            <SidePopup
+            <SidePopupResolve
                 page={page}
                 setNewPage={(page) => setPage(page)}
-                isOpen={isOpen}
-                onClose={() => setIsOpen(false)}
                 deleteFromBasket={deleteDromBasket}
                 formData={formData}
                 updateFormData={updateFormData}
-                updateDate={updateDate}
                 checkoutOnClick={checkoutOnClick}
-                occupiedDates={occupiedDates}
             />
-            <Header
+            <HeaderResolve
+                openRentalRuls={goFromCheckRulseToCheckout}
                 openBasket={openBasket}
                 basketAmount={basketAmount}
-                chosenDate={chosenDate}
-                setChosenDate={setChosenDate}
-                updateDate={updateDate}
-                occupiedDates={occupiedDates}
-                openRentalRuls={goFromCheckRulseToCheckout}
             />
             <main>
                 {ChildrenComponent && ChildrenComponent}

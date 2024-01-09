@@ -12,7 +12,7 @@ import { fromProperty } from '../../../utils/property.utils';
 import { chain, empty, tap } from '@most/core';
 import { FormData } from '../side-popup/check-out-popup.component';
 import { createAdapter } from '@most/adapter';
-import { restService } from '../../service/global-action.service';
+import { PaymentTypes, restService } from '../../service/global-action.service';
 
 interface LayoutViewModel {
     readonly isOpen: Property<boolean>;
@@ -25,9 +25,7 @@ interface LayoutViewModel {
     readonly setIsOpen: (x: boolean) => void;
     readonly setPage: (page: Partial<Page>) => void;
     readonly openBasket: () => void;
-    readonly checkoutOnClick: (
-        typePayment: 'cryptocom' | 'prepayment' | 'paypal'
-    ) => void;
+    readonly checkoutOnClick: (typePayment: PaymentTypes) => void;
 }
 
 interface NewCalendarViewModelProperty {
@@ -113,9 +111,7 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
     );
 
     // смотрит на изменение полей формы checkout и выставляет их валидными елси соответствует условиям
-    const [checkoutOnClick, checkoutEvent] = createAdapter<
-        'cryptocom' | 'prepayment' | 'paypal'
-    >();
+    const [checkoutOnClick, checkoutEvent] = createAdapter<PaymentTypes>();
 
     const checkoutEffect = pipe(
         checkoutEvent,
@@ -231,7 +227,6 @@ export const newLayoutViewModel: NewLayoutViewModel = ({
         },
         basketProductsAmountEffect,
         basketProductsEffect,
-        // validateFormEffect,
         checkoutEffect
     );
 };

@@ -5,7 +5,10 @@ import { Stream } from '@most/types';
 import { Property } from '@frp-ts/core';
 import { useValueWithEffect } from '../../../utils/run-view-model.utils';
 import { newHomePageStore } from '../../page.store';
-import { ChosenDate } from '../../ui-kit/layout/layout.component';
+import {
+    ChosenDate,
+    PropsChildComponent,
+} from '../../ui-kit/layout/layout.component';
 import { LayoutContainer } from '../../ui-kit/layout/layout.container';
 import { Product } from '../../ui-kit/side-popup/basket-popup.component';
 import {
@@ -46,6 +49,24 @@ const Page = ({
     imgs,
     fratured,
 }: PageProps) => {
+    const calendarData = {
+        label: 'Choose Dates',
+        unsetLabel: 'Any Date',
+        updateDate,
+        occupiedDates,
+    };
+
+    const ProductInfoPageResolve = (rest: PropsChildComponent) =>
+        ProductInfoPage({
+            calendarData: {
+                ...calendarData,
+                ...rest,
+                isBasket: true,
+                label: 'Enter the date',
+                unsetLabel: 'Lease date not specified',
+            },
+        });
+
     return (
         <LayoutContainer
             products={basketProducts}
@@ -54,10 +75,8 @@ const Page = ({
             setBasketProducts={setBasketProducts}
             occupiedDates={occupiedDates}
             childrenComponent={(restProps) =>
-                ProductInfoPage({
+                ProductInfoPageResolve(restProps)({
                     ...restProps,
-                    occupiedDates,
-                    updateDate,
                     productData,
                     add2Basket,
                     imgs,
