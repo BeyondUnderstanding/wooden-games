@@ -10,6 +10,7 @@ import { Product } from '../side-popup/basket-popup.component';
 import { ProductPageResp } from '../../service/global-action.service';
 import { ProductGaleryMobile } from '../../ui-kit/product-galery/product-galery.component';
 import { injectable } from '@injectable-ts/core';
+import { genLinkToImgProxy, linkToName } from '../../../utils/img.utils';
 
 interface SmallLabelProps {
     readonly children: JSX.Element;
@@ -80,7 +81,11 @@ export const ProductInfoPage = injectable(
                     </div>
                     <div className={css.photoWrap}>
                         <img
-                            src={productData.src}
+                            src={genLinkToImgProxy({
+                                name: linkToName(productData.src),
+                                width: 820,
+                                height: 0,
+                            })}
                             width={0}
                             height={0}
                             sizes="100vw"

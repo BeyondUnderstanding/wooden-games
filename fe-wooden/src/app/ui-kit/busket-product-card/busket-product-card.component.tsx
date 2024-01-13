@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import css from './busket-product-card.module.css';
 import { Button } from '../button/button.component';
+import { genLinkToImgProxy, linkToName } from '../../../utils/img.utils';
 
 export interface BasketProductCardProps {
     readonly src: string;
@@ -20,7 +21,11 @@ export const BasketProductCard = ({
     return (
         <div className={css.wrap}>
             <img
-                src={src}
+                src={genLinkToImgProxy({
+                    name: linkToName(src),
+                    width: 120,
+                    height: 0,
+                })}
                 width={0}
                 height={0}
                 className={css.image}
