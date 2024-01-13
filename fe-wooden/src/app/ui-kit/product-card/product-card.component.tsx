@@ -4,6 +4,7 @@
 import css from './product-card.module.css';
 import cn from 'classnames';
 import { Button } from '../button/button.component';
+import { genLinkToImgProxy, linkToName } from '../../../utils/img.utils';
 
 export interface CardProps {
     readonly disabled: boolean;
@@ -23,7 +24,11 @@ export const ProductCard = ({
     return (
         <div className={css.wrap}>
             <img
-                src={src}
+                src={genLinkToImgProxy({
+                    name: linkToName(src),
+                    width: 549,
+                    height: 0,
+                })}
                 width={0}
                 height={0}
                 sizes="100vw"

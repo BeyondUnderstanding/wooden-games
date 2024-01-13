@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import css from './product-galery.module.css';
 import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/css';
+import { genLinkToImgProxy, linkToName } from '../../../utils/img.utils';
 
 export interface ProductGaleryProps {
     readonly imgs: Array<string>;
@@ -19,7 +20,11 @@ export const ProductGalery = ({ imgs }: ProductGaleryProps) => {
                     <SwiperSlide key={src}>
                         <div className={css.swiperWrapMobile}>
                             <img
-                                src={src}
+                                src={genLinkToImgProxy({
+                                    name: linkToName(src),
+                                    width: 820,
+                                    height: 0,
+                                })}
                                 alt="game photo"
                                 width={0}
                                 height={0}
