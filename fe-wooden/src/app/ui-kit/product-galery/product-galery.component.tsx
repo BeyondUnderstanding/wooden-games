@@ -60,7 +60,11 @@ export const ProductGaleryMobile = ({ imgs }: ProductGaleryProps) => {
                 <SwiperSlide key={src}>
                     <div className={css.wrapMobile}>
                         <img
-                            src={src}
+                            src={genLinkToImgProxy({
+                                name: linkToName(src),
+                                width: 252,
+                                height: 0,
+                            })}
                             alt="game photo"
                             width={0}
                             height={0}
