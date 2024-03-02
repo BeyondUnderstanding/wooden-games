@@ -7,14 +7,13 @@ import { BasketPopup, Product } from './basket-popup.component';
 import { RentalRulsBody } from '../retntal-ruls/retntal-ruls.component';
 import { Property } from '@frp-ts/core';
 import { ChosenDate } from '../layout/layout.component';
-import { Stream } from '@most/types';
+import { injectable } from '@injectable-ts/core';
+import { PaymentTypes } from '../../service/global-action.service';
 
 export interface SidePopupLayoutProps {
     readonly children: React.ReactNode;
     readonly label?: string;
     readonly labelButton: string;
-    readonly isOpen: boolean;
-    readonly onClose: () => void;
     readonly onClickButton: () => void;
 }
 
@@ -32,114 +31,107 @@ export interface Page {
 }
 
 export interface SidePopupProps {
-    readonly isOpen: boolean;
     readonly page: Page;
-    readonly onClose: () => void;
     readonly deleteFromBasket: (id: number) => void;
     readonly setNewPage: (args: Partial<Page>) => void;
     readonly formData: FormData;
     readonly updateFormData: (data: Partial<FormData>) => void;
-    readonly updateDate: (date: ChosenDate) => Stream<unknown>;
-    readonly checkoutOnClick: (
-        typePayment: 'cryptocom' | 'prepayment' | 'paypal'
-    ) => void;
-    readonly occupiedDates: Array<Date>;
+    readonly checkoutOnClick: (typePayment: PaymentTypes) => void;
 }
 
-export const SidePopup = ({
-    isOpen,
-    page,
-    onClose,
-    setNewPage,
-    deleteFromBasket,
-    formData,
-    updateFormData,
-    updateDate,
-    checkoutOnClick,
-    occupiedDates,
-}: SidePopupProps) => {
-    const goToCheckRulse = () => {
-        setNewPage({
-            url: 'text',
-            label: 'Rental rules',
-            subUrl: 'basket',
-            content: <RentalRulsBody />,
-        });
-    };
+export interface PopupProps {
+    readonly isOpen: boolean;
+    readonly onClose: () => void;
+}
 
-    const goFromCheckRulseToCheckout = () => {
-        setNewPage({
-            url: 'text',
-            label: 'Rental rules',
-            subUrl: 'checkout',
-            content: <RentalRulsBody />,
-        });
-    };
+export const SidePopup = injectable(
+    BasketPopup,
+    TextSidePopup,
+    CheckOutPopup,
+    EmptyBasketPopup,
+    (
+        BasketPopupContainer,
+        TextSidePopupContainer,
+        CheckOutPopupContainer,
+        EmptyBasketPopupContainer
+    ) =>
+        ({
+            page,
+            setNewPage,
+            deleteFromBasket,
+            formData,
+            updateFormData,
+            checkoutOnClick,
+        }: SidePopupProps) => {
+            const goToCheckRulse = () => {
+                setNewPage({
+                    url: 'text',
+                    label: 'Rental rules',
+                    subUrl: 'basket',
+                    content: <RentalRulsBody />,
+                });
+            };
 
-    const goToCheckOut = () => {
-        setNewPage({
-            url: 'checkout',
-            subUrl: 'basket',
-        });
-    };
+            const goFromCheckRulseToCheckout = () => {
+                setNewPage({
+                    url: 'text',
+                    label: 'Rental rules',
+                    subUrl: 'checkout',
+                    content: <RentalRulsBody />,
+                });
+            };
 
-    const onClickBack = () =>
-        setNewPage({
-            url: page.subUrl ?? 'basket',
-            subUrl: undefined,
-        });
+            const goToCheckOut = () => {
+                setNewPage({
+                    url: 'checkout',
+                    subUrl: 'basket',
+                });
+            };
 
-    switch (page.url) {
-        case 'empty':
-            return (
-                <EmptyBasketPopup
-                    isOpen={isOpen}
-                    label="Your Cart"
-                    onClose={onClose}
-                    labelButton="Start Shopping"
-                    onClickButton={onClose}
-                />
-            );
-        case 'checkout':
-            return (
-                <CheckOutPopup
-                    isOpen={isOpen}
-                    label={'Checkout'}
-                    onClose={onClose}
-                    labelButton={'It makes sense to me'}
-                    onClickButton={checkoutOnClick}
-                    onClickBack={onClickBack}
-                    goToRulse={goFromCheckRulseToCheckout}
-                    formData={formData}
-                    updateFormData={updateFormData}
-                />
-            );
-        case 'basket':
-            return (
-                <BasketPopup
-                    isOpen={isOpen}
-                    onClose={onClose}
-                    goToCheckRulse={goToCheckRulse}
-                    onClick={goToCheckOut}
-                    products={page.products ?? []}
-                    onProductDelete={deleteFromBasket}
-                    setChosenDate={page.setChosenDate}
-                    chosenDate={page.chosenDate}
-                    updateDate={updateDate}
-                    occupiedDates={occupiedDates}
-                />
-            );
-        case 'text':
-            return (
-                <TextSidePopup
-                    isOpen={isOpen}
-                    label={page.label}
-                    onClose={onClose}
-                    labelButton={'It makes sense to me'}
-                    onClickButton={onClose}
-                    content={page.content}
-                    onClickBack={onClickBack}
-                />
-            );
-    }
-};
+            const onClickBack = () =>
+                setNewPage({
+                    url: page.subUrl ?? 'basket',
+                    subUrl: undefined,
+                });
+
+            switch (page.url) {
+                case 'empty':
+                    return (
+                        <EmptyBasketPopupContainer
+                            label="Your Cart"
+                            labelButton="Start Shopping"
+                        />
+                    );
+                case 'checkout':
+                    return (
+                        <CheckOutPopupContainer
+                            label={'Checkout'}
+                            onClickButton={checkoutOnClick}
+                            onClickBack={onClickBack}
+                            goToRulse={goFromCheckRulseToCheckout}
+                            formData={formData}
+                            updateFormData={updateFormData}
+                        />
+                    );
+                case 'basket':
+                    return (
+                        <BasketPopupContainer
+                            goToCheckRulse={goToCheckRulse}
+                            onClick={goToCheckOut}
+                            products={page.products ?? []}
+                            onProductDelete={deleteFromBasket}
+                            chosenDate={page.chosenDate}
+                        />
+                    );
+                case 'text':
+                    return (
+                        <TextSidePopupContainer
+                            label={page.label}
+                            labelButton={'It makes sense to me'}
+                            content={page.content}
+                            onClickBack={onClickBack}
+                        />
+                    );
+            }
+        }
+);

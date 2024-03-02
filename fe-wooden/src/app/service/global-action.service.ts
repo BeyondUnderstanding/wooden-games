@@ -40,7 +40,7 @@ export interface ProductPageResp {
     description: string;
 }
 
-const domain = 'https://api.woodengames.ge/v1/client';
+const domain = 'https://dev.msk.beyondedge.ru/v1/client';
 const API = {
     domain,
     basket: `${domain}/basket`,
@@ -63,7 +63,7 @@ export interface RestService {
     readonly delFromBasket: (id: number) => Promise<number>;
     readonly createOrder: (
         clientData: FormData,
-        typePayment: 'cryptocom' | 'prepayment' | 'paypal'
+        typePayment: PaymentTypes
     ) => Stream<AxiosResponse<{ checkout_url: string }>>;
     readonly getOccupiedDates: () => Promise<AxiosResponse<Array<Date>>>;
     readonly getGameById: (
