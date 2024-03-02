@@ -40,7 +40,9 @@ export interface ProductPageResp {
     description: string;
 }
 
-const domain = 'https://dev.msk.beyondedge.ru/v1/client';
+export type PaymentTypes = 'cryptocom' | 'prepayment' | 'paypal';
+
+const domain = 'https://api.woodengames.ge/v1/client';
 const API = {
     domain,
     basket: `${domain}/basket`,
